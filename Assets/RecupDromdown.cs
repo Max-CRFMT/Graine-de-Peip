@@ -9,6 +9,7 @@ public class RecupDromdown : MonoBehaviour
 
     [SerializeField] TMP_Dropdown dropdown_nb_joueur;
     [SerializeField] TMP_Dropdown dropdown_difficulte;
+    [SerializeField] TMP_Text text_change;
 
     Dictionary<int, string> dict_difficulte = new Dictionary<int, string>()
     {
@@ -28,5 +29,11 @@ public class RecupDromdown : MonoBehaviour
     {
         GameLogic.instance.SetDifficulte(dict_difficulte[dropdown_difficulte.value]);
     }
+
+    public void ChangerTexte()
+    {
+        text_change.text = "Entrez un nom pour chacun des joueurs :";
+    }
+
 
 }
