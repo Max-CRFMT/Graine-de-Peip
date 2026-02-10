@@ -53,14 +53,9 @@ public class script_valider : MonoBehaviour
             RectTransform rt = prefab.GetComponent<RectTransform>();
             rt.anchoredPosition = Liste_Position[joueur];
 
-            GameObject prefab_bouton = Instantiate(BoutonAleatoire_prefab, canvas.transform);
-            RectTransform rt2 = prefab_bouton.GetComponent<RectTransform>();
-            Vector3 posistion_supplementaire = new Vector3(140, -60, 0);
-            rt2.anchoredPosition = Liste_Position[joueur]+posistion_supplementaire;
-
             GameObject prefab_select = Instantiate(SelectionCarte_prefab, canvas.transform);
             RectTransform rt3 = prefab_select.GetComponent<RectTransform>();
-            Vector3 posistion_supplementaire2 = new Vector3(-90, -60, 0);
+            Vector3 posistion_supplementaire2 = new Vector3(0, -60, 0);
             rt3.anchoredPosition = Liste_Position[joueur]+posistion_supplementaire2;
 
         }

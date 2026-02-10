@@ -342,6 +342,9 @@ MonoBehaviour:
   m_MultiSelect: 0
   m_Options:
     m_Options:
+    - m_Text: "Al\xE9atoire"
+      m_Image: {fileID: 0}
+      m_Color: {r: 1, g: 1, b: 1, a: 1}
     - m_Text: Fracture
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
