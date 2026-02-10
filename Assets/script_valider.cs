@@ -9,7 +9,8 @@ public class script_valider : MonoBehaviour
     public GameObject txt_prefab;
     public GameObject BoutonAleatoire_prefab;
     public GameObject SelectionCarte_prefab;
-
+    public GameObject Bouton_Retour;
+    public GameObject Bouton_Demarrer;
     //Définition des distances constantes
     public int xmin;
     public int ymax;
@@ -52,6 +53,20 @@ public class script_valider : MonoBehaviour
             RectTransform rt = prefab.GetComponent<RectTransform>();
             rt.anchoredPosition = Liste_Position[joueur];
 
+            GameObject prefab_bouton = Instantiate(BoutonAleatoire_prefab, canvas.transform);
+            RectTransform rt2 = prefab_bouton.GetComponent<RectTransform>();
+            Vector3 posistion_supplementaire = new Vector3(140, -60, 0);
+            rt2.anchoredPosition = Liste_Position[joueur]+posistion_supplementaire;
+
+            GameObject prefab_select = Instantiate(SelectionCarte_prefab, canvas.transform);
+            RectTransform rt3 = prefab_select.GetComponent<RectTransform>();
+            Vector3 posistion_supplementaire2 = new Vector3(-90, -60, 0);
+            rt3.anchoredPosition = Liste_Position[joueur]+posistion_supplementaire2;
+
         }
+        GameObject prefab_retour = Instantiate(Bouton_Retour, canvas.transform);
+
+        GameObject prefab_demarrer = Instantiate(Bouton_Demarrer, canvas.transform);
+
     }
 }
