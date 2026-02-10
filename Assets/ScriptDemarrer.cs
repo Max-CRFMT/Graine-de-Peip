@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,8 +12,26 @@ public class ScriptDemarrer : MonoBehaviour
         GameLogic.instance.SetListeJoueurs();
     }
 
-    public void ShuffleListeJoueur()
+    public static void ShuffleListeJoueur(List<Player> ts)
     {
+        Debug.Log(ts[0].pseudo);
+        var count = ts.Count;
+        var last = count - 1;
+        for (var i = 0; i < last; ++i)
+        {
+            var r = UnityEngine.Random.Range(i, count);
+            var tmp = ts[i];
+            ts[i] = ts[r];
+            ts[r] = tmp;
+        }
+        Debug.Log(ts[0].pseudo);
+    }
 
+    public void InitierPartie()
+    {
+        ActualiserListeJoueur();
+        ShuffleListeJoueur(GameLogic.instance.Liste_Joueurs);
+        //TODO - Shuffle tout les paquets de cartes
+        GameLogic.instance.Jeu();
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -50,7 +51,8 @@ public class script_valider : MonoBehaviour
             GameObject prefab = Instantiate(txt_prefab, canvas.transform);
             RectTransform rt = prefab.GetComponent<RectTransform>();
             rt.anchoredPosition = Liste_Position[joueur];
-            prefab.tag = "Joueur" + (joueur+1).ToString();
+            prefab.tag = "Joueur" + (joueur + 1).ToString();
+            prefab.GetComponent<TMP_InputField>().text = "Joueur" + (joueur + 1).ToString();
 
             GameObject prefab_select = Instantiate(SelectionCarte_prefab, canvas.transform);
             RectTransform rt3 = prefab_select.GetComponent<RectTransform>();
