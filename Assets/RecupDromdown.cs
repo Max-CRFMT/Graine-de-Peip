@@ -34,6 +34,4 @@ public class RecupDromdown : MonoBehaviour
     {
         text_change.text = "Entrez un nom pour chacun des joueurs :";
     }
-
-
 }

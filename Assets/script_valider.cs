@@ -7,7 +7,6 @@ public class script_valider : MonoBehaviour
     // Définition des préfabs
     public Canvas canvas;
     public GameObject txt_prefab;
-    public GameObject BoutonAleatoire_prefab;
     public GameObject SelectionCarte_prefab;
     public GameObject Bouton_Retour;
     public GameObject Bouton_Demarrer;
@@ -41,7 +40,6 @@ public class script_valider : MonoBehaviour
                 Vector3 Position = new Vector3(xmin+(intervalle_x*i), ymax-(intervalle_y*j) , 0);
 
                 Liste_Position.Add(Position);
-                Debug.Log(Position);
             }
         }
 
@@ -52,11 +50,13 @@ public class script_valider : MonoBehaviour
             GameObject prefab = Instantiate(txt_prefab, canvas.transform);
             RectTransform rt = prefab.GetComponent<RectTransform>();
             rt.anchoredPosition = Liste_Position[joueur];
+            prefab.tag = "Joueur" + (joueur+1).ToString();
 
             GameObject prefab_select = Instantiate(SelectionCarte_prefab, canvas.transform);
             RectTransform rt3 = prefab_select.GetComponent<RectTransform>();
             Vector3 posistion_supplementaire2 = new Vector3(0, -60, 0);
             rt3.anchoredPosition = Liste_Position[joueur]+posistion_supplementaire2;
+            prefab_select.tag = "Joueur" + (joueur+1).ToString();
 
         }
         GameObject prefab_retour = Instantiate(Bouton_Retour, canvas.transform);
