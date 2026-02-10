@@ -752,8 +752,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   canvas: {fileID: 1263592685}
   txt_prefab: {fileID: 5529913060505593702, guid: 17b8219ddf7f452409ab656b166aabf7, type: 3}
-  BoutonAleatoire_prefab: {fileID: 0}
-  SelectionCarte_prefab: {fileID: 0}
   xmin: 400
   ymax: 1300
   intervalle_x: 75
