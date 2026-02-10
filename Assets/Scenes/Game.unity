@@ -752,8 +752,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   canvas: {fileID: 1263592685}
   txt_prefab: {fileID: 5529913060505593702, guid: 17b8219ddf7f452409ab656b166aabf7, type: 3}
-  BoutonAleatoire_prefab: {fileID: 2341158758323383864, guid: a1696d7762b5c56cf971f50262b00bc3, type: 3}
   SelectionCarte_prefab: {fileID: 4092528100737468005, guid: 96119f3e7e90373a9acf6a253606753c, type: 3}
+  Bouton_Retour: {fileID: 6912648973562863352, guid: 1ce0bcb714f4a20c18a2ccdfd48c5a40, type: 3}
+  Bouton_Demarrer: {fileID: 8274858802989208271, guid: 0d7285b9484437f70b054dc3c2c504be, type: 3}
   xmin: 400
   ymax: 1300
   intervalle_x: 75
@@ -4057,6 +4058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameLogic
   nb_joueurs: 0
   difficulte: 
+  ToursRestants: 0
 --- !u!4 &2102932236
 Transform:
   m_ObjectHideFlags: 0

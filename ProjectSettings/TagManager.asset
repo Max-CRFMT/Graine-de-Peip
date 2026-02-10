@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Garde
   - Suppr
+  - Joueur1
+  - Joueur2
+  - Joueur3
+  - Joueur4
+  - Joueur5
+  - Joueur6
   layers:
   - Default
   - TransparentFX
