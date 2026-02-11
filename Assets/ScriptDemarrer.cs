@@ -14,7 +14,6 @@ public class ScriptDemarrer : MonoBehaviour
 
     public static void ShuffleListeJoueur(List<Player> ts)
     {
-        Debug.Log(ts[0].pseudo);
         var count = ts.Count;
         var last = count - 1;
         for (var i = 0; i < last; ++i)
@@ -24,7 +23,6 @@ public class ScriptDemarrer : MonoBehaviour
             ts[i] = ts[r];
             ts[r] = tmp;
         }
-        Debug.Log(ts[0].pseudo);
     }
 
     public void InitierPartie()
@@ -32,6 +30,6 @@ public class ScriptDemarrer : MonoBehaviour
         ActualiserListeJoueur();
         ShuffleListeJoueur(GameLogic.instance.Liste_Joueurs);
         //TODO - Shuffle tout les paquets de cartes
-        GameLogic.instance.Jeu();
+        //GameLogic.instance.Jeu();
     }
 }

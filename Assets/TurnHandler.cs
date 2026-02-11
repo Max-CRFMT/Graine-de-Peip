@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class TurnHandler : MonoBehaviour
 {
-    public static TurnHandler Instance;
+    public static TurnHandler instance;
     public bool FinTour = false;
 
     private void Awake()
     {
-        Instance = this;
+        instance = this;
     }
 
     public void RajouterAToutLesJoueursPiecesMissionEct()

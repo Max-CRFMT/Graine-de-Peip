@@ -45,8 +45,12 @@ public class GameLogic : MonoBehaviour
         Debug.Log("La difficult� s�lectionn�e est :" + difficulte);
     }
 
+    public List<string> SelectionMaps = new List<string>() { "Europe", "Afrique", "Asie", "Océanie", "Amérique du Nord", "Amérique du Sud" };
     public void SetListeJoueurs()
     {
+        System.Random random = new System.Random();
+        List<(string, string)> ListeJoueursAttente = new List<(string, string)>();
+
         for (int i = 0; i < instance.nb_joueurs; i++)
         {
             string nom_a_trouver = "Joueur" + (i+1).ToString();
@@ -54,15 +58,46 @@ public class GameLogic : MonoBehaviour
             string nom_joueur = couple_nom_map[0].GetComponent<TMP_InputField>().text;
             string map_joueur = couple_nom_map[1].GetComponent<TMP_Dropdown>().options[couple_nom_map[1].GetComponent<TMP_Dropdown>().value].text;
 
-            instance.Liste_Joueurs.Add(new Player(nom_joueur, 0,map_joueur));
+            if (map_joueur == "Aléatoire")
+            {
+                ListeJoueursAttente.Add((nom_joueur, map_joueur));
+            }
+            else
+            {
+                instance.Liste_Joueurs.Add(new Player(nom_joueur, 0, map_joueur));
+                SelectionMaps.Remove(map_joueur);
+            }
         }
+
+        foreach ((string, string) couple in ListeJoueursAttente)
+        {
+            string map_joueur = SelectionMaps[random.Next(SelectionMaps.Count)];
+            SelectionMaps.Remove(map_joueur);
+            instance.Liste_Joueurs.Add(new Player(couple.Item1, 0, map_joueur));
+        }
+    }
+
+    public bool VerifUniteMap(TMP_Dropdown DropdownSource)
+    {
+        //TMP_InputField ListeDeroulantesMaps = GameObject.FindAnyObjectByType<TMP_InputField>();
+        TMP_Dropdown[] listeDeroulantesMaps = GameObject.FindObjectsByType<TMP_Dropdown>(FindObjectsSortMode.None);
+        foreach (TMP_Dropdown maps in listeDeroulantesMaps)
+        {
+            if ((DropdownSource.value != 0) && (maps.value == DropdownSource.value) && (maps.tag != DropdownSource.tag))
+            {
+                DropdownSource.value = 0;
+                Debug.Log("Vous ne pouvez pas avoir deux continents identiques, map aléatoire");
+                return false;
+            }
+        }
+        return true;
     }
 
     public void Jeu()
     {
         while (instance.ToursRestants != 0)
         {
-            TurnHandler.Instance.RoundComplet();
+            //TurnHandler.instance.RoundComplet();
         }
         FinDePartie();
     }

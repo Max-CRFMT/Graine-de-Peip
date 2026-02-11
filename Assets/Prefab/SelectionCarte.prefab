@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fracture
+  m_text: "Al\xE9atoire"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 2366551849767380431}
   - component: {fileID: 6671659265343788513}
   - component: {fileID: 6988022334028215108}
+  - component: {fileID: 578580377676807195}
   m_Layer: 5
   m_Name: SelectionCarte
   m_TagString: Untagged
@@ -345,19 +346,53 @@ MonoBehaviour:
     - m_Text: "Al\xE9atoire"
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
-    - m_Text: Fracture
+    - m_Text: Afrique
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
-    - m_Text: Bind
+    - m_Text: "Am\xE9rique du Nord"
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
-    - m_Text: Split
+    - m_Text: "Am\xE9rique du Sud"
+      m_Image: {fileID: 0}
+      m_Color: {r: 1, g: 1, b: 1, a: 1}
+    - m_Text: Asie
+      m_Image: {fileID: 0}
+      m_Color: {r: 1, g: 1, b: 1, a: 1}
+    - m_Text: Europe
+      m_Image: {fileID: 0}
+      m_Color: {r: 1, g: 1, b: 1, a: 1}
+    - m_Text: "Oc\xE9anie"
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 578580377676807195}
+        m_TargetAssemblyTypeName: VerificationUniteMap, Assembly-CSharp
+        m_MethodName: VerifierUniciteMap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
+--- !u!114 &578580377676807195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4092528100737468005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 672e1207414e9714cb24d93369e738ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VerificationUniteMap
+  DropdownSource: {fileID: 6988022334028215108}
 --- !u!1 &4159502116016508637
 GameObject:
   m_ObjectHideFlags: 0
