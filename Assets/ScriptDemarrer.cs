@@ -25,11 +25,20 @@ public class ScriptDemarrer : MonoBehaviour
         }
     }
 
+    public void SupprimerObjetsAvecTagSuppr()
+    {
+        foreach (var objects in GameObject.FindGameObjectsWithTag("SupprB"))
+        {
+            Destroy(objects);
+        }
+    }
+
     public void InitierPartie()
     {
         ActualiserListeJoueur();
+        SupprimerObjetsAvecTagSuppr();
         ShuffleListeJoueur(GameLogic.instance.Liste_Joueurs);
         //TODO - Shuffle tout les paquets de cartes
-        //GameLogic.instance.Jeu();
+        GameLogic.instance.Jeu();
     }
 }

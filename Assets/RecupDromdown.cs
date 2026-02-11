@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class RecupDromdown : MonoBehaviour
 {
-
+    public GameObject RecupDropDownGameObject;
     [SerializeField] TMP_Dropdown dropdown_nb_joueur;
     [SerializeField] TMP_Dropdown dropdown_difficulte;
     [SerializeField] TMP_Text text_change;
@@ -33,5 +33,6 @@ public class RecupDromdown : MonoBehaviour
     public void ChangerTexte()
     {
         text_change.text = "Entrez un nom pour chacun des joueurs :";
+        RecupDropDownGameObject.tag = "SupprB";
     }
 }

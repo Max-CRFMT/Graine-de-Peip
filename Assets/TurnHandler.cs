@@ -5,6 +5,8 @@ public class TurnHandler : MonoBehaviour
     public static TurnHandler instance;
     public bool FinTour = false;
 
+    public TurnHandler() { }
+
     private void Awake()
     {
         instance = this;

@@ -79,7 +79,6 @@ public class GameLogic : MonoBehaviour
 
     public bool VerifUniteMap(TMP_Dropdown DropdownSource)
     {
-        //TMP_InputField ListeDeroulantesMaps = GameObject.FindAnyObjectByType<TMP_InputField>();
         TMP_Dropdown[] listeDeroulantesMaps = GameObject.FindObjectsByType<TMP_Dropdown>(FindObjectsSortMode.None);
         foreach (TMP_Dropdown maps in listeDeroulantesMaps)
         {
@@ -97,7 +96,9 @@ public class GameLogic : MonoBehaviour
     {
         while (instance.ToursRestants != 0)
         {
-            //TurnHandler.instance.RoundComplet();
+            Debug.Log(instance.ToursRestants);
+            TurnHandler.instance.ChangeEtatTour();
+            instance.ToursRestants--;
         }
         FinDePartie();
     }
@@ -105,6 +106,7 @@ public class GameLogic : MonoBehaviour
     public void FinDePartie()
     {
         //TODO - 
+        Debug.Log("Fonction FinDePartie() executée");
     }
 }
 
