@@ -12,6 +12,7 @@ TagManager:
   - Joueur4
   - Joueur5
   - Joueur6
+  - SupprB
   layers:
   - Default
   - TransparentFX
