@@ -15,7 +15,7 @@ public class GameLogic : MonoBehaviour
 
     public int ToursRestants;
 
-    Dictionary<string, int> DicoTourEnFctDeDifficulté = new Dictionary<string, int>()
+    Dictionary<string, int> DicoTourEnFctDeDifficulte = new Dictionary<string, int>()
     {
         {"Facile", 15},
         {"Normal", 25},
@@ -30,19 +30,19 @@ public class GameLogic : MonoBehaviour
         instance.nb_joueurs = 2;
         instance.difficulte = "Facile";
         instance.Liste_Joueurs = new List<Player>();
-        instance.ToursRestants = DicoTourEnFctDeDifficulté[difficulte];
+        instance.ToursRestants = DicoTourEnFctDeDifficulte[difficulte];
     }
 
     public void SetNbJoueurs(int nombre)
     {
         nb_joueurs = nombre;
-        Debug.Log("Le nombre de joueur sélectionné est :" + nb_joueurs);
+        Debug.Log("Le nombre de joueur sï¿½lectionnï¿½ est :" + nb_joueurs);
     }
 
     public void SetDifficulte(string difficult)
     {
         difficulte = difficult;
-        Debug.Log("La difficulté sélectionnée est :" + difficulte);
+        Debug.Log("La difficultï¿½ sï¿½lectionnï¿½e est :" + difficulte);
     }
 
     public void SetListeJoueurs()
