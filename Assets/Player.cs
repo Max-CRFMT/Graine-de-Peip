@@ -97,6 +97,7 @@ public class Player
         {
             RajouterPointActionMax();
             RetirerPieces(100);
+            //Bool qui dit que le joueur a déjà utilisé ça et donc ne peut plus l'utiliser
         }
     }
 

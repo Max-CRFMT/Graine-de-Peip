@@ -8,10 +8,10 @@ public class Continent
     {
         {"Europe", new List<string>(){"Bretagne", "Paris"} },
         {"Afrique", new List<string>(){"Mali", "Maroc"} },
-        {"Asie", new List<string>(){"Japon", "Corée"} },
-        {"Océanie", new List<string>(){"Iles", "Australie" } },
-        {"Amérique du Sud", new List<string>(){"Bresil", "Argentine"} },
-        {"Amérique du Nord", new List<string>(){"Canada", "US" } },
+        {"Asie", new List<string>(){"Japon", "Corï¿½e"} },
+        {"Ocï¿½anie", new List<string>(){"Iles", "Australie" } },
+        {"Amï¿½rique du Sud", new List<string>(){"Bresil", "Argentine"} },
+        {"Amï¿½rique du Nord", new List<string>(){"Canada", "US" } },
     };
     public Continent(string nom)
     {
@@ -23,7 +23,7 @@ public class Continent
 
     public List<Carte> PileCacheeEnFonctionDuContinent()
     {
-        //TODO - Ouverture d'un fichier JSON/Exel en fonction du nom du continent et créant la pile de cartes. Pour cela, il faut simplement avoir besoin du nom de la carte
+        //TODO - Ouverture d'un fichier JSON/Exel en fonction du nom du continent et crï¿½ant la pile de cartes. Pour cela, il faut simplement avoir besoin du nom de la carte
         //Cette fonction permettra aussi d'instancier des cartes
         return null;
     }
