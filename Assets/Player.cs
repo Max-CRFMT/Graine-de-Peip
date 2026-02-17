@@ -15,7 +15,6 @@ public class Player
 
     public Continent continent;
 
-
     public Player(string name, int coins, string name_map)
     {
         pseudo = name;

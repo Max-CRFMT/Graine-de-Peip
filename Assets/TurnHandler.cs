@@ -1,15 +1,18 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class TurnHandler : MonoBehaviour
 {
     public static TurnHandler instance;
     public bool FinTour = false;
-
+    public Dictionary<Player, List<int>> Dico_JoueurActions;
+    public Player PlayerActuel;
     public TurnHandler() { }
 
     private void Awake()
     {
         instance = this;
+        instance.Dico_JoueurActions = new Dictionary<Player, List<int>>();
     }
 
     public void RajouterAToutLesJoueursPiecesMissionEct()
@@ -22,26 +25,26 @@ public class TurnHandler : MonoBehaviour
 
     public void Evenement()
     {
-        //TODO - Doit piocher une carte évènement et appliquer ce dernier
+        //TODO - Doit piocher une carte ï¿½vï¿½nement et appliquer ce dernier
         //PiocherCarteEvenement();
         //AppliquerEvenement();
     }
 
     public void TempsDeDiscussion()
     {
-        //TODO - Doit bloquer les commandes pendant 5min et afficher un tableau récapitulatif des stats/missions des joueurs
-        //Doit aussi proposer de mettre fin au temps de discussion pour passer à la suite de la partie
+        //TODO - Doit bloquer les commandes pendant 5min et afficher un tableau rï¿½capitulatif des stats/missions des joueurs
+        //Doit aussi proposer de mettre fin au temps de discussion pour passer ï¿½ la suite de la partie
         //
     }
 
     public void ChangementTourJoueur(Player joueur_suivant)
     {
-        //TODO - Doit s'occuper de tout ce qui est changement du tour d'un joueur à l'autre, nécéssitera beaucoup de fonction sous-jacentes (Faire apparaitre de l'UI et bouger la caméra)
+        //TODO - Doit s'occuper de tout ce qui est changement du tour d'un joueur ï¿½ l'autre, nï¿½cï¿½ssitera beaucoup de fonction sous-jacentes (Faire apparaitre de l'UI et bouger la camï¿½ra)
     }
     
     public void FinDeTour()
     {
-        //TODO - Doit s'occuper de tout ce qui précède le changement de tour, nécéssitera aussi des fonctions sous-jacentes (suppression de l'UI)
+        //TODO - Doit s'occuper de tout ce qui prï¿½cï¿½de le changement de tour, nï¿½cï¿½ssitera aussi des fonctions sous-jacentes (suppression de l'UI)
     }
     public void ChangeEtatTour()
     {
@@ -49,8 +52,36 @@ public class TurnHandler : MonoBehaviour
         FinTour=true;
     }
 
-    
+    public void EffectuerActions()
+    {
+        Dictionary<Player, List<int>>.KeyCollection keys = Dico_JoueurActions.Keys; 
+        for (int i = 1; i < 7; i++)
+        {
+            foreach (Player key in keys)
+            {
+                Debug.Log(key);
+            }
+        }
+        //Une fois que les actions sont effectuÃ©es
+        instance.Dico_JoueurActions = new Dictionary<Player, List<int>>();
+    }
 
+    public void AjouterActionDansDicoJoueursAction(int action)
+    {
+        //Faut que al fonction soit appellÃ©e par une autre fonction 
+        //Si le nom du joueur est dans dÃ©jÃ  dans les clÃ©es du dico, on rajoute l'action
+        if (instance.Dico_JoueurActions.ContainsKey(PlayerActuel))
+        {
+            instance.Dico_JoueurActions[PlayerActuel].Add(action);
+        }
+        //Si le nom du joueur n'est pas dÃ©jÃ  dans les clÃ©es du dico, on ajoute le joueur et l'action
+        else
+        {
+            instance.Dico_JoueurActions.Add(PlayerActuel, new List<int>(){action});
+        }
+    }
+
+    
     public void RoundComplet()
     {
         RajouterAToutLesJoueursPiecesMissionEct();
@@ -59,12 +90,14 @@ public class TurnHandler : MonoBehaviour
 
         foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
         {
-            ChangementTourJoueur(joueur);
+            Player PlayerActuel = joueur;
+            ChangementTourJoueur(PlayerActuel);
             if (FinTour == true)
             {
                 FinTour = false;
                 FinDeTour();
             }
         }
+        EffectuerActions();
     }
 }
