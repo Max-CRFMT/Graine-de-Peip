@@ -5,7 +5,7 @@ using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Banque : MonoBehaviour
+public class Banque //: MonoBehaviour
 {
     public Queue<Cartes> FileDeCartes = new Queue<Cartes>();
     public void TestCode()
