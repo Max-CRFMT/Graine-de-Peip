@@ -1,18 +1,40 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
+using Unity.VisualScripting;
 
 public class TurnHandler : MonoBehaviour
 {
     public static TurnHandler instance;
     public bool FinTour = false;
-    public Dictionary<Player, List<int>> Dico_JoueurActions;
+    public Dictionary<Player, List<PlayerAction>> Dico_JoueurActions;
     public Player PlayerActuel;
     public TurnHandler() { }
+
+    public enum PlayerAction
+    {
+        Subventions,
+        Eduquer,
+        Recruter,
+        Recenser,
+        Recolter,
+        Ameliorer
+    }
+
+    public Dictionary<PlayerAction, Action<Player>> Dico_Actions = new()
+    {
+        {PlayerAction.Subventions, player => player.DemandeSubventions()},
+        {PlayerAction.Eduquer, player => player.Eduquer()},
+        {PlayerAction.Recruter, player => player.Recruter_Ouvrier()},
+        {PlayerAction.Recenser, player => player.RecencerGraines()},
+        {PlayerAction.Recolter, player => player.RecolterGraines()},
+        {PlayerAction.Ameliorer, player => player.AmeliorerJardin()}
+    };
 
     private void Awake()
     {
         instance = this;
-        instance.Dico_JoueurActions = new Dictionary<Player, List<int>>();
+        instance.Dico_JoueurActions = new Dictionary<Player, List<PlayerAction>>();
     }
 
     public void RajouterAToutLesJoueursPiecesMissionEct()
@@ -54,19 +76,22 @@ public class TurnHandler : MonoBehaviour
 
     public void EffectuerActions()
     {
-        Dictionary<Player, List<int>>.KeyCollection keys = Dico_JoueurActions.Keys; 
-        for (int i = 1; i < 7; i++)
+        Dictionary<Player, List<PlayerAction>>.KeyCollection keys = Dico_JoueurActions.Keys; 
+        for (int i = 1; i < GameLogic.instance.Liste_Joueurs.Count + 1; i++)
         {
             foreach (Player key in keys)
             {
-                Debug.Log(key);
+                foreach (PlayerAction Action in Dico_JoueurActions[key])
+                {
+                    Dico_Actions[Action](key);
+                }
             }
         }
-        //Une fois que les actions sont effectuées
-        instance.Dico_JoueurActions = new Dictionary<Player, List<int>>();
+        //Une fois que les actions sont effectuées on supprime la liste pour en créer une nouvelle
+        instance.Dico_JoueurActions = new Dictionary<Player, List<PlayerAction>>();
     }
 
-    public void AjouterActionDansDicoJoueursAction(int action)
+    public void AjouterActionDansDicoJoueursAction(PlayerAction action)
     {
         //Faut que al fonction soit appellée par une autre fonction 
         //Si le nom du joueur est dans déjà dans les clées du dico, on rajoute l'action
@@ -77,7 +102,7 @@ public class TurnHandler : MonoBehaviour
         //Si le nom du joueur n'est pas déjà dans les clées du dico, on ajoute le joueur et l'action
         else
         {
-            instance.Dico_JoueurActions.Add(PlayerActuel, new List<int>(){action});
+            instance.Dico_JoueurActions.Add(PlayerActuel, new List<PlayerAction>(){action});
         }
     }
 

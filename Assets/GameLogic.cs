@@ -1,10 +1,11 @@
-using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
-using System;
 using NUnit.Framework;
-using Unity.VisualScripting;
+using System;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class GameLogic : MonoBehaviour
 {
 
@@ -94,6 +95,7 @@ public class GameLogic : MonoBehaviour
 
     public void Jeu()
     {
+        SceneManager.LoadScene("Game");
         while (instance.ToursRestants != 0)
         {
             Debug.Log(instance.ToursRestants);
