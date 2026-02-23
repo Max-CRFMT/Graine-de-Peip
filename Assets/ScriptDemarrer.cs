@@ -39,6 +39,6 @@ public class ScriptDemarrer : MonoBehaviour
         SupprimerObjetsAvecTagSuppr();
         ShuffleListeJoueur(GameLogic.instance.Liste_Joueurs);
         //TODO - Shuffle tout les paquets de cartes
-        GameLogic.instance.Jeu();
+        GameLogic.instance.DemarrerJeu();
     }
 }

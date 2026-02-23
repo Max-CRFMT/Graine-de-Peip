@@ -2,11 +2,12 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using Unity.VisualScripting;
+using System.Collections;
 
 public class TurnHandler : MonoBehaviour
 {
     public static TurnHandler instance;
-    public bool FinTour = false;
+    public bool FinTour;
     public Dictionary<Player, List<PlayerAction>> Dico_JoueurActions;
     public Player PlayerActuel;
     public TurnHandler() { }
@@ -35,6 +36,7 @@ public class TurnHandler : MonoBehaviour
     {
         instance = this;
         instance.Dico_JoueurActions = new Dictionary<Player, List<PlayerAction>>();
+        instance.FinTour = false;
     }
 
     public void RajouterAToutLesJoueursPiecesMissionEct()
@@ -67,11 +69,7 @@ public class TurnHandler : MonoBehaviour
     public void FinDeTour()
     {
         //TODO - Doit s'occuper de tout ce qui pr�c�de le changement de tour, n�c�ssitera aussi des fonctions sous-jacentes (suppression de l'UI)
-    }
-    public void ChangeEtatTour()
-    {
-        // Se base sur un bouton "Fin de Tour" sur lequel il faudra appuyer pour activer cette fonction
-        FinTour=true;
+        instance.FinTour = true;
     }
 
     public void EffectuerActions()
@@ -105,24 +103,31 @@ public class TurnHandler : MonoBehaviour
             instance.Dico_JoueurActions.Add(PlayerActuel, new List<PlayerAction>(){action});
         }
     }
-
     
-    public void RoundComplet()
+    public IEnumerator TourJoueur()
     {
-        RajouterAToutLesJoueursPiecesMissionEct();
-        Evenement();
-        TempsDeDiscussion();
+        //On veut que le tour se bloque tant que je joueur n'a pas appuyé sur le bouton qui passe son tour
+        yield return new WaitUntil(() => instance.FinTour);
+
+    }
+    
+    public IEnumerator RoundComplet()
+    {
+        //RajouterAToutLesJoueursPiecesMissionEct();
+        //Evenement();
+        //TempsDeDiscussion();
 
         foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
         {
-            Player PlayerActuel = joueur;
-            ChangementTourJoueur(PlayerActuel);
-            if (FinTour == true)
-            {
-                FinTour = false;
-                FinDeTour();
-            }
+            instance.FinTour = false;
+            PlayerActuel = joueur;
+
+            Debug.Log("Le joueur actuel est :" + PlayerActuel.pseudo);
+
+            //ChangementTourJoueur(PlayerActuel);
+
+            yield return StartCoroutine(TourJoueur());
         }
-        EffectuerActions();
+        //EffectuerActions();
     }
 }

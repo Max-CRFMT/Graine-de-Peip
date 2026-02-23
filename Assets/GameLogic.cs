@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -93,22 +94,41 @@ public class GameLogic : MonoBehaviour
         return true;
     }
 
-    public void Jeu()
+    public void DemarrerJeu()
     {
-        SceneManager.LoadScene("Game");
-        while (instance.ToursRestants != 0)
+        StartCoroutine(Jeu());
+    }
+
+    public IEnumerator Jeu()
+    {
+        AsyncOperation ChargenementScene = SceneManager.LoadSceneAsync("Game");
+
+        yield return ChargenementScene;
+
+
+        while (instance.ToursRestants > 0)
         {
-            Debug.Log(instance.ToursRestants);
-            TurnHandler.instance.ChangeEtatTour();
+            Debug.Log("Tours restants : " + instance.ToursRestants);
+
+            
+            yield return TurnHandler.instance.StartCoroutine(TurnHandler.instance.RoundComplet());
+
             instance.ToursRestants--;
         }
+
         FinDePartie();
     }
 
     public void FinDePartie()
     {
         //TODO - 
+        foreach (var objects in GameObject.FindGameObjectsWithTag("LogiqueJeu"))
+        {
+            Destroy(objects);
+        }
         Debug.Log("Fonction FinDePartie() executée");
+        SceneManager.LoadScene("Lobby");
+        
     }
 }
 

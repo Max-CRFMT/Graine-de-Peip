@@ -13,6 +13,7 @@ TagManager:
   - Joueur5
   - Joueur6
   - SupprB
+  - LogiqueJeu
   layers:
   - Default
   - TransparentFX
