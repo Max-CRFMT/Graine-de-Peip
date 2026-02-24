@@ -1,15 +1,23 @@
+using System.IO;
 using UnityEngine;
 
 public class TurnHandler : MonoBehaviour
 {
     public static TurnHandler instance;
     public bool FinTour = false;
-
     public TurnHandler() { }
 
     private void Awake()
     {
         instance = this;
+    }
+    public void Creationlisteevenement()
+    {
+        string filePath = @"C:\Users\ejupi\OneDrive\Bureau\cours\peip 2\projet 2A\Graine-de-Peip\tableau_event.csv";
+        using (StreamReader reader = new StreamReader(filePath))
+        {
+            reader.ReadLine();
+        }
     }
 
     public void RajouterAToutLesJoueursPiecesMissionEct()
@@ -48,7 +56,7 @@ public class TurnHandler : MonoBehaviour
         // Se base sur un bouton "Fin de Tour" sur lequel il faudra appuyer pour activer cette fonction
         FinTour=true;
     }
-
+    
     
 
     public void RoundComplet()
