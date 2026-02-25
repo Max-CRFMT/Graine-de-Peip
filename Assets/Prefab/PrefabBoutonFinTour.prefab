@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: -8762194016545604473}
   m_Layer: 5
   m_Name: PrefabBoutonFinTour
-  m_TagString: Untagged
+  m_TagString: UIJoueur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

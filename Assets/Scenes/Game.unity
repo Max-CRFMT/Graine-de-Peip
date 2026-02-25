@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 1542459536}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -433,6 +433,18 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 405298502262232716, guid: f8398ebfe64e3fd46bf7236091d33494, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405298502262232716, guid: f8398ebfe64e3fd46bf7236091d33494, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405298502262232716, guid: f8398ebfe64e3fd46bf7236091d33494, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405298502262232716, guid: f8398ebfe64e3fd46bf7236091d33494, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -462,11 +474,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 405298502262232716, guid: f8398ebfe64e3fd46bf7236091d33494, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -479.0534
+      value: -771.55
       objectReference: {fileID: 0}
     - target: {fileID: 405298502262232716, guid: f8398ebfe64e3fd46bf7236091d33494, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -169.8995
+      value: -385.76
       objectReference: {fileID: 0}
     - target: {fileID: 405298502262232716, guid: f8398ebfe64e3fd46bf7236091d33494, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -483,6 +495,14 @@ PrefabInstance:
     - target: {fileID: 5930706999841728439, guid: f8398ebfe64e3fd46bf7236091d33494, type: 3}
       propertyPath: m_Name
       value: PrefabBoutonFinTour
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930706999841728439, guid: f8398ebfe64e3fd46bf7236091d33494, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930706999841728439, guid: f8398ebfe64e3fd46bf7236091d33494, type: 3}
+      propertyPath: m_TagString
+      value: UIJoueur
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

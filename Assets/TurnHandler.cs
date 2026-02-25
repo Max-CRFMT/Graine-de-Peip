@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System;
 using Unity.VisualScripting;
 using System.Collections;
+using System.Timers;
+using TMPro;
+using System.Linq;
 
 public class TurnHandler : MonoBehaviour
 {
     public static TurnHandler instance;
     public bool FinTour;
+    public bool FinDiscution;
     public Dictionary<Player, List<PlayerAction>> Dico_JoueurActions;
     public Player PlayerActuel;
+    public GameObject TxtCountdown;
+    public GameObject ButtonCountdown;
     public TurnHandler() { }
+
 
     public enum PlayerAction
     {
@@ -37,6 +44,7 @@ public class TurnHandler : MonoBehaviour
         instance = this;
         instance.Dico_JoueurActions = new Dictionary<Player, List<PlayerAction>>();
         instance.FinTour = false;
+        instance.FinDiscution = false;
     }
 
     public void RajouterAToutLesJoueursPiecesMissionEct()
@@ -54,11 +62,42 @@ public class TurnHandler : MonoBehaviour
         //AppliquerEvenement();
     }
 
-    public void TempsDeDiscussion()
+    public IEnumerator TempsDeDiscussion()
     {
-        //TODO - Doit bloquer les commandes pendant 5min et afficher un tableau r�capitulatif des stats/missions des joueurs
-        //Doit aussi proposer de mettre fin au temps de discussion pour passer � la suite de la partie
-        //
+        //TODO - Doit bloquer les commandes pendant 5min et afficher un tableau r�capitulatif des stats/missions des joueurs (faut que le tableau récapitulatif ait le tag TimerDiscution)
+        Canvas canvas = FindAnyObjectByType<Canvas>();
+        GameObject TexteCountDown = Instantiate(TxtCountdown, canvas.transform);
+        GameObject BoutonCountdown = Instantiate(ButtonCountdown, canvas.transform);
+
+        yield return new WaitUntil(() => instance.FinDiscution);
+    }
+
+    public void MasquerUIJoueur()
+    {
+        Canvas canvas = FindAnyObjectByType<Canvas>();
+        UnityEngine.UI.Button[] gameobjects = canvas.GetComponentsInChildren<UnityEngine.UI.Button>(true);
+        foreach (UnityEngine.UI.Button go in gameobjects)
+        {
+            if (go.gameObject.tag == "UIJoueur")
+            {
+                go.gameObject.SetActive(false);
+            }
+
+        }
+    }
+
+    public void ReafficherUI()
+    {
+        Canvas canvas = FindAnyObjectByType<Canvas>();
+        UnityEngine.UI.Button[] gameobjects = canvas.GetComponentsInChildren<UnityEngine.UI.Button>(true);
+        foreach (UnityEngine.UI.Button go in gameobjects)
+        {
+            if (go.gameObject.tag == "UIJoueur")
+            {
+                go.gameObject.SetActive(true);
+            }
+            
+        }
     }
 
     public void ChangementTourJoueur(Player joueur_suivant)
@@ -115,7 +154,10 @@ public class TurnHandler : MonoBehaviour
     {
         //RajouterAToutLesJoueursPiecesMissionEct();
         //Evenement();
-        //TempsDeDiscussion();
+        MasquerUIJoueur();
+        yield return StartCoroutine(TempsDeDiscussion());
+        instance.FinDiscution = false;
+        ReafficherUI();
 
         foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
         {

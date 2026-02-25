@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: 1921714ecfb06c24585a79bd5b7b54ae
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - TxtCountdown: {fileID: 3202052191214865393, guid: 6733e3a77322354488729150e3171bd1, type: 3}
+  - ButtonCountdown: {fileID: 3265276803180875859, guid: b34ec9786e12d8242aaf31a4f9ce9765, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

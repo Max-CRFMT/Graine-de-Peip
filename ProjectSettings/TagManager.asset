@@ -14,6 +14,10 @@ TagManager:
   - Joueur6
   - SupprB
   - LogiqueJeu
+  - TimerDIscution
+  - TexteTimer
+  - Canvas
+  - UIJoueur
   layers:
   - Default
   - TransparentFX

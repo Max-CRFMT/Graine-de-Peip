@@ -2727,6 +2727,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurnHandler
   FinTour: 0
+  TxtCountdown: {fileID: 3202052191214865393, guid: 6733e3a77322354488729150e3171bd1, type: 3}
+  ButtonCountdown: {fileID: 3265276803180875859, guid: b34ec9786e12d8242aaf31a4f9ce9765, type: 3}
 --- !u!4 &1506371668
 Transform:
   m_ObjectHideFlags: 0
