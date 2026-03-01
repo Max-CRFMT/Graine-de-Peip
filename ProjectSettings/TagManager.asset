@@ -13,6 +13,11 @@ TagManager:
   - Joueur5
   - Joueur6
   - SupprB
+  - LogiqueJeu
+  - TimerDIscution
+  - TexteTimer
+  - Canvas
+  - UIJoueur
   - SpeciesStack
   layers:
   - Default

@@ -1,10 +1,12 @@
-using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
-using System;
 using NUnit.Framework;
-using Unity.VisualScripting;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class GameLogic : MonoBehaviour
 {
 
@@ -36,14 +38,14 @@ public class GameLogic : MonoBehaviour
     public void SetNbJoueurs(int nombre)
     {
         nb_joueurs = nombre;
-        
-        Debug.Log("Le nombre de joueur s�lectionn� est :" + nb_joueurs);
+        Debug.Log("Le nombre de joueur selectionne est :" + nb_joueurs);
+
     }
 
     public void SetDifficulte(string difficult)
     {
         difficulte = difficult;
-        Debug.Log("La difficult� s�lectionn�e est :" + difficulte);
+        Debug.Log("La difficulte selectionnee est :" + difficulte);
     }
 
     public List<string> SelectionMaps = new List<string>() { "Europe", "Afrique", "Asie", "Océanie", "Amérique du Nord", "Amérique du Sud" };
@@ -93,21 +95,48 @@ public class GameLogic : MonoBehaviour
         return true;
     }
 
-    public void Jeu()
+    public void DemarrerJeu()
     {
-        while (instance.ToursRestants != 0)
+        StartCoroutine(Jeu());
+    }
+
+    public void SupprimerGameObjectSelonTag(string tag)
+    {
+        foreach (var objects in GameObject.FindGameObjectsWithTag(tag))
         {
-            Debug.Log(instance.ToursRestants);
-            TurnHandler.instance.ChangeEtatTour();
+            Destroy(objects);
+        }
+    }
+
+    public IEnumerator Jeu()
+    {
+        AsyncOperation ChargenementScene = SceneManager.LoadSceneAsync("Game");
+
+        yield return ChargenementScene;
+
+        while (instance.ToursRestants > 0)
+        {
+            Debug.Log("Tours restants : " + instance.ToursRestants);
+
+            
+            yield return TurnHandler.instance.StartCoroutine(TurnHandler.instance.RoundComplet());
+
             instance.ToursRestants--;
         }
+
         FinDePartie();
     }
 
     public void FinDePartie()
     {
         //TODO - 
+        foreach (var objects in GameObject.FindGameObjectsWithTag("LogiqueJeu"))
+        {
+            Destroy(objects);
+        }
         Debug.Log("Fonction FinDePartie() executée");
+        SceneManager.LoadScene("Lobby");
+        
     }
 }
 

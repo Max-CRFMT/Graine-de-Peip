@@ -1,15 +1,51 @@
 using System.IO;
 using UnityEngine;
+using System.Collections.Generic;
+using System;
+using Unity.VisualScripting;
+using System.Collections;
+using System.Timers;
+using TMPro;
+using System.Linq;
 
 public class TurnHandler : MonoBehaviour
 {
     public static TurnHandler instance;
-    public bool FinTour = false;
+    public bool FinTour;
+    public bool FinDiscution;
+    public Dictionary<Player, List<PlayerAction>> Dico_JoueurActions;
+    public Player PlayerActuel;
+    public GameObject TxtCountdown;
+    public GameObject ButtonCountdown;
     public TurnHandler() { }
+
+
+    public enum PlayerAction
+    {
+        Subventions,
+        Eduquer,
+        Recruter,
+        Recenser,
+        Recolter,
+        Ameliorer
+    }
+
+    public Dictionary<PlayerAction, Action<Player>> Dico_Actions = new()
+    {
+        {PlayerAction.Subventions, player => player.DemandeSubventions()},
+        {PlayerAction.Eduquer, player => player.Eduquer()},
+        {PlayerAction.Recruter, player => player.Recruter_Ouvrier()},
+        {PlayerAction.Recenser, player => player.RecencerGraines()},
+        {PlayerAction.Recolter, player => player.RecolterGraines()},
+        {PlayerAction.Ameliorer, player => player.AmeliorerJardin()}
+    };
 
     private void Awake()
     {
         instance = this;
+        instance.Dico_JoueurActions = new Dictionary<Player, List<PlayerAction>>();
+        instance.FinTour = false;
+        instance.FinDiscution = false;
     }
     public void Creationlisteevenement()
     {
@@ -30,49 +66,118 @@ public class TurnHandler : MonoBehaviour
 
     public void Evenement()
     {
-        //TODO - Doit piocher une carte évènement et appliquer ce dernier
+        //TODO - Doit piocher une carte ï¿½vï¿½nement et appliquer ce dernier
         //PiocherCarteEvenement();
         //AppliquerEvenement();
     }
 
-    public void TempsDeDiscussion()
+    public IEnumerator TempsDeDiscussion()
     {
-        //TODO - Doit bloquer les commandes pendant 5min et afficher un tableau récapitulatif des stats/missions des joueurs
-        //Doit aussi proposer de mettre fin au temps de discussion pour passer à la suite de la partie
-        //
+        //TODO - Doit bloquer les commandes pendant 5min et afficher un tableau rï¿½capitulatif des stats/missions des joueurs (faut que le tableau rÃ©capitulatif ait le tag TimerDiscution)
+        Canvas canvas = FindAnyObjectByType<Canvas>();
+        GameObject TexteCountDown = Instantiate(TxtCountdown, canvas.transform);
+        GameObject BoutonCountdown = Instantiate(ButtonCountdown, canvas.transform);
+
+        yield return new WaitUntil(() => instance.FinDiscution);
+    }
+
+    public void MasquerUIJoueur()
+    {
+        Canvas canvas = FindAnyObjectByType<Canvas>();
+        UnityEngine.UI.Button[] gameobjects = canvas.GetComponentsInChildren<UnityEngine.UI.Button>(true);
+        foreach (UnityEngine.UI.Button go in gameobjects)
+        {
+            if (go.gameObject.tag == "UIJoueur")
+            {
+                go.gameObject.SetActive(false);
+            }
+
+        }
+    }
+
+    public void ReafficherUI()
+    {
+        Canvas canvas = FindAnyObjectByType<Canvas>();
+        UnityEngine.UI.Button[] gameobjects = canvas.GetComponentsInChildren<UnityEngine.UI.Button>(true);
+        foreach (UnityEngine.UI.Button go in gameobjects)
+        {
+            if (go.gameObject.tag == "UIJoueur")
+            {
+                go.gameObject.SetActive(true);
+            }
+            
+        }
     }
 
     public void ChangementTourJoueur(Player joueur_suivant)
     {
-        //TODO - Doit s'occuper de tout ce qui est changement du tour d'un joueur à l'autre, nécéssitera beaucoup de fonction sous-jacentes (Faire apparaitre de l'UI et bouger la caméra)
+        //TODO - Doit s'occuper de tout ce qui est changement du tour d'un joueur ï¿½ l'autre, nï¿½cï¿½ssitera beaucoup de fonction sous-jacentes (Faire apparaitre de l'UI et bouger la camï¿½ra)
     }
     
     public void FinDeTour()
     {
-        //TODO - Doit s'occuper de tout ce qui précède le changement de tour, nécéssitera aussi des fonctions sous-jacentes (suppression de l'UI)
+        //TODO - Doit s'occuper de tout ce qui prï¿½cï¿½de le changement de tour, nï¿½cï¿½ssitera aussi des fonctions sous-jacentes (suppression de l'UI)
+        instance.FinTour = true;
     }
-    public void ChangeEtatTour()
-    {
-        // Se base sur un bouton "Fin de Tour" sur lequel il faudra appuyer pour activer cette fonction
-        FinTour=true;
-    }
-    
-    
 
-    public void RoundComplet()
+    public void EffectuerActions()
     {
-        RajouterAToutLesJoueursPiecesMissionEct();
-        Evenement();
-        TempsDeDiscussion();
+        Dictionary<Player, List<PlayerAction>>.KeyCollection keys = Dico_JoueurActions.Keys; 
+        for (int i = 1; i < GameLogic.instance.Liste_Joueurs.Count + 1; i++)
+        {
+            foreach (Player key in keys)
+            {
+                foreach (PlayerAction Action in Dico_JoueurActions[key])
+                {
+                    Dico_Actions[Action](key);
+                }
+            }
+        }
+        //Une fois que les actions sont effectuÃ©es on supprime la liste pour en crÃ©er une nouvelle
+        instance.Dico_JoueurActions = new Dictionary<Player, List<PlayerAction>>();
+    }
+    public void AjouterActionDansDicoJoueursAction(PlayerAction action)
+    {
+        //Faut que al fonction soit appellÃ©e par une autre fonction 
+        //Si le nom du joueur est dans dÃ©jÃ  dans les clÃ©es du dico, on rajoute l'action
+        if (instance.Dico_JoueurActions.ContainsKey(PlayerActuel))
+        {
+            instance.Dico_JoueurActions[PlayerActuel].Add(action);
+        }
+        //Si le nom du joueur n'est pas dÃ©jÃ  dans les clÃ©es du dico, on ajoute le joueur et l'action
+        else
+        {
+            instance.Dico_JoueurActions.Add(PlayerActuel, new List<PlayerAction>(){action});
+        }
+    }
+    
+    public IEnumerator TourJoueur()
+    {
+        //On veut que le tour se bloque tant que je joueur n'a pas appuyÃ© sur le bouton qui passe son tour
+        yield return new WaitUntil(() => instance.FinTour);
+
+    }
+    
+    public IEnumerator RoundComplet()
+    {
+        //RajouterAToutLesJoueursPiecesMissionEct();
+        //Evenement();
+        MasquerUIJoueur();
+        yield return StartCoroutine(TempsDeDiscussion());
+        instance.FinDiscution = false;
+        ReafficherUI();
 
         foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
         {
-            ChangementTourJoueur(joueur);
-            if (FinTour == true)
-            {
-                FinTour = false;
-                FinDeTour();
-            }
+            instance.FinTour = false;
+            PlayerActuel = joueur;
+
+            Debug.Log("Le joueur actuel est :" + PlayerActuel.pseudo);
+
+            //ChangementTourJoueur(PlayerActuel);
+
+            yield return StartCoroutine(TourJoueur());
         }
+        //EffectuerActions();
     }
 }

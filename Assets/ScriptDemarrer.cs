@@ -7,11 +7,6 @@ using UnityEngine;
 
 public class ScriptDemarrer : MonoBehaviour
 {
-    public void ActualiserListeJoueur()
-    {
-        GameLogic.instance.SetListeJoueurs();
-    }
-
     public static void ShuffleListeJoueur(List<Player> ts)
     {
         var count = ts.Count;
@@ -25,20 +20,12 @@ public class ScriptDemarrer : MonoBehaviour
         }
     }
 
-    public void SupprimerObjetsAvecTagSuppr()
-    {
-        foreach (var objects in GameObject.FindGameObjectsWithTag("SupprB"))
-        {
-            Destroy(objects);
-        }
-    }
-
     public void InitierPartie()
     {
-        ActualiserListeJoueur();
-        SupprimerObjetsAvecTagSuppr();
+        GameLogic.instance.SetListeJoueurs();
+        GameLogic.instance.SupprimerGameObjectSelonTag("SupprB");
         ShuffleListeJoueur(GameLogic.instance.Liste_Joueurs);
         //TODO - Shuffle tout les paquets de cartes
-        GameLogic.instance.Jeu();
+        GameLogic.instance.DemarrerJeu();
     }
 }

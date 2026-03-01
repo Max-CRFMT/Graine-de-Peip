@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class Player
@@ -14,7 +15,6 @@ public class Player
     public int ThuneARecolterDebutTourProchain;
 
     public Continent continent;
-
 
     public Player(string name, int coins, string name_map)
     {
