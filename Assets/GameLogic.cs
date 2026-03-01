@@ -36,6 +36,7 @@ public class GameLogic : MonoBehaviour
     public void SetNbJoueurs(int nombre)
     {
         nb_joueurs = nombre;
+        
         Debug.Log("Le nombre de joueur s�lectionn� est :" + nb_joueurs);
     }
 
