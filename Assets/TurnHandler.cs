@@ -49,7 +49,7 @@ public class TurnHandler : MonoBehaviour
     }
     public void Creationlisteevenement()
     {
-        string filePath = @"C:\Users\ejupi\OneDrive\Bureau\cours\peip 2\projet 2A\Graine-de-Peip\tableau_event.csv";
+        string filePath = Application.dataPath + "Assets/data/tableau_event.csv";
         using (StreamReader reader = new StreamReader(filePath))
         {
             reader.ReadLine();
