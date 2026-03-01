@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using System.Collections.Generic;
 using System;
@@ -45,6 +46,14 @@ public class TurnHandler : MonoBehaviour
         instance.Dico_JoueurActions = new Dictionary<Player, List<PlayerAction>>();
         instance.FinTour = false;
         instance.FinDiscution = false;
+    }
+    public void Creationlisteevenement()
+    {
+        string filePath = @"C:\Users\ejupi\OneDrive\Bureau\cours\peip 2\projet 2A\Graine-de-Peip\tableau_event.csv";
+        using (StreamReader reader = new StreamReader(filePath))
+        {
+            reader.ReadLine();
+        }
     }
 
     public void RajouterAToutLesJoueursPiecesMissionEct()
@@ -127,7 +136,6 @@ public class TurnHandler : MonoBehaviour
         //Une fois que les actions sont effectuées on supprime la liste pour en créer une nouvelle
         instance.Dico_JoueurActions = new Dictionary<Player, List<PlayerAction>>();
     }
-
     public void AjouterActionDansDicoJoueursAction(PlayerAction action)
     {
         //Faut que al fonction soit appellée par une autre fonction 

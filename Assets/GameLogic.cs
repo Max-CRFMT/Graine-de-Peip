@@ -39,6 +39,7 @@ public class GameLogic : MonoBehaviour
     {
         nb_joueurs = nombre;
         Debug.Log("Le nombre de joueur selectionne est :" + nb_joueurs);
+
     }
 
     public void SetDifficulte(string difficult)

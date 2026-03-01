@@ -18,6 +18,7 @@ TagManager:
   - TexteTimer
   - Canvas
   - UIJoueur
+  - SpeciesStack
   layers:
   - Default
   - TransparentFX
