@@ -27,10 +27,7 @@ public class script_valider : MonoBehaviour
         xmin = -600;
         ymax = 100;
 
-        foreach (var objects in GameObject.FindGameObjectsWithTag("Suppr"))
-        {
-            Destroy(objects);
-        }
+        GameLogic.instance.SupprimerGameObjectSelonTag("Suppr");
 
         List<Vector3> Liste_Position = new List<Vector3>();
 
@@ -45,15 +42,17 @@ public class script_valider : MonoBehaviour
         }
 
         
-
+        //Création tableau noms et séléction carte
         for (int joueur = 0; joueur < GameLogic.instance.nb_joueurs; joueur++)
         {
+            //Création des endroits pour rentrer les prénoms en mettant le nom du tag comme nom par défaut
             GameObject prefab = Instantiate(txt_prefab, canvas.transform);
             RectTransform rt = prefab.GetComponent<RectTransform>();
             rt.anchoredPosition = Liste_Position[joueur];
             prefab.tag = "Joueur" + (joueur + 1).ToString();
-            prefab.GetComponent<TMP_InputField>().text = "Joueur" + (joueur + 1).ToString();
+            prefab.GetComponent<TMP_InputField>().text = prefab.tag.ToString();
 
+            //Création des listes déroulantes pour sélectionner les maps
             GameObject prefab_select = Instantiate(SelectionCarte_prefab, canvas.transform);
             RectTransform rt3 = prefab_select.GetComponent<RectTransform>();
             Vector3 posistion_supplementaire2 = new Vector3(0, -60, 0);

@@ -38,13 +38,13 @@ public class GameLogic : MonoBehaviour
     public void SetNbJoueurs(int nombre)
     {
         nb_joueurs = nombre;
-        Debug.Log("Le nombre de joueur s�lectionn� est :" + nb_joueurs);
+        Debug.Log("Le nombre de joueur selectionne est :" + nb_joueurs);
     }
 
     public void SetDifficulte(string difficult)
     {
         difficulte = difficult;
-        Debug.Log("La difficult� s�lectionn�e est :" + difficulte);
+        Debug.Log("La difficulte selectionnee est :" + difficulte);
     }
 
     public List<string> SelectionMaps = new List<string>() { "Europe", "Afrique", "Asie", "Océanie", "Amérique du Nord", "Amérique du Sud" };
@@ -99,12 +99,19 @@ public class GameLogic : MonoBehaviour
         StartCoroutine(Jeu());
     }
 
+    public void SupprimerGameObjectSelonTag(string tag)
+    {
+        foreach (var objects in GameObject.FindGameObjectsWithTag(tag))
+        {
+            Destroy(objects);
+        }
+    }
+
     public IEnumerator Jeu()
     {
         AsyncOperation ChargenementScene = SceneManager.LoadSceneAsync("Game");
 
         yield return ChargenementScene;
-
 
         while (instance.ToursRestants > 0)
         {

@@ -17,14 +17,8 @@ public class TempsDiscution : MonoBehaviour
 
     private void SuprressionTimers()
     {
-        foreach (var objects in GameObject.FindGameObjectsWithTag("TimerDIscution"))
-        {
-            Destroy(objects);
-        }
-        foreach (var objects in GameObject.FindGameObjectsWithTag("TexteTimer"))
-        {
-            Destroy(objects);
-        }
+        GameLogic.instance.SupprimerGameObjectSelonTag("TimerDIscution");
+        GameLogic.instance.SupprimerGameObjectSelonTag("TexteTimer");
     }
 
     public void FinDiscution()
@@ -35,23 +29,18 @@ public class TempsDiscution : MonoBehaviour
 
     void Update()
     {
-        if (BoutonFinDiscutionPressed)
+        if ((BoutonFinDiscutionPressed) || tempsrestant <= 0)
         {
             FinDiscution();
             return;
         }
+
         if (tempsrestant > 0)
         {
             tempsrestant -= Time.deltaTime;
             int minutes = Mathf.FloorToInt(tempsrestant / 60);
             int secondes = Mathf.FloorToInt(tempsrestant % 60);
             timertext.text = string.Format("{0:00}:{1:00}", minutes, secondes);
-        }
-
-        else if (tempsrestant <= 0)
-        {
-            FinDiscution();
-            return;
         }
     }
 

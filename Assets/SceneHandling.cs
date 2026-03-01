@@ -7,7 +7,7 @@ public class SceneHandler : MonoBehaviour
 
     public void ChangeScene(string sceneNameToLoad)
     {
-        if (sceneNameToLoad == "Demarrage")
+        if ((sceneNameToLoad == "Demarrage") || (sceneNameToLoad == "Lobby"))
         {
             foreach (var objects in GameObject.FindGameObjectsWithTag("LogiqueJeu"))
             {
