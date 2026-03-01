@@ -289,5 +289,5 @@ MonoBehaviour:
   CardAmount: 0
   IsDiscovered: 0
   CardAmountText: {fileID: 7386041295541810481}
-  SpeciesStackSprite: {fileID: 0}
+  SpeciesStackSprite: {fileID: 4640585453874431259}
   originalMat: {fileID: 0}
