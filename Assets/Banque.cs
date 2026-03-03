@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Banque : MonoBehaviour
 {
     public Queue<Cartes> FileDeCartes = new Queue<Cartes>();
-    public void Regulation_population_cartes()
+    public void Regulation_cartes()
     {
         for (int i = 1; i <= 8;  i++)
         {
