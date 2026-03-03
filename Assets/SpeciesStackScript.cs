@@ -3,12 +3,12 @@ using UnityEngine.UI;
 
 public class SpeciesStackScript : MonoBehaviour
 {
-
+    public GameObject SpeciesStack;
     public int CardAmount = 0;
     public bool IsDiscovered = true;
 
     
-    public Text CardAmountText;
+    public TextMesh CardAmountText;
     public SpriteRenderer SpeciesStackSprite;
     public Material originalMat;
 
@@ -42,7 +42,7 @@ public class SpeciesStackScript : MonoBehaviour
     {
         if (IsDiscovered)
         {
-            CardAmountText.enabled = true;
+            SpeciesStack.enabled = true;
             SpeciesStackSprite.enabled = true;
         }
     }
