@@ -25,6 +25,7 @@ public class ScriptDemarrer : MonoBehaviour
         GameLogic.instance.SetListeJoueurs();
         GameLogic.instance.SupprimerGameObjectSelonTag("SupprB");
         ShuffleListeJoueur(GameLogic.instance.Liste_Joueurs);
+        TurnHandler.instance.PlayerActuel = GameLogic.instance.Liste_Joueurs[0];
         //TODO - Shuffle tout les paquets de cartes
         GameLogic.instance.DemarrerJeu();
     }

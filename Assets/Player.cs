@@ -16,6 +16,8 @@ public class Player
 
     public Continent continent;
 
+    public bool OuvrierAchete;
+
     public Player(string name, int coins, string name_map)
     {
         pseudo = name;
@@ -23,7 +25,9 @@ public class Player
         map_choisie = name_map;
         Points_Action_Max = 3;
         prix_ouvrier = 1000;
+        Points_Action = Points_Action_Max;
         ThuneARecolterDebutTourProchain = 0;
+        OuvrierAchete = false;
         Debug.Log("Pseudo du joueur : " + pseudo + "\nPieces du joueur : " + pieces + "\nMap que le joueur à choisi :" + name_map + "\n\n");
     }
 
@@ -76,29 +80,18 @@ public class Player
 
     public void DemandeSubventions()
     {
-        if (VerifPointAction(1))
-        {
-            ThuneARecolterDebutTourProchain += 1;
-        }
+        ThuneARecolterDebutTourProchain += 1;
     }
 
     public void Eduquer()
     {
-        if (VerifMontant(50) && VerifPointAction(1))
-        {
             //Joueur.Continent.CompteurEducation += 1
-            RetirerPieces(50);
-        }
     }
 
     public void Recruter_Ouvrier()
     {
-        if (VerifMontant(100) && VerifPointAction(1))
-        {
-            RajouterPointActionMax();
-            RetirerPieces(100);
-            //Bool qui dit que le joueur a déjà utilisé ça et donc ne peut plus l'utiliser
-        }
+        RajouterPointActionMax();
+        OuvrierAchete = true;
     }
 
     public void RecencerGraines()

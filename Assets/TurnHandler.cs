@@ -46,6 +46,7 @@ public class TurnHandler : MonoBehaviour
         instance.Dico_JoueurActions = new Dictionary<Player, List<PlayerAction>>();
         instance.FinTour = false;
         instance.FinDiscution = false;
+        instance.PlayerActuel = new Player("John", 0, "Fate");
     }
     public void Creationlisteevenement()
     {
@@ -140,7 +141,7 @@ public class TurnHandler : MonoBehaviour
     {
         //Faut que al fonction soit appellée par une autre fonction 
         //Si le nom du joueur est dans déjà dans les clées du dico, on rajoute l'action
-        if (instance.Dico_JoueurActions.ContainsKey(PlayerActuel))
+        if (PresenceKeyJoueur(PlayerActuel))
         {
             instance.Dico_JoueurActions[PlayerActuel].Add(action);
         }
@@ -150,13 +151,48 @@ public class TurnHandler : MonoBehaviour
             instance.Dico_JoueurActions.Add(PlayerActuel, new List<PlayerAction>(){action});
         }
     }
+
+    public bool PresenceKeyJoueur(Player player)
+    {
+        return instance.Dico_JoueurActions.ContainsKey(player);
+    }
+
+    public void AnnulerDerniereAction()
+    {
+        if (PresenceKeyJoueur(PlayerActuel) && (instance.Dico_JoueurActions[PlayerActuel].Count != 0))
+        {
+            Debug.Log("Action Removed");
+            instance.PlayerActuel.Points_Action += 1 ;
+            instance.Dico_JoueurActions[instance.PlayerActuel].RemoveAt(0);
+        } 
+        else
+        {
+            Debug.Log("Aucune action demandee, il n'y a rien à retirer");
+        }
+    }
     
+    public void AfficherActionsJoueurActuel()
+    {
+        if (instance.Dico_JoueurActions[PlayerActuel].count != 0)
+        {
+            foreach (PlayerAction actions in instance.Dico_JoueurActions[PlayerActuel])
+            {
+                Debug.Log(actions);
+            }
+        }
+        else
+        {
+            Debug.Log("Il n'y a pas d'actions a enlever, je joueur n'a aucune action enregistre");
+        }
+    }
+
     public IEnumerator TourJoueur()
     {
         //On veut que le tour se bloque tant que je joueur n'a pas appuyé sur le bouton qui passe son tour
         yield return new WaitUntil(() => instance.FinTour);
-
     }
+
+
     
     public IEnumerator RoundComplet()
     {
@@ -170,7 +206,7 @@ public class TurnHandler : MonoBehaviour
         foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
         {
             instance.FinTour = false;
-            PlayerActuel = joueur;
+            instance.PlayerActuel = joueur;
 
             Debug.Log("Le joueur actuel est :" + PlayerActuel.pseudo);
 
