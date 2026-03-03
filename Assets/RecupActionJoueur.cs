@@ -17,8 +17,8 @@ public class RecupActionJoueur : MonoBehaviour
         if (TurnHandler.instance.PlayerActuel.VerifPointAction(1)) //Ajouter verification du montant (VerifMontant(50) && VerifPointAction(1)
         {
             TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Eduquer);
+            TurnHandler.instance.PlayerActuel.Points_Action -= 1;
             Debug.Log("Eduquer appel");
-            //RetirerPieces(50);
         }
     }
     public void RecupRecruter()
@@ -27,23 +27,37 @@ public class RecupActionJoueur : MonoBehaviour
         {
             TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Recruter);
             Debug.Log("Recrute appel");
-            //RetirerPieces(100);
+            TurnHandler.instance.PlayerActuel.Points_Action -= 1;
         }
     }
     public void RecupRecenser()
     {
-        TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Recenser);
-        Debug.Log("Recenser appel");
+        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1)) //(VerifMontant(10) && VerifPointAction(1)) + sûrement d'autres conditions sur la pioche
+        {
+            TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Recenser);
+            Debug.Log("Recenser appel");
+            TurnHandler.instance.PlayerActuel.Points_Action -= 1;
+        }
+
     }
     public void RecupRecolter()
     {
-        TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Recolter);
-        Debug.Log("Recolter appel");
+        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1)) //VerifMontant(20) && VerifPointAction(1)
+        {
+            TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Recolter);
+            Debug.Log("Recolter appel");
+            TurnHandler.instance.PlayerActuel.Points_Action -= 1;
+        }
     }
     public void RecupAmeliorer()
     {
-        TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Ameliorer);
-        Debug.Log("Ameliorer appel");
+        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
+        {
+            TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Ameliorer);
+            Debug.Log("Ameliorer appel");
+            TurnHandler.instance.PlayerActuel.Points_Action -= 1;
+        }
+
     }
 
     public void RecupAnnulerAction()

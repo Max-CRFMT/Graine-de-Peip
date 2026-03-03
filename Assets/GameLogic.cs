@@ -19,9 +19,9 @@ public class GameLogic : MonoBehaviour
 
     Dictionary<string, int> DicoTourEnFctDeDifficulte = new Dictionary<string, int>()
     {
-        {"Facile", 15},
-        {"Normal", 25},
-        {"Difficile", 30}
+        {"Facile",7},
+        {"Normal", 14},
+        {"Difficile", 21}
     };
 
     public GameLogic() { }

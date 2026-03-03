@@ -1,12 +1,13 @@
-using System.IO;
-using UnityEngine;
-using System.Collections.Generic;
 using System;
-using Unity.VisualScripting;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
 using System.Timers;
 using TMPro;
-using System.Linq;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class TurnHandler : MonoBehaviour
 {
@@ -94,6 +95,16 @@ public class TurnHandler : MonoBehaviour
             }
 
         }
+
+        TextMeshProUGUI[] gameobjectsse = canvas.GetComponentsInChildren<TextMeshProUGUI>(true);
+        foreach (TextMeshProUGUI go in gameobjectsse)
+        {
+            if (go.gameObject.tag == "UIJoueur")
+            {
+                go.gameObject.SetActive(false);
+            }
+
+        }
     }
 
     public void ReafficherUI()
@@ -106,7 +117,16 @@ public class TurnHandler : MonoBehaviour
             {
                 go.gameObject.SetActive(true);
             }
-            
+        }
+
+        TextMeshProUGUI[] gameobjectsse = canvas.GetComponentsInChildren<TextMeshProUGUI>(true);
+        foreach (TextMeshProUGUI go in gameobjectsse)
+        {
+            if (go.gameObject.tag == "UIJoueur")
+            {
+                go.gameObject.SetActive(true);
+            }
+
         }
     }
 
@@ -163,7 +183,7 @@ public class TurnHandler : MonoBehaviour
         {
             Debug.Log("Action Removed");
             instance.PlayerActuel.Points_Action += 1 ;
-            instance.Dico_JoueurActions[instance.PlayerActuel].RemoveAt(0);
+            instance.Dico_JoueurActions[instance.PlayerActuel].RemoveAt(instance.Dico_JoueurActions[instance.PlayerActuel].Count() - 1);
         } 
         else
         {
@@ -173,7 +193,7 @@ public class TurnHandler : MonoBehaviour
     
     public void AfficherActionsJoueurActuel()
     {
-        if (instance.Dico_JoueurActions[PlayerActuel].count != 0)
+        if ((instance.Dico_JoueurActions.ContainsKey(PlayerActuel)) && (instance.Dico_JoueurActions[PlayerActuel].Count != 0))
         {
             foreach (PlayerAction actions in instance.Dico_JoueurActions[PlayerActuel])
             {
@@ -192,6 +212,20 @@ public class TurnHandler : MonoBehaviour
         yield return new WaitUntil(() => instance.FinTour);
     }
 
+    public void RemplirPtActionsChaqueJoueur()
+    {
+        foreach (Player player in GameLogic.instance.Liste_Joueurs)
+        {
+            player.RemplirPointAction();
+        }
+    }
+
+    public void EvolutionPhaseVegetale()
+    {
+        //Faire évoluer la phase végétale : 
+        //Si il y a plus de X cartes de même variété dans un biome ou environnement, ajouter % cartes graines dans cette zone.
+        //Si il y a X cartes ou moins d’une même variété, l’espèce disparaît dans cet environnement.Retirer toutes les cartes présentes dans cette zone.
+    }
 
     
     public IEnumerator RoundComplet()
@@ -202,11 +236,14 @@ public class TurnHandler : MonoBehaviour
         yield return StartCoroutine(TempsDeDiscussion());
         instance.FinDiscution = false;
         ReafficherUI();
+        RemplirPtActionsChaqueJoueur();
 
         foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
         {
             instance.FinTour = false;
             instance.PlayerActuel = joueur;
+            ChangementUITextJoueur.instance.ChangerChangementJoueur();
+            
 
             Debug.Log("Le joueur actuel est :" + PlayerActuel.pseudo);
 
@@ -214,6 +251,6 @@ public class TurnHandler : MonoBehaviour
 
             yield return StartCoroutine(TourJoueur());
         }
-        //EffectuerActions();
+        EffectuerActions();
     }
 }

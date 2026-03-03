@@ -80,46 +80,76 @@ public class Player
 
     public void DemandeSubventions()
     {
+        Debug.Log("Function demandeSubventions exec");
         ThuneARecolterDebutTourProchain += 1;
     }
 
     public void Eduquer()
     {
-            //Joueur.Continent.CompteurEducation += 1
+        if (VerifMontant(0))
+        {
+            Debug.Log("Function eduquer exec");
+            //continent.CompteurEducation += 1
+        }
+        else
+        {
+            Debug.Log("Montant non acquis, action annulée, cheh");
+        }
+
     }
 
     public void Recruter_Ouvrier()
     {
-        RajouterPointActionMax();
-        OuvrierAchete = true;
+        if (VerifMontant(0))
+        {
+            Debug.Log("Function recruter ouvrier exec");
+            RajouterPointActionMax();
+            OuvrierAchete = true;
+            Debug.Log("Maintenant, pt actions max = " + Points_Action_Max);
+        }
+        else
+        {
+            Debug.Log("Montant non acquis, action annulée, cheh");
+        }
+
     }
 
     public void RecencerGraines()
     {
-        if (VerifMontant(10) && VerifPointAction(1))
+        if (VerifMontant(0))
         {
-            RetirerPieces(10);
-            
-            // TODO
+            Debug.Log("Function recenser exec");
+            //TODO
+        }
+        else
+        {
+            Debug.Log("Montant non acquis, action annulée, cheh");
         }
     }
 
     public void RecolterGraines()
     {
-        if (VerifMontant(20) && VerifPointAction(1))
+        if (VerifMontant(0))
         {
-            RetirerPieces(20);
-
+            Debug.Log("Function recolter exec");
             //TODO
+        }
+        else
+        {
+            Debug.Log("Montant non acquis, action annulée, cheh");
         }
     }
 
     public void AmeliorerJardin()
     {
-        if (VerifMontant(200) && VerifPointAction(1))
+        if (VerifMontant(0))
         {
-            RetirerPieces(200);
+            Debug.Log("Function ameliorer exec");
             //TODO
+        }
+        else
+        {
+            Debug.Log("Montant non acquis, action annulée, cheh");
         }
     }
 
