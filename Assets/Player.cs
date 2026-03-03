@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player
 {
+    
     public string pseudo;
     public int pieces;
     public string map_choisie;
@@ -24,6 +25,7 @@ public class Player
         Points_Action_Max = 3;
         prix_ouvrier = 1000;
         ThuneARecolterDebutTourProchain = 0;
+        continent = new Continent(name_map);
         Debug.Log("Pseudo du joueur : " + pseudo + "\nPieces du joueur : " + pieces + "\nMap que le joueur à choisi :" + name_map + "\n\n");
     }
 
