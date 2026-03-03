@@ -5,27 +5,29 @@ using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Banque //: MonoBehaviour
+public class Banque : MonoBehaviour
 {
     public Queue<Cartes> FileDeCartes = new Queue<Cartes>();
-    public void TestCode()
+    public void Suppression_Cartes_si_plus_de_3()
     {
-        Cartes Fleur1 = new Cartes("1", true, "Vallée", 3);
-        Cartes Fleur2 = new Cartes("2", true, "Montagne", 5);
-        Cartes Fleur3 = new Cartes("3", true, "Plage", 1);
-        Cartes Fleur4 = new Cartes("4", true, "Gravier", 46);
-
-        //Debug.Log(Cartes.nombredecartes);
-
-        if (FileDeCartes.Count <= 3)
+        for (int i = 1; i <= 8;  i++)
         {
-            FileDeCartes.Enqueue(Fleur1);
+            Cartes NouvelleCarte = new Cartes(i.ToString(), true, "Montagne", 5);
+            if (FileDeCartes.Count < 3)
+            {
+                FileDeCartes.Enqueue(NouvelleCarte);
+            }
+            else if (FileDeCartes.Count == 3)
+            {
+                FileDeCartes.Enqueue(NouvelleCarte);
+                FileDeCartes.Dequeue();
+            }
+            else
+            {
+                FileDeCartes.Dequeue();
+            }
+            Debug.Log("Nombre de Cartes dans la banque :" + FileDeCartes.Count);
         }
-        else
-        {
-            FileDeCartes.Dequeue();
-        }
-        Debug.Log(FileDeCartes.Count);
     }
     
 }
