@@ -1,0 +1,19 @@
+Nom de l'événement,Type ,Description,Tas de couleur,Type de plantes,Gain de résolution,Anthropique,Cas d'échec
+Théorie du Complot,Négative,Faites baisser l'éducation,Hard,None,None,True,None
+incendie,Négative,perte de plantes,Moyen ,,None,False,None
+secheresse importante,Négative,perte de plantes,Dur,,None,False,None
+sécheresse ,Négative,perte de plantes,Facile,,None,False,None
+inondation,Négative,perte de plantes,Début,,None,False,None
+pollution du milieux,Négative,perte de plantes,Hard,Tous les biomes,None,True,None
+déstruction du milieux naturel,Négative,perte de plantes,Dur,,None,True,None
+espèce invasive,Négative,perte de plantes,Dur,1 plante au hasard parmi les 5 plus nombreuses,None,False,None
+Avalanche,Négative,perte de plantes,Facile,Tundra,None,False,None
+tornade,Négative,perte de plantes,Dur,Desert,None,False,None
+braconnage,Négative,perte de plantes,Début,,None,True,None
+gel,Négative,perte de plantes,Moyen ,Forêt Tempérée,None,False,None
+subventions,positive,gain d'argent,Facile,None,X d'argent,True,None
+printemps doux,positive,boost des plantes,Début,,None,False,None
+benevolat,positive,+1 main d'ouevre ce tour,Début,None,1 ouvrier en plus à répartir ,True,None
+prise de conscience de la population,positive,annule prochain evenement d'origine anthropique,Facile,None,,True,None
+demande de preservation,mission,Une plante au hasard doit être conservé dans la moitié des conservatoires,Moyen ,None,X d'argent,True,
+niveau d'education à atteindre,mission,Atteindre un seuil d'éducation global,Moyen ,None,X d'argent,True,

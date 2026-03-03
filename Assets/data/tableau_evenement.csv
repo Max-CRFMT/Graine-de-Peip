@@ -1,0 +1,20 @@
+﻿Nom de l'événement§Type §Effet§Tas de couleurs§Type de plantes§Gain de résolution§Cas d'échec§Description§§Liste_déroulante_type§Liste_déroulante_difficulté
+Chantier§Négative§Défaussez les deux premières cartes du paquet plantes non recensées du continent X.§Facile§None§None§None§De nouveaux résidents arrivent en ville ! Chouette, n'est-ce pas ? Bon, peut-être un peu moins pour les espèces végétales qui habitaient les lieux.§§Positive§Facile
+Inondations§Négative§Défaussez les deux premières cartes du paquet plantes non recensées du continent X.§Facile§None§None§None§Les plantes, ça aime l'eau, non ? Visiblement, pas dans ces quantités.§§Négative§Moyen
+Bénévolat§Positive§Le Conservatoire Botanique X bénéficie du pion Bénévole ce tour-ci.§Facile§None§1 ouvrier en plus à répartir §None§Ça fait 40 ans que Michel aide bénévolement l'effort de recensement du Conservatoire de X. Merci Michel.§§Mission§Difficile
+Braconnage§Négative§Défaussez la carte du paquet plantes recensées dont l'effectif global est le plus faible du continent X.§Facile§None§None§None§Les banques, c'est pour les amateurs. Les plantes exotiques, ça c'est un vrai buisness.§§§
+Printemps doux§Positive§Ajoutez une carte de la zone morte du continent X au paquet des plantes non recensées de ce continent. Mélangez ensuite ce paquet.§Facile§None§None§None§La brise printanière semble être accompagnée de changements bienvenus.§§§
+Subventions§Positive§Le Conservatoire Botanique X gagne X argent.§Facile§None§X d'argent§None§§§§
+Prise de conscience§Positive§Le niveau d'éducation de tous les Conservatoire Botanique augmente d'un.§Facile§None§§None§§§§
+Sécheresse §Négative§Défaussez les deux premières cartes du paquet plantes non recensées du continent X.§Facile§None§None§None§§§§
+Avalanche§Négative§Défaussez les deux premières cartes du paquet plantes non recensées du continent X.§Facile§Tundra§None§None§§§§
+Incendie§Négative§Défaussez les trois premières cartes du paquet plantes non recensées du continent X.§Moyen §None§None§None§§§§
+Sauvegarde urgente§Mission§A la fin du tour suivant, l'espèce X doit être sauvegardée dans la moitiée des Conservatoires Botaniques. §Moyen §None§X d'argent§None§§§§
+Gel§Négative§Défaussez les deux premières cartes du paquet plantes non recensées du continent X.§Moyen §Forêt Tempérée§None§None§§§§
+Sensibilisation§Mission§A la fin du tour suivant, le niveau d'éducation de chaque Conservatoire Botanique doit être de X ou plus.§Moyen §None§X d'argent§None§§§§
+Théorie du Complot§Négative§Le niveau d'éducation de tous les Conservatoire Botanique baisse d'un.§Moyen §None§None§None§§§§
+Sècheresse importante§Négative§Défaussez les cinq premières cartes du paquet plantes non recensées du continent X.§Difficile§None§None§None§§§§
+Espèce invasive§Négative§Ajoutez les deux premières cartes du paquet plantes non recensées du continent X sous la pile du paquet plantes recensées dont l'effectif global est le plus important. §Difficile§1 plante au hasard parmi les 5 plus nombreuses§None§None§§§§
+Déforestation§Négative§Défaussez les cinq premières cartes du paquet plantes non recensées du continent X.§Difficile§None§None§None§§§§
+Tornade§Négative§Défaussez les trois premières cartes du paquet plantes non recensées de chaque continent.§Difficile§Desert§None§None§§§§
+Pollution importante§Négative§Défaussez les trois premières cartes du paquet plantes non recensées de chaque continent.§Difficile§Tous les biomes§None§None§
