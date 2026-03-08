@@ -1,35 +1,42 @@
+using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
-using System.Collections.Generic;
+using UnityEngine.UIElements;
 
 
 public class traduction_csv : MonoBehaviour
 {
-    public List<string> nom_evenement = new List<string>();
+    public List<List<string>> carte_evenement = new List<List<string>>();
+    public int nombre_de_caractéristique_de_la_carte = 8;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         string tableau_evenement =  "Assets/data/tableau_evenement.csv";
         using (StreamReader reader = new StreamReader(tableau_evenement))
         {
-            reader.ReadLine(); //Là on lit et on affiche la première ligne où y a les titres
-            
-            string line;
-            while ((line = reader.ReadLine()) != null) //Là on va lire chaque ligne du fichier
+            reader.ReadLine(); //Là on lit la première ligne où y a les titres pour pouvoir l'ignorer 
+            int indice = 0;
+            string lecteur_de_ligne;
+            while ((lecteur_de_ligne = reader.ReadLine()) != null) //Là on va lire chaque ligne du fichier
             {
-                string[] caracteristique_evenement = line.Split('§');
-                //print(caracteristique_evenement);
-                print($"Nom: {caracteristique_evenement[0]}, Type: {caracteristique_evenement[1]}" +
-                    $", Description: {caracteristique_evenement[2]}, Tas de couleur: {caracteristique_evenement[3]}");
-                nom_evenement.Add(caracteristique_evenement[0]);
-                print(nom_evenement.Count);
+                string[] ligne_découper = lecteur_de_ligne.Split('|');
+                List<string> ligne = new List<string>();
+                ligne.AddRange(ligne_découper);
+                if (ligne.Count > nombre_de_caractéristique_de_la_carte)
+                {
+                    ligne.RemoveRange(nombre_de_caractéristique_de_la_carte,ligne.Count - nombre_de_caractéristique_de_la_carte);
+                    carte_evenement.Add(ligne);
+                }
+                else
+                {
+                    carte_evenement.Add(ligne);
+                }
+                print(carte_evenement[indice][3]);
+                indice += 1;
             }
-            for (int i = 0; i < nom_evenement.Count; i++)
-            {
-                print(nom_evenement[i]);
-            }
-            
         }
 
         // Update is called once per frame
