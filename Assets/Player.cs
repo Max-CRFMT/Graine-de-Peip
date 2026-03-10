@@ -16,8 +16,6 @@ public class Player
     public int ThuneARecolterDebutTourProchain;
 
     public Continent continent;
-    public Jardin jardin;
-    public Banque banque;
 
     public Player(string name, int coins, string name_map)
     {
@@ -27,24 +25,16 @@ public class Player
         Points_Action_Max = 3;
         prix_ouvrier = 1000;
         ThuneARecolterDebutTourProchain = 0;
+        
         Debug.Log("Pseudo du joueur : " + pseudo + "\nPieces du joueur : " + pieces + "\nMap que le joueur à choisi :" + name_map + "\n\n");
+
+        //Liaison de classe
+        continent = new Continent(map_choisie);
+
+        //Test
+        Player joueur = new Player("Alex", 24, "Europe");
     }
 
-    public void SetContinent(Continent nouveauContinent) 
-    {
-        //DONE - Modifier cette méthode pour attribuer un élément de la classe continent (et si il a des spécificités ça peut être pire)
-        continent = nouveauContinent;
-    }
-
-    public void SetJardin(Jardin nouveauJardin)
-    {
-        jardin = nouveauJardin;
-    }
-
-    public void SetBanque(Banque nouvelleBanque)
-    {
-        banque = nouvelleBanque;
-    }
 
     public bool VerifMontant(int nb)
     {

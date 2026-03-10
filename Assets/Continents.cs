@@ -6,6 +6,8 @@ public class Continent
 {
     //public List<SpeciesStack> SocleSpeciesStacks; //Socle contenant plusieurs piles d'espèces.
     public List<string> ListSpeciesName; //Liste de string ayant le nom des espèces présentes dans le continent. Importé du ficheir excel.
+    public Jardin jardin;
+    public Banque banque;
 
     Dictionary<string, List<string>> Dict_Continent_Biomes = new Dictionary<string, List<string>>()
     {
@@ -23,6 +25,10 @@ public class Continent
         int EducationLevel = 0;
         List<Carte> PileFaceCachee = PileCacheeEnFonctionDuContinent();
         //List<SpeciesStack> SocleSpeciesStacks = new List<SpeciesStack>(); //Socle contenant plusieurs piles d'espèces.
+
+        //liason de classe
+        banque = new Banque();
+        jardin = new Jardin();
     }
 
     public List<Carte> PileCacheeEnFonctionDuContinent()
