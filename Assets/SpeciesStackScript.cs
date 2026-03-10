@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SpeciesStackScript : MonoBehaviour
 {
@@ -7,8 +8,8 @@ public class SpeciesStackScript : MonoBehaviour
     public int CardAmount = 0;
     public bool IsDiscovered = true;
 
-    
-    public TextMesh CardAmountText;
+    // Visual components
+    public TextMeshProUGUI CardAmountText;
     public SpriteRenderer SpeciesStackSprite;
     public Material originalMat;
 
@@ -42,7 +43,7 @@ public class SpeciesStackScript : MonoBehaviour
     {
         if (IsDiscovered)
         {
-            SpeciesStack.enabled = true;
+            CardAmountText.enabled = true;
             SpeciesStackSprite.enabled = true;
         }
     }
@@ -64,6 +65,7 @@ public class SpeciesStackScript : MonoBehaviour
         SpeciesStackSprite = GetComponent<SpriteRenderer>();
         SpeciesStackSprite.enabled = false;
         CardAmountText.enabled = false;
+
         originalMat = GetComponent<Renderer>().material;
     }
 

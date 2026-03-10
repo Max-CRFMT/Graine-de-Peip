@@ -13,7 +13,7 @@ public class SpeciesStackHolderScript : MonoBehaviour
         for (int i = 0; i < SpeciesStackAmount; i++)
         {
             Instantiate(SpeciesStack, SpeciesStackOffset, transform.rotation);
-            SpeciesStackOffset += Vector3.right * 3;
+            SpeciesStackOffset += Vector3.right*2;
         }   
     }
 
