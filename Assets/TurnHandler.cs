@@ -20,7 +20,6 @@ public class TurnHandler : MonoBehaviour
     public GameObject ButtonCountdown;
     public TurnHandler() { }
 
-
     public enum PlayerAction
     {
         Subventions,
@@ -47,7 +46,7 @@ public class TurnHandler : MonoBehaviour
         instance.Dico_JoueurActions = new Dictionary<Player, List<PlayerAction>>();
         instance.FinTour = false;
         instance.FinDiscution = false;
-        instance.PlayerActuel = new Player("John", 0, "Fate");
+        instance.PlayerActuel = new Player("John", 0, "Amérique du Sud");
     }
     public void Creationlisteevenement()
     {
@@ -106,6 +105,23 @@ public class TurnHandler : MonoBehaviour
 
         }
     }
+
+    public void ChangementClicableButonSelonTags(bool vraioufaux, List<string> ListeTags)
+    {
+        Canvas canvas = FindAnyObjectByType<Canvas>();
+        UnityEngine.UI.Button[] gameobjects = canvas.GetComponentsInChildren<UnityEngine.UI.Button>(true);
+        foreach (string tag in ListeTags)
+        {
+            foreach (UnityEngine.UI.Button go in gameobjects)
+            {
+                if (go.gameObject.tag == tag)
+                {
+                    go.gameObject.GetComponent<UnityEngine.UI.Button>().enabled = vraioufaux;
+                }
+            }
+        }
+    }
+
 
     public void ReafficherUI()
     {

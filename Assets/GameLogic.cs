@@ -35,20 +35,31 @@ public class GameLogic : MonoBehaviour
         instance.ToursRestants = DicoTourEnFctDeDifficulte[difficulte];
     }
 
+    void Update()
+    {
+        //TODO - Detecter quand la touche espace est pressée et "assombrir le fond", enlever le fait que les boutons de l'UI du joueur
+        //et affichier le menu.
+    }
+
+    public void AfficherMenuInGame()
+    {
+        Debug.Log("Afficher activé");
+    }
+
     public void SetNbJoueurs(int nombre)
     {
         nb_joueurs = nombre;
-        Debug.Log("Le nombre de joueur selectionne est :" + nb_joueurs);
+        Debug.Log("Le nombre de joueur selectionne est : " + nb_joueurs);
 
     }
 
     public void SetDifficulte(string difficult)
     {
         difficulte = difficult;
-        Debug.Log("La difficulte selectionnee est :" + difficulte);
+        Debug.Log("La difficulte selectionnee est : " + difficulte);
     }
 
-    public List<string> SelectionMaps = new List<string>() { "Europe", "Afrique", "Asie", "Océanie", "Amérique du Nord", "Amérique du Sud" };
+    public List<string> SelectionMaps = new List<string>() { "Europe", "Afrique", "Asie", "Oceanie", "Amerique du Nord", "Amerique du Sud" };
     public void SetListeJoueurs()
     {
         System.Random random = new System.Random();

@@ -27,14 +27,11 @@ public class Player
         prix_ouvrier = 1000;
         Points_Action = Points_Action_Max;
         ThuneARecolterDebutTourProchain = 0;
+        
         OuvrierAchete = false;
         Debug.Log("Pseudo du joueur : " + pseudo + "\nPieces du joueur : " + pieces + "\nMap que le joueur à choisi :" + name_map + "\n\n");
-    }
 
-    public void SetContinent()
-    {
-        //TODO - Modifier cette méthode pour attribuer un élément de la classe continent (et si il a des spécificités ça peut être pire)
-        continent = continent;
+        continent = new Continent(name_map);
     }
 
     public bool VerifMontant(int nb)
@@ -50,22 +47,26 @@ public class Player
     public void RajouterPointAction(int nb)
     {
         Points_Action += nb;
+        ChangementUITextJoueur.instance.ChangePointsActionJoueur();
     }
 
     public void RemplirPointAction()
     {
         Points_Action = Points_Action_Max;
+        ChangementUITextJoueur.instance.ChangePointsActionJoueur();
     }
 
     public void RetirerPointAction(int nb)
     {
         Points_Action -= nb;
+        ChangementUITextJoueur.instance.ChangePointsActionJoueur();
     }
 
     public void RajouterPointActionMax()
     {
         RetirerPieces(prix_ouvrier);
         Points_Action_Max++;
+        ChangementUITextJoueur.instance.ChangePointsActionJoueur();
     }
 
     public void RajouterPieces(int nb)

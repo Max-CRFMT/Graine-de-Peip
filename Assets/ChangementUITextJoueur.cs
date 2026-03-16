@@ -7,7 +7,13 @@ public class ChangementUITextJoueur : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI TMPseudoJoueur;
     [SerializeField] TextMeshProUGUI TMPThuneJoueur;
+    
     [SerializeField] TextMeshProUGUI TMPContinentJoueur;
+    [SerializeField] TextMeshProUGUI TMPCompteurPointsAction;
+    [SerializeField] TextMeshProUGUI TMPThunePrevisionnelle;
+
+
+
 
     public static ChangementUITextJoueur instance;
 
@@ -28,14 +34,24 @@ public class ChangementUITextJoueur : MonoBehaviour
 
     public void ChangeContinentJoueur()
     {
-        TMPContinentJoueur.text = TurnHandler.instance.PlayerActuel.continent.ToString();
+        TMPContinentJoueur.text = TurnHandler.instance.PlayerActuel.map_choisie;
     }
-
+        public void ChangePointsActionJoueur()
+    {
+        TMPCompteurPointsAction.text = TurnHandler.instance.PlayerActuel.Points_Action.ToString();
+    }
     public void ChangerChangementJoueur()
     {
-        //ChangeContinentJoueur();
+        ChangeContinentJoueur();
         ChangePseudoJoueur();
         ChangeThuneJoueur();
+        ChangePointsActionJoueur();
+    }
+
+    public void UpdateThunePrevisionnelle()
+    {
+        // Doit changer la caractéristique de la thune qui devrait arriver au prochain tour normalement
+
     }
 
 }
