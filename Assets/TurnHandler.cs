@@ -105,7 +105,6 @@ public class TurnHandler : MonoBehaviour
 
         }
     }
-
     public void ChangementClicableButonSelonTags(bool vraioufaux, List<string> ListeTags)
     {
         Canvas canvas = FindAnyObjectByType<Canvas>();
