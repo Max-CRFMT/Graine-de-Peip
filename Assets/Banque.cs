@@ -5,10 +5,10 @@ using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Banque : MonoBehaviour
+public class Banque
 {
     public Queue<Cartes> FileDeCartes = new Queue<Cartes>();
-    private int indice_carte = 0;
+    public int indice_carte = 0;
     public void Regulation_cartes(int indice_carte)
     {
         Cartes NouvelleCarte = new Cartes(indice_carte.ToString(), true, "Montagne", 5);

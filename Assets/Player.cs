@@ -1,8 +1,10 @@
+using JetBrains.Annotations;
 using System;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.Rendering;
 
-public class Player
+public class Player 
 {
     
     public string pseudo;
@@ -16,6 +18,7 @@ public class Player
     public int ThuneARecolterDebutTourProchain;
 
     public Continent continent;
+    public Player monJoueur;
 
     public Player(string name, int coins, string name_map)
     {
@@ -31,10 +34,13 @@ public class Player
         //Liaison de classe
         continent = new Continent(map_choisie);
 
-        //Test
-        Player joueur = new Player("Alex", 24, "Europe");
     }
 
+    public void Testlien()
+    {
+        Debug.Log(monJoueur.continent.name);
+        //Debug.Log(monJoueur.continent.banque.indice_carte);
+    }
 
     public bool VerifMontant(int nb)
     {
