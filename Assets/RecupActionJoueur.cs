@@ -58,8 +58,40 @@ public class RecupActionJoueur : MonoBehaviour
             Debug.Log("Ameliorer appel");
             TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
         }
-
     }
+
+    public void RecupDon()
+    {
+        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
+        {
+            TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Don);
+            Debug.Log("Don appel");
+            TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
+        }
+    }
+
+    public void RecupRestauration()
+    {
+        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
+        {
+            TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Restauration);
+            Debug.Log("Restauration appel");
+            TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
+        }
+    }
+
+        public void RecupControle()
+    {
+        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
+        {
+            TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Controle);
+            Debug.Log("Controle appel");
+            TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
+        }
+    }
+
+
+
 
     public void RecupAnnulerAction()
     {

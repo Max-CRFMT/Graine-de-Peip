@@ -85,6 +85,21 @@ public class Player
         ThuneARecolterDebutTourProchain += 1;
     }
 
+    public void Don()
+    {
+        Debug.Log("Don exec");
+    }
+
+    public void Restauration()
+    {
+        Debug.Log("Restauration exec");
+    }
+
+    public void Controle()
+    {
+        Debug.Log("Controle exec");
+    }
+
     public void Eduquer()
     {
         if (VerifMontant(0))

@@ -27,8 +27,24 @@ public class TurnHandler : MonoBehaviour
         Recruter,
         Recenser,
         Recolter,
-        Ameliorer
+        Ameliorer,
+        Don,
+        Restauration,
+        Controle
     }
+
+    public List<PlayerAction> Liste_PlayerActions = new List<PlayerAction>()
+    {
+        PlayerAction.Don,
+        PlayerAction.Recenser,
+        PlayerAction.Recolter,
+        PlayerAction.Restauration,
+        PlayerAction.Controle,
+        PlayerAction.Ameliorer,
+        PlayerAction.Recruter,
+        PlayerAction.Eduquer,
+        PlayerAction.Subventions
+    };
 
     public Dictionary<PlayerAction, Action<Player>> Dico_Actions = new()
     {
@@ -37,7 +53,10 @@ public class TurnHandler : MonoBehaviour
         {PlayerAction.Recruter, player => player.Recruter_Ouvrier()},
         {PlayerAction.Recenser, player => player.RecencerGraines()},
         {PlayerAction.Recolter, player => player.RecolterGraines()},
-        {PlayerAction.Ameliorer, player => player.AmeliorerJardin()}
+        {PlayerAction.Ameliorer, player => player.AmeliorerJardin()},
+        {PlayerAction.Don, player => player.Don()},
+        {PlayerAction.Restauration, player => player.Restauration()},
+        {PlayerAction.Controle, player => player.Controle()}
     };
 
     private void Awake()
@@ -160,23 +179,40 @@ public class TurnHandler : MonoBehaviour
     
     public void FinDeTour()
     {
-        //TODO - Doit s'occuper de tout ce qui pr�c�de le changement de tour, n�c�ssitera aussi des fonctions sous-jacentes (suppression de l'UI)
+        //TODO - Doit s'occuper de tout ce qui precede le changement de tour, necessitera aussi des fonctions sous-jacentes (suppression de l'UI)
         instance.FinTour = true;
     }
 
     public void EffectuerActions()
     {
         Dictionary<Player, List<PlayerAction>>.KeyCollection keys = Dico_JoueurActions.Keys; 
-        for (int i = 1; i < GameLogic.instance.Liste_Joueurs.Count + 1; i++)
+        
+        ///for (int i = 1; i < GameLogic.instance.Liste_Joueurs.Count + 1; i++)
+        ///{
+        ///    foreach (Player key in keys)
+        ///    {
+        ///        foreach (PlayerAction Action in Dico_JoueurActions[key])
+        ///        {
+        ///            Dico_Actions[Action](key);
+        ///        }
+        ///    }
+        ///}
+
+        for (int i = 0; i < Liste_PlayerActions.Count; i++)
         {
             foreach (Player key in keys)
             {
                 foreach (PlayerAction Action in Dico_JoueurActions[key])
                 {
-                    Dico_Actions[Action](key);
+                    if (Liste_PlayerActions[i] == Action)
+                    {
+                        Dico_Actions[Action](key);
+                    }
                 }
             }
         }
+        
+
         //Une fois que les actions sont effectuées on supprime la liste pour en créer une nouvelle
         instance.Dico_JoueurActions = new Dictionary<Player, List<PlayerAction>>();
     }
