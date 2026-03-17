@@ -107,8 +107,16 @@ public class TurnHandler : MonoBehaviour
     }
     public void ChangementClicableButonSelonTags(bool vraioufaux, List<string> ListeTags)
     {
-        Canvas canvas = FindAnyObjectByType<Canvas>();
-        UnityEngine.UI.Button[] gameobjects = canvas.GetComponentsInChildren<UnityEngine.UI.Button>(true);
+        Canvas[] canvas_UI_liste = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
+        Canvas canvas_UI = canvas_UI_liste[0];
+        foreach (Canvas canvas in canvas_UI_liste)
+        {
+            if (canvas.tag == "UIJoueur")
+            {
+                canvas_UI = canvas;
+            }
+        }
+        UnityEngine.UI.Button[] gameobjects = canvas_UI.GetComponentsInChildren<UnityEngine.UI.Button>(true);
         foreach (string tag in ListeTags)
         {
             foreach (UnityEngine.UI.Button go in gameobjects)
