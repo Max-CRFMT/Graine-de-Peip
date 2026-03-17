@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 683045523737569880}
   - component: {fileID: 4640585453874431259}
   - component: {fileID: 8427082323360557269}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: SpeciesStack
   m_TagString: SpeciesStack
   m_Icon: {fileID: 0}

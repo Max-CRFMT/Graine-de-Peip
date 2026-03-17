@@ -138,5 +138,11 @@ public class GameLogic : MonoBehaviour
         SceneManager.LoadScene("Lobby");
         
     }
+
+    public void MoveCamera()
+    {
+        //TODO - Animation *smooth* de la caméra entre les deux scène dès que l'un des deux boutons prévu à cet effet sont pressés.!!!!
+
+    }
 }
 
