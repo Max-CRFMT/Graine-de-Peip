@@ -35,17 +35,6 @@ public class GameLogic : MonoBehaviour
         instance.ToursRestants = DicoTourEnFctDeDifficulte[difficulte];
     }
 
-    void Update()
-    {
-        //TODO - Detecter quand la touche espace est pressée et "assombrir le fond", enlever le fait que les boutons de l'UI du joueur
-        //et affichier le menu.
-    }
-
-    public void AfficherMenuInGame()
-    {
-        Debug.Log("Afficher activé");
-    }
-
     public void SetNbJoueurs(int nombre)
     {
         nb_joueurs = nombre;
