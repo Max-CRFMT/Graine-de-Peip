@@ -94,9 +94,18 @@ public class TurnHandler : MonoBehaviour
     public IEnumerator TempsDeDiscussion()
     {
         //TODO - Doit bloquer les commandes pendant 5min et afficher un tableau r�capitulatif des stats/missions des joueurs (faut que le tableau récapitulatif ait le tag TimerDiscution)
-        Canvas canvas = FindAnyObjectByType<Canvas>();
-        GameObject TexteCountDown = Instantiate(TxtCountdown, canvas.transform);
-        GameObject BoutonCountdown = Instantiate(ButtonCountdown, canvas.transform);
+        Canvas[] canvas_UI_liste = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
+        Canvas canvas_UI = canvas_UI_liste[0];
+        foreach (Canvas canvas in canvas_UI_liste)
+        {
+            if (canvas.tag == "UIJoueur")
+            {
+                canvas_UI = canvas;
+            }
+        }
+
+        GameObject TexteCountDown = Instantiate(TxtCountdown, canvas_UI.transform);
+        GameObject BoutonCountdown = Instantiate(ButtonCountdown, canvas_UI.transform);
 
         yield return new WaitUntil(() => instance.FinDiscution);
     }
@@ -252,7 +261,7 @@ public class TurnHandler : MonoBehaviour
     
     public void AfficherActionsJoueurActuel()
     {
-        if ((instance.Dico_JoueurActions.ContainsKey(PlayerActuel)) && (instance.Dico_JoueurActions[PlayerActuel].Count != 0))
+        if (instance.Dico_JoueurActions.ContainsKey(PlayerActuel) && (instance.Dico_JoueurActions[PlayerActuel].Count != 0))
         {
             foreach (PlayerAction actions in instance.Dico_JoueurActions[PlayerActuel])
             {

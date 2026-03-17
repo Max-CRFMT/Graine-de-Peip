@@ -29,7 +29,7 @@ public class TempsDiscution : MonoBehaviour
 
     void Update()
     {
-        if ((BoutonFinDiscutionPressed) || tempsrestant <= 0)
+        if (BoutonFinDiscutionPressed || tempsrestant <= 0)
         {
             FinDiscution();
             return;
