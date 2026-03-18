@@ -54,7 +54,7 @@ public class TurnHandler : MonoBehaviour
         {PlayerAction.Recenser, player => player.RecencerGraines()},
         {PlayerAction.Recolter, player => player.RecolterGraines()},
         {PlayerAction.Ameliorer, player => player.AmeliorerJardin()},
-        {PlayerAction.Don, player => player.Don()},
+        {PlayerAction.Don, player => player.Don(3, player)},
         {PlayerAction.Restauration, player => player.Restauration()},
         {PlayerAction.Controle, player => player.Controle()}
     };
@@ -75,6 +75,7 @@ public class TurnHandler : MonoBehaviour
             reader.ReadLine();
         }
     }
+
 
     public void RajouterAToutLesJoueursPiecesMissionEct()
     {
@@ -156,7 +157,6 @@ public class TurnHandler : MonoBehaviour
             }
         }
     }
-
 
     public void ReafficherUI()
     {

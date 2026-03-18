@@ -1,6 +1,8 @@
 using System;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Player
 {
@@ -18,13 +20,15 @@ public class Player
 
     public bool OuvrierAchete;
 
+    public List<int> Liste_prix_ouvrier = new List<int>(){12, 8, 6, 4};
+
     public Player(string name, int coins, string name_map)
     {
         pseudo = name;
         pieces = coins;
         map_choisie = name_map;
         Points_Action_Max = 3;
-        prix_ouvrier = 1000;
+        
         Points_Action = Points_Action_Max;
         ThuneARecolterDebutTourProchain = 0;
         
@@ -32,6 +36,7 @@ public class Player
         Debug.Log("Pseudo du joueur : " + pseudo + "\nPieces du joueur : " + pieces + "\nMap que le joueur à choisi :" + name_map + "\n\n");
 
         continent = new Continent(name_map);
+        //prix_ouvrier = Liste_prix_ouvrier[continent.EducationLevel];
     }
 
     public bool VerifMontant(int nb)
@@ -85,27 +90,57 @@ public class Player
         ThuneARecolterDebutTourProchain += 1;
     }
 
-    public void Don()
+    public void Don(int montant_don, Player player_cible)
     {
-        Debug.Log("Don exec");
+        int prix_don = 1;
+        if (VerifMontant(1))
+        {
+            Debug.Log("Function Don exec");
+            //player_cible.RajouterPieces(montant_don);
+        }
+        else
+        {
+            Debug.Log("Montant non acquis, action annulée, cheh");
+        }
     }
 
     public void Restauration()
     {
-        Debug.Log("Restauration exec");
+        int prix_restauration = 2;
+        //mm continent ou pas determiner
+        if (VerifMontant(prix_restauration))
+        {
+            Debug.Log("Function restauration exec");
+            //Bien galère
+        }
+        else
+        {
+            Debug.Log("Montant non acquis, action annulée, cheh");
+        }
     }
 
     public void Controle()
     {
-        Debug.Log("Controle exec");
+        int prix_controle = 1;
+        //mm continent ou pas determiner
+        if (VerifMontant(prix_controle))
+        {
+            Debug.Log("Function controle exec");
+            //ecrire la fonction
+        }
+        else
+        {
+            Debug.Log("Montant non acquis, action annulée, cheh");
+        }
     }
 
     public void Eduquer()
     {
-        if (VerifMontant(0))
+        if (VerifMontant(3))
         {
             Debug.Log("Function eduquer exec");
-            //continent.CompteurEducation += 1
+            //continent.EducationLevel += 1
+            //prix_ouvrier = Liste_prix_ouvrier[continent.EducationLevel];
         }
         else
         {
@@ -116,7 +151,7 @@ public class Player
 
     public void Recruter_Ouvrier()
     {
-        if (VerifMontant(0))
+        if (VerifMontant(prix_ouvrier))
         {
             Debug.Log("Function recruter ouvrier exec");
             RajouterPointActionMax();
@@ -132,7 +167,9 @@ public class Player
 
     public void RecencerGraines()
     {
-        if (VerifMontant(0))
+        int prix_recensement = 1;
+        //Condition pour déterminer si c'est un autre continent
+        if (VerifMontant(prix_recensement))
         {
             Debug.Log("Function recenser exec");
             //TODO
@@ -145,7 +182,9 @@ public class Player
 
     public void RecolterGraines()
     {
-        if (VerifMontant(0))
+        int prix_recolte = 1;
+        //Condition pour déterminer si c'est un autre continent
+        if (VerifMontant(prix_recolte))
         {
             Debug.Log("Function recolter exec");
             //TODO
@@ -158,7 +197,8 @@ public class Player
 
     public void AmeliorerJardin()
     {
-        if (VerifMontant(0))
+        int prix_jardin = 4;
+        if (VerifMontant(prix_jardin))
         {
             Debug.Log("Function ameliorer exec");
             //TODO

@@ -34,13 +34,34 @@ public class MenuInGame : MonoBehaviour
     {
         Debug.Log("Afficher activé");
         Liste_Tags = new List<string>(){"UIJoueur"};
-        TurnHandler.instance.ChangementClicableButonSelonTags(false, Liste_Tags);       
+        TurnHandler.instance.ChangementClicableButonSelonTags(false, Liste_Tags); 
+
+        Canvas[] canvas_UI_liste = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
+        Canvas canvas_UI = canvas_UI_liste[0];
+        foreach (Canvas canvas in canvas_UI_liste)
+        {
+            if (canvas.tag == "UIJoueur")
+            {
+                canvas_UI = canvas;
+            }
+        }
+           
     }
 
     public void EnleverMenuIngame()
     {
         Debug.Log("Desafficher activé");
         Liste_Tags = new List<string>(){"UIJoueur"};
-        TurnHandler.instance.ChangementClicableButonSelonTags(true, Liste_Tags);       
+        TurnHandler.instance.ChangementClicableButonSelonTags(true, Liste_Tags); 
+
+        Canvas[] canvas_UI_liste = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
+        Canvas canvas_UI = canvas_UI_liste[0];
+        foreach (Canvas canvas in canvas_UI_liste)
+        {
+            if (canvas.tag == "UIJoueur")
+            {
+                canvas_UI = canvas;
+            }
+        }      
     }
 }
