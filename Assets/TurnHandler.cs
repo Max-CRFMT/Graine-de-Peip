@@ -111,31 +111,12 @@ public class TurnHandler : MonoBehaviour
         yield return new WaitUntil(() => instance.FinDiscution);
     }
 
-    public void MasquerUIJoueur()
-    {
-        Canvas canvas = FindAnyObjectByType<Canvas>();
-        UnityEngine.UI.Button[] gameobjects = canvas.GetComponentsInChildren<UnityEngine.UI.Button>(true);
-        foreach (UnityEngine.UI.Button go in gameobjects)
-        {
-            if (go.gameObject.tag == "UIJoueur")
-            {
-                go.gameObject.SetActive(false);
-            }
-
-        }
-
-        TextMeshProUGUI[] gameobjectsse = canvas.GetComponentsInChildren<TextMeshProUGUI>(true);
-        foreach (TextMeshProUGUI go in gameobjectsse)
-        {
-            if (go.gameObject.tag == "UIJoueur")
-            {
-                go.gameObject.SetActive(false);
-            }
-
-        }
-    }
     public void ChangementClicableBoutonSelonTags(bool vraioufaux, List<string> ListeTags, string tagCanvas)
     {
+        if (!instance.FinDiscution)
+        {
+            ListeTags.Remove("UIJoueur");
+        }
         //Detection et définition du canvas dans lequel on va rechercher l'object
         Canvas[] canvas_UI_liste = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
         Canvas canvas_UI = canvas_UI_liste[0];
@@ -159,7 +140,7 @@ public class TurnHandler : MonoBehaviour
             }
         }
     }
-    public void ChangementActiveBoutonSelonTags(bool vraioufaux, List<string> ListeTags, string tagCanvas)
+    public void ChangementActiveBoutonRawImageOuTexteSelonTags(bool vraioufaux, List<string> ListeTags, string tagCanvas, int numerotkt)
     {
         //Detection et définition du canvas dans lequel on va rechercher l'object
         Canvas[] canvas_UI_liste = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
@@ -172,92 +153,62 @@ public class TurnHandler : MonoBehaviour
             }
         }
 
-        UnityEngine.UI.Button[] gameobjects = canvas_UI.GetComponentsInChildren<UnityEngine.UI.Button>(true);
-        foreach (string tag in ListeTags)
+        if (numerotkt == 0)
         {
-            foreach (UnityEngine.UI.Button go in gameobjects)
+            UnityEngine.UI.Button[] gameobjects = canvas_UI.GetComponentsInChildren<UnityEngine.UI.Button>(true);
+            foreach (string tag in ListeTags)
             {
-                if (go.gameObject.tag == tag)
+                foreach (UnityEngine.UI.Button go in gameobjects)
                 {
-                    go.gameObject.SetActive(vraioufaux);
+                    if (go.gameObject.tag == tag)
+                    {
+                        go.gameObject.SetActive(vraioufaux);
+                    }
                 }
             }
         }
+        else if (numerotkt == 1)
+        {
+            UnityEngine.UI.RawImage[] gameobjects = canvas_UI.GetComponentsInChildren<UnityEngine.UI.RawImage>(true);
+            foreach (string tag in ListeTags)
+            {
+                foreach (UnityEngine.UI.RawImage go in gameobjects)
+                {
+                    if (go.gameObject.tag == tag)
+                    {
+                        go.gameObject.SetActive(vraioufaux);
+                    }
+                }
+            }
+        }
+        else if (numerotkt == 2)
+        {
+            TMPro.TextMeshProUGUI[] gameobjects = canvas_UI.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
+            foreach (string tag in ListeTags)
+            {
+                foreach (TMPro.TextMeshProUGUI go in gameobjects)
+                {
+                    if (go.gameObject.tag == tag)
+                    {
+                        go.gameObject.SetActive(vraioufaux);
+                    }
+                }
+            }
+        }
+
     }
-    public void ChangementActiveRawImageSelonTags(bool vraioufaux, List<string> ListeTags, string tagCanvas)
+   
+    public void MasquerUIJoueur()
     {
-        //Detection et définition du canvas dans lequel on va rechercher l'object
-        Canvas[] canvas_UI_liste = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
-        Canvas canvas_UI = canvas_UI_liste[0];
-        foreach (Canvas canvas in canvas_UI_liste)
-        {
-            if (canvas.tag == tagCanvas)
-            {
-                canvas_UI = canvas;
-            }
-        }
-
-        UnityEngine.UI.RawImage[] gameobjects = canvas_UI.GetComponentsInChildren<UnityEngine.UI.RawImage>(true);
-        foreach (string tag in ListeTags)
-        {
-            foreach (UnityEngine.UI.RawImage go in gameobjects)
-            {
-                if (go.gameObject.tag == tag)
-                {
-                    go.gameObject.SetActive(vraioufaux);
-                }
-            }
-        }
-    }
-
-    public void ChangementActiveTexteSelonTags(bool vraioufaux, List<string> ListeTags, string tagCanvas)
-    {
-        //Detection et définition du canvas dans lequel on va rechercher l'object
-        Canvas[] canvas_UI_liste = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
-        Canvas canvas_UI = canvas_UI_liste[0];
-        foreach (Canvas canvas in canvas_UI_liste)
-        {
-            if (canvas.tag == tagCanvas)
-            {
-                canvas_UI = canvas;
-            }
-        }
-
-        TMPro.TextMeshProUGUI[] gameobjects = canvas_UI.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
-        foreach (string tag in ListeTags)
-        {
-            foreach (TMPro.TextMeshProUGUI go in gameobjects)
-            {
-                if (go.gameObject.tag == tag)
-                {
-                    go.gameObject.SetActive(vraioufaux);
-                }
-            }
-        }
+        ChangementActiveBoutonRawImageOuTexteSelonTags(false, new List<string>() { "UIJoueur" }, "UIJoueur", 0);
+        ChangementActiveBoutonRawImageOuTexteSelonTags(false, new List<string>() { "UIJoueur" }, "UIJoueur", 2);
     }
 
 
     public void ReafficherUI()
     {
-        Canvas canvas = FindAnyObjectByType<Canvas>();
-        UnityEngine.UI.Button[] gameobjects = canvas.GetComponentsInChildren<UnityEngine.UI.Button>(true);
-        foreach (UnityEngine.UI.Button go in gameobjects)
-        {
-            if (go.gameObject.tag == "UIJoueur")
-            {
-                go.gameObject.SetActive(true);
-            }
-        }
-
-        TextMeshProUGUI[] gameobjectsse = canvas.GetComponentsInChildren<TextMeshProUGUI>(true);
-        foreach (TextMeshProUGUI go in gameobjectsse)
-        {
-            if (go.gameObject.tag == "UIJoueur")
-            {
-                go.gameObject.SetActive(true);
-            }
-
-        }
+        ChangementActiveBoutonRawImageOuTexteSelonTags(true, new List<string>() { "UIJoueur" }, "UIJoueur", 0);
+        ChangementActiveBoutonRawImageOuTexteSelonTags(true, new List<string>() { "UIJoueur" }, "UIJoueur", 2);
     }
 
     public void ChangementTourJoueur(Player joueur_suivant)
@@ -274,17 +225,6 @@ public class TurnHandler : MonoBehaviour
     public void EffectuerActions()
     {
         Dictionary<Player, List<PlayerAction>>.KeyCollection keys = Dico_JoueurActions.Keys; 
-        
-        ///for (int i = 1; i < GameLogic.instance.Liste_Joueurs.Count + 1; i++)
-        ///{
-        ///    foreach (Player key in keys)
-        ///    {
-        ///        foreach (PlayerAction Action in Dico_JoueurActions[key])
-        ///        {
-        ///            Dico_Actions[Action](key);
-        ///        }
-        ///    }
-        ///}
 
         for (int i = 0; i < Liste_PlayerActions.Count; i++)
         {
@@ -300,7 +240,6 @@ public class TurnHandler : MonoBehaviour
             }
         }
         
-
         //Une fois que les actions sont effectuées on supprime la liste pour en créer une nouvelle
         instance.Dico_JoueurActions = new Dictionary<Player, List<PlayerAction>>();
     }
@@ -381,7 +320,6 @@ public class TurnHandler : MonoBehaviour
         //Evenement();
         MasquerUIJoueur();
         yield return StartCoroutine(TempsDeDiscussion());
-        instance.FinDiscution = false;
         ReafficherUI();
         RemplirPtActionsChaqueJoueur();
 
@@ -399,5 +337,6 @@ public class TurnHandler : MonoBehaviour
             yield return StartCoroutine(TourJoueur());
         }
         EffectuerActions();
+        instance.FinDiscution = false;
     }
 }

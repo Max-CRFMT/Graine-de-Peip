@@ -9,6 +9,13 @@ public class MenuInGame : MonoBehaviour
     public List<string> Liste_Tags;
     public bool MenuEnCours = false;
     InputAction touche_echap;
+
+    public static MenuInGame instance;
+    public MenuInGame() { }
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         touche_echap = InputSystem.actions.FindAction("Echap");
@@ -34,11 +41,11 @@ public class MenuInGame : MonoBehaviour
     {
         Debug.Log("Afficher activé");
         
-        TurnHandler.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"UIJoueur"}, "UIJoueur");
+        TurnHandler.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"UIJoueur", "TimerDIscution" }, "UIJoueur");
 
-        TurnHandler.instance.ChangementActiveBoutonSelonTags(true, new List<string>(){"MenuPause"}, "UIJoueur");
-        TurnHandler.instance.ChangementActiveRawImageSelonTags(true, new List<string>(){"MenuPause"}, "UIJoueur");
-        TurnHandler.instance.ChangementActiveTexteSelonTags(true, new List<string>(){"MenuPause"}, "UIJoueur");
+        TurnHandler.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(true, new List<string>(){"MenuPause"}, "UIJoueur", 0);
+        TurnHandler.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(true, new List<string>(){"MenuPause"}, "UIJoueur", 1);
+        TurnHandler.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(true, new List<string>(){"MenuPause"}, "UIJoueur", 2);
 
     }
 
@@ -46,10 +53,10 @@ public class MenuInGame : MonoBehaviour
     {
         Debug.Log("Desafficher activé");
 
-        TurnHandler.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"UIJoueur"}, "UIJoueur");
+        TurnHandler.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"UIJoueur", "TimerDIscution" }, "UIJoueur");
 
-        TurnHandler.instance.ChangementActiveBoutonSelonTags(false, new List<string>(){"MenuPause"}, "UIJoueur");
-        TurnHandler.instance.ChangementActiveRawImageSelonTags(false, new List<string>(){"MenuPause"}, "UIJoueur");
-        TurnHandler.instance.ChangementActiveTexteSelonTags(false, new List<string>(){"MenuPause"}, "UIJoueur");
+        TurnHandler.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(false, new List<string>() { "MenuPause" }, "UIJoueur", 0);
+        TurnHandler.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(false, new List<string>() { "MenuPause" }, "UIJoueur", 1);
+        TurnHandler.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(false, new List<string>() { "MenuPause" }, "UIJoueur", 2);
     }
 }
