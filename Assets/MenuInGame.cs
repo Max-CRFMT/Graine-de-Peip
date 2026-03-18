@@ -33,35 +33,23 @@ public class MenuInGame : MonoBehaviour
     public void AfficherMenuInGame()
     {
         Debug.Log("Afficher activé");
-        Liste_Tags = new List<string>(){"UIJoueur"};
-        TurnHandler.instance.ChangementClicableButonSelonTags(false, Liste_Tags); 
+        
+        TurnHandler.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"UIJoueur"}, "UIJoueur");
 
-        Canvas[] canvas_UI_liste = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
-        Canvas canvas_UI = canvas_UI_liste[0];
-        foreach (Canvas canvas in canvas_UI_liste)
-        {
-            if (canvas.tag == "UIJoueur")
-            {
-                canvas_UI = canvas;
-            }
-        }
-           
+        TurnHandler.instance.ChangementActiveBoutonSelonTags(true, new List<string>(){"MenuPause"}, "UIJoueur");
+        TurnHandler.instance.ChangementActiveRawImageSelonTags(true, new List<string>(){"MenuPause"}, "UIJoueur");
+        TurnHandler.instance.ChangementActiveTexteSelonTags(true, new List<string>(){"MenuPause"}, "UIJoueur");
+
     }
 
     public void EnleverMenuIngame()
     {
         Debug.Log("Desafficher activé");
-        Liste_Tags = new List<string>(){"UIJoueur"};
-        TurnHandler.instance.ChangementClicableButonSelonTags(true, Liste_Tags); 
 
-        Canvas[] canvas_UI_liste = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
-        Canvas canvas_UI = canvas_UI_liste[0];
-        foreach (Canvas canvas in canvas_UI_liste)
-        {
-            if (canvas.tag == "UIJoueur")
-            {
-                canvas_UI = canvas;
-            }
-        }      
+        TurnHandler.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"UIJoueur"}, "UIJoueur");
+
+        TurnHandler.instance.ChangementActiveBoutonSelonTags(false, new List<string>(){"MenuPause"}, "UIJoueur");
+        TurnHandler.instance.ChangementActiveRawImageSelonTags(false, new List<string>(){"MenuPause"}, "UIJoueur");
+        TurnHandler.instance.ChangementActiveTexteSelonTags(false, new List<string>(){"MenuPause"}, "UIJoueur");
     }
 }

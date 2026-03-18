@@ -134,17 +134,19 @@ public class TurnHandler : MonoBehaviour
 
         }
     }
-    public void ChangementClicableButonSelonTags(bool vraioufaux, List<string> ListeTags)
+    public void ChangementClicableBoutonSelonTags(bool vraioufaux, List<string> ListeTags, string tagCanvas)
     {
+        //Detection et définition du canvas dans lequel on va rechercher l'object
         Canvas[] canvas_UI_liste = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
         Canvas canvas_UI = canvas_UI_liste[0];
         foreach (Canvas canvas in canvas_UI_liste)
         {
-            if (canvas.tag == "UIJoueur")
+            if (canvas.tag == tagCanvas)
             {
                 canvas_UI = canvas;
             }
         }
+
         UnityEngine.UI.Button[] gameobjects = canvas_UI.GetComponentsInChildren<UnityEngine.UI.Button>(true);
         foreach (string tag in ListeTags)
         {
@@ -157,6 +159,83 @@ public class TurnHandler : MonoBehaviour
             }
         }
     }
+    public void ChangementActiveBoutonSelonTags(bool vraioufaux, List<string> ListeTags, string tagCanvas)
+    {
+        //Detection et définition du canvas dans lequel on va rechercher l'object
+        Canvas[] canvas_UI_liste = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
+        Canvas canvas_UI = canvas_UI_liste[0];
+        foreach (Canvas canvas in canvas_UI_liste)
+        {
+            if (canvas.tag == tagCanvas)
+            {
+                canvas_UI = canvas;
+            }
+        }
+
+        UnityEngine.UI.Button[] gameobjects = canvas_UI.GetComponentsInChildren<UnityEngine.UI.Button>(true);
+        foreach (string tag in ListeTags)
+        {
+            foreach (UnityEngine.UI.Button go in gameobjects)
+            {
+                if (go.gameObject.tag == tag)
+                {
+                    go.gameObject.SetActive(vraioufaux);
+                }
+            }
+        }
+    }
+    public void ChangementActiveRawImageSelonTags(bool vraioufaux, List<string> ListeTags, string tagCanvas)
+    {
+        //Detection et définition du canvas dans lequel on va rechercher l'object
+        Canvas[] canvas_UI_liste = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
+        Canvas canvas_UI = canvas_UI_liste[0];
+        foreach (Canvas canvas in canvas_UI_liste)
+        {
+            if (canvas.tag == tagCanvas)
+            {
+                canvas_UI = canvas;
+            }
+        }
+
+        UnityEngine.UI.RawImage[] gameobjects = canvas_UI.GetComponentsInChildren<UnityEngine.UI.RawImage>(true);
+        foreach (string tag in ListeTags)
+        {
+            foreach (UnityEngine.UI.RawImage go in gameobjects)
+            {
+                if (go.gameObject.tag == tag)
+                {
+                    go.gameObject.SetActive(vraioufaux);
+                }
+            }
+        }
+    }
+
+    public void ChangementActiveTexteSelonTags(bool vraioufaux, List<string> ListeTags, string tagCanvas)
+    {
+        //Detection et définition du canvas dans lequel on va rechercher l'object
+        Canvas[] canvas_UI_liste = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
+        Canvas canvas_UI = canvas_UI_liste[0];
+        foreach (Canvas canvas in canvas_UI_liste)
+        {
+            if (canvas.tag == tagCanvas)
+            {
+                canvas_UI = canvas;
+            }
+        }
+
+        TMPro.TextMeshProUGUI[] gameobjects = canvas_UI.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
+        foreach (string tag in ListeTags)
+        {
+            foreach (TMPro.TextMeshProUGUI go in gameobjects)
+            {
+                if (go.gameObject.tag == tag)
+                {
+                    go.gameObject.SetActive(vraioufaux);
+                }
+            }
+        }
+    }
+
 
     public void ReafficherUI()
     {

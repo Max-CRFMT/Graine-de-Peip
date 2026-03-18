@@ -19,6 +19,7 @@ TagManager:
   - Canvas
   - UIJoueur
   - SpeciesStack
+  - MenuPause
   layers:
   - Default
   - TransparentFX
