@@ -47,31 +47,40 @@ public class TurnHandler : MonoBehaviour
         instance.FinTour = false;
         instance.FinDiscution = false;
     }
-    public void Traduction_csv(string fichier_csv, int nombre_de_caracteristique, List<List<string>> carte_evenement)
+    public List<List<string>> Traduction_csv(string fichier_csv, int nombre_de_caracteristique, List<List<string>> liste_carte)
     {
-        string tableau_evenement = fichier_csv; //ici on va assigné à notre fichier csv (exemple:"Assets/data/tableau_evenement.csv")un nom de variable, actuellement la variable est un énorme string 
-        using (StreamReader reader = new StreamReader(tableau_evenement)) //ça c'est le pointeur qui va lire ligne par ligne notre csv
+        string tableau_evenement = fichier_csv;
+        //ça c'est le pointeur qui va lire ligne par ligne notre csv
+        using (StreamReader reader = new(tableau_evenement)) 
         {
-            reader.ReadLine(); //Là on lit la première ligne où y a les titres pour pouvoir l'ignorer 
-            int indice = 0; //ici c'est optionnel mais on peut initier un compteur qui nous dira sur quel ligne on est
-            string lecteur_de_ligne; //initialisation d'une autre variable qui va prendre pour chaque boucle la chaine de caractère d'une ligne
-            while ((lecteur_de_ligne = reader.ReadLine()) != null) //Là on va lire chaque ligne du fichier jusqu'à qu'il y en ait plus
+            //on lit la première ligne où y a les titres pour pouvoir l'ignorer 
+            reader.ReadLine();
+            int indice = 0;
+            //initialisation d'une autre variable qui va prendre pour chaque boucle la chaine de caractère d'une ligne
+            string lecteur_de_ligne;
+            //Là on va lire chaque ligne du fichier jusqu'à qu'il y en ait plus
+            while ((lecteur_de_ligne = reader.ReadLine()) != null) 
             {
-                string[] ligne_decouper = lecteur_de_ligne.Split('|'); //ici on va découper la ligne sur la quel on est en fonction du caractère qu'on aura choisi comme séparateur lors de la création du csv 
-                List<string> ligne = new List<string>(); //initialisation d'une liste à une dimension 
-                ligne.AddRange(ligne_decouper); //on transforme la ligne_découper qui est un string[] en une liste pour pouvoir la manipuler
-                if (ligne.Count > nombre_de_caracteristique) //ici on commence la partie où on va trié les élément en trop si il y en a, c'es pour ça qu'on a définie la variable nombre_de_caractéristique qui va définir le nombre délément on veut pour une carte
+                //ici on va découper la ligne sur la quel on est en fonction du caractère qu'on aura choisi comme séparateur lors de la création du csv 
+                string[] ligne_decouper = lecteur_de_ligne.Split('§');
+                List<string> ligne = new List<string>();
+                //on transforme la ligne_découper qui est un string[] en une liste pour pouvoir la manipuler
+                ligne.AddRange(ligne_decouper);
+                //ici on va trié les élément en trop si il y en a, c'est pour ça qu'on a définie la variable nombre_de_caractéristique qui va définir le nombre délément qu'on veut pour une carte
+                if (ligne.Count > nombre_de_caracteristique) 
                 {
-                    ligne.RemoveRange(nombre_de_caracteristique, ligne.Count - nombre_de_caracteristique); //ici sa va enlever tout les élément de la liste qui on un indice supérieur au nombre que l'on veut
-                    carte_evenement.Add(ligne); //et enfin ici on met la ligne qui correspond a une carte dans une liste de liste où chaque ligne sera tout les caractèristique d'une carte et chaque colonne une caractéristique en particulier
+                    //Sa c'est la fonction qui va enlever tout les élément de la liste qui on un indice supérieur au nombre que l'on veut
+                    ligne.RemoveRange(nombre_de_caracteristique, ligne.Count - nombre_de_caracteristique);
+                    liste_carte.Add(ligne); 
                 }
                 else
                 {
-                    carte_evenement.Add(ligne);
+                    liste_carte.Add(ligne);
                 }
                 indice += 1;
             }
         }
+        return liste_carte;
     }
 
     public void RajouterAToutLesJoueursPiecesMissionEct()
