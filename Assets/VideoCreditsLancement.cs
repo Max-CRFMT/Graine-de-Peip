@@ -1,11 +1,8 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.Video;
 
-
-public class VideoScriptLancement : MonoBehaviour
+public class VideoCreditsLancement : MonoBehaviour
 {
     public UnityEngine.Video.VideoPlayer videoPlayer;
     InputAction touche_echap;
@@ -17,7 +14,7 @@ public class VideoScriptLancement : MonoBehaviour
     {
         if (videoPlayer.isPaused || touche_echap.WasPerformedThisFrame())
         {
-            SceneManager.LoadScene("Lobby");
+            SceneManager.LoadScene("VideoLancement");
         }
     }
 }
