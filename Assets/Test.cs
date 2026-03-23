@@ -11,6 +11,6 @@ public class Test : MonoBehaviour
     public void Test2()
     {
         Player joueur = new Player("Jéremy",729,"Asie");
-        Debug.Log(joueur.continent.banque.indice_carte);
+        joueur.continent.jardin.Amelioration_du_jardin();
     }
 }

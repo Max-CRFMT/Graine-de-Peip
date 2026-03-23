@@ -30,7 +30,7 @@ public class Continent
 
         //liason de classe
         banque = new Banque();
-        jardin = new Jardin();
+        jardin = new Jardin(name);
     }
 
     public List<Carte> PileCacheeEnFonctionDuContinent()
