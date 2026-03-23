@@ -20,16 +20,7 @@ public class SceneHandler : MonoBehaviour
                 Destroy(objects);
             }
         }
-
-        if (sceneNameToLoad == "Lobby")
-        {
-            foreach (var objects in GameObject.FindGameObjectsWithTag("Options"))
-            {
-                Destroy(objects);
-            }
-        }
-
-
+        
         Console.WriteLine("On est l� m�me si macron le veut pas nous on est l�");
         SceneManager.LoadScene(sceneNameToLoad);
     }
