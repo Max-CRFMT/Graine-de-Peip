@@ -14,12 +14,7 @@ public class Jardin
 
     public void Amelioration_du_jardin()
     {
-        if (niveau_jardin == 0) 
-        { 
-            niveau_jardin++;
-            Debug.Log(niveau_jardin);
-        }
-        else if (niveau_jardin < limite_max_jardin)
+        if (niveau_jardin < limite_max_jardin)
         {
             niveau_jardin = fibo1 + fibo2;
             fibo1 = fibo2;
