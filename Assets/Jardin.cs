@@ -27,15 +27,9 @@ public class Jardin
     public Jardin(string nom_continent)
     {
         name = nom_continent;
-        liste_biome_jardin = new List<string>(Dict_Continent_Biomes[nom_continent]);
-    }
-
-    void Start()
-    {
-        foreach (string i in liste_continents)
+        if (liste_biome_jardin == null)  //Pour pas réinitialiser la liste_biome_jardin
         {
-            string temporaire = string.Join(",", Dict_Continent_Biomes[i]);
-            liste_biome.Add(temporaire);
+            liste_biome_jardin = new List<string>(Dict_Continent_Biomes[nom_continent]);
         }
     }
 
@@ -56,8 +50,8 @@ public class Jardin
 
     public void Ajout_un_biome_au_jardin(string nom_biome)
     {
-        liste_biome_jardin.Add();
-        //string message = string.Join(",", Dict_Continent_Biomes[nom_biome]);
+        liste_biome_jardin.Add(nom_biome);
+        //string message = string.Join(",", liste_biome_jardin);
         //Debug.Log(message);
     }
 }

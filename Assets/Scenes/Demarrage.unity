@@ -2287,6 +2287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb9d536c9cba7b14da0da3fdeb81f0ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test
+  biome: Mangrove
 --- !u!1 &1366230040
 GameObject:
   m_ObjectHideFlags: 0
