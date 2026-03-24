@@ -1,5 +1,5 @@
 # Graine de PEIP P2A
-This project is an adaptation of a seed vault theme serious game. It is planned to be played in local up to 6 players.
+This project is an adaptation of Ecolapse, a seed vault theme serious game. It is planned to be played in local from 2 players up to 6 players.
 
 
 ## Authors
