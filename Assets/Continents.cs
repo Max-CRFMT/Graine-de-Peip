@@ -16,16 +16,18 @@ public class Continent
         {"Europe", new List<string>(){"Bretagne", "Paris"} },
         {"Afrique", new List<string>(){"Mali", "Maroc"} },
         {"Asie", new List<string>(){"Japon", "Coree"} },
-        {"Oceanie", new List<string>(){"Iles", "Australie" } },
-        {"Amerique du Sud", new List<string>(){"Bresil", "Argentine"} },
-        {"Amerique du Nord", new List<string>(){"Canada", "US" } },
+        {"Océanie", new List<string>(){"Iles", "Australie" } },
+        {"Amérique du Sud", new List<string>(){"Bresil", "Argentine"} },
+        {"Amérique du Nord", new List<string>(){"Canada", "US" } },
     };
     public Continent(string nom)
     {
         name = nom;
         List<string> biomes = Dict_Continent_Biomes[nom];
-        EducationLevel = 0;
+        int EducationLevel = 0;
+
         List<Carte> PileFaceCachee = PileCacheeEnFonctionDuContinent();
+        
         //List<SpeciesStack> SocleSpeciesStacks = new List<SpeciesStack>(); //Socle contenant plusieurs piles d'espèces.
 
         //liason de classe
