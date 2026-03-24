@@ -27,7 +27,7 @@ public class ScriptDemarrer : MonoBehaviour
         {
             List<List<string>> tableau = new();
             tableau = GameLogic.instance.Traduction_csv("Assets/data/tableau/tableau_oceanie.csv", 10, tableau);
-            joueur.continent.PileFaceCachee = GameLogic.instance.Creation_carte_plante(tableau);
+            joueur.continent.pileFaceCachee = GameLogic.instance.Creation_carte_plante(tableau);
         }
         GameLogic.instance.SupprimerGameObjectSelonTag("SupprB");
         ShuffleListeJoueur(GameLogic.instance.Liste_Joueurs);

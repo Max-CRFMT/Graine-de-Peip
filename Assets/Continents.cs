@@ -16,7 +16,7 @@ public class Continent
         name = nom;
         int EducationLevel = 0;
 
-        List<Carte> PileFaceCachee = new List<Carte>();
+        List<Carte> pileFaceCachee = new List<Carte>();
         
         //List<SpeciesStack> SocleSpeciesStacks = new List<SpeciesStack>(); //Socle contenant plusieurs piles d'espèces.
 
