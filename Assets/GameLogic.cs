@@ -20,9 +20,9 @@ public class GameLogic : MonoBehaviour
 
     Dictionary<string, int> DicoTourEnFctDeDifficulte = new Dictionary<string, int>()
     {
-        {"Facile", 15},
-        {"Normal", 25},
-        {"Difficile", 30}
+        {"Facile",7},
+        {"Normal", 14},
+        {"Difficile", 21}
     };
 
     public GameLogic() { }
@@ -39,17 +39,17 @@ public class GameLogic : MonoBehaviour
     public void SetNbJoueurs(int nombre)
     {
         nb_joueurs = nombre;
-        Debug.Log("Le nombre de joueur selectionne est :" + nb_joueurs);
+        Debug.Log("Le nombre de joueur selectionne est : " + nb_joueurs);
 
     }
 
     public void SetDifficulte(string difficult)
     {
         difficulte = difficult;
-        Debug.Log("La difficulte selectionnee est :" + difficulte);
+        Debug.Log("La difficulte selectionnee est : " + difficulte);
     }
 
-    public List<string> SelectionMaps = new List<string>() { "Europe", "Afrique", "Asie", "Océanie", "Amérique du Nord", "Amérique du Sud" };
+    public List<string> SelectionMaps = new List<string>() { "Europe", "Afrique", "Asie", "Oceanie", "Amerique du Nord", "Amerique du Sud" };
     public void SetListeJoueurs()
     {
         System.Random random = new System.Random();

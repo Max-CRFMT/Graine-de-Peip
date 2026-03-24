@@ -6,7 +6,6 @@ public class DontDestroy : MonoBehaviour
     public int objectIndex;
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         if (persistentObjects[objectIndex] == null)
@@ -19,7 +18,5 @@ public class DontDestroy : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
     }
 }

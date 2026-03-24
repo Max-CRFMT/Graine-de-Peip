@@ -19,6 +19,9 @@ TagManager:
   - Canvas
   - UIJoueur
   - SpeciesStack
+  - MenuPause
+  - Lobby
+  - Options
   - boutonFinTour
   - topButtonToPlayerBoard
   - bottomButtonToGameAtlas
