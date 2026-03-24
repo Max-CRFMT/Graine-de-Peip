@@ -65,7 +65,7 @@ public class TurnHandler : MonoBehaviour
         instance.Dico_JoueurActions = new Dictionary<Player, List<PlayerAction>>();
         instance.FinTour = false;
         instance.FinDiscution = false;
-        instance.PlayerActuel = new Player("John", 0, "Amérique du Sud");
+        instance.PlayerActuel = new Player("John", 0, "Amerique du Sud");
     }
     public void Creationlisteevenement()
     {

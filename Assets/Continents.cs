@@ -11,22 +11,12 @@ public class Continent
     public int EducationLevel;
     public string name;
 
-    Dictionary<string, List<string>> Dict_Continent_Biomes = new Dictionary<string, List<string>>()
-    {
-        {"Europe", new List<string>(){"Bretagne", "Paris"} },
-        {"Afrique", new List<string>(){"Mali", "Maroc"} },
-        {"Asie", new List<string>(){"Japon", "Coree"} },
-        {"Océanie", new List<string>(){"Iles", "Australie" } },
-        {"Amérique du Sud", new List<string>(){"Bresil", "Argentine"} },
-        {"Amérique du Nord", new List<string>(){"Canada", "US" } },
-    };
     public Continent(string nom)
     {
         name = nom;
-        List<string> biomes = Dict_Continent_Biomes[nom];
         int EducationLevel = 0;
 
-        List<Carte> PileFaceCachee = PileCacheeEnFonctionDuContinent();
+        List<Carte> PileFaceCachee = new List<Carte>();
         
         //List<SpeciesStack> SocleSpeciesStacks = new List<SpeciesStack>(); //Socle contenant plusieurs piles d'espèces.
 
@@ -34,13 +24,7 @@ public class Continent
         banque = new Banque();
         jardin = new Jardin(name);
     }
-
-    public List<Carte> PileCacheeEnFonctionDuContinent()
-    {
-        //TODO - Ouverture d'un fichier JSON/Exel en fonction du nom du continent et cr�ant la pile de cartes. Pour cela, il faut simplement avoir besoin du nom de la carte
-        //Cette fonction permettra aussi d'instancier des cartes
-        return null;
-    }
+    
     public void SocleMaker()
     {
         //Cette fonction a pour but de creer l'ensemble de liste de pile de graines en fonction du continent.

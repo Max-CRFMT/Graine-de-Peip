@@ -10,8 +10,6 @@ public class Jardin
     public static int niveau_jardin = 1;
     public static int fibo1 = 0;
     public static int fibo2 = 1;
-    public List<string> liste_biome = new List<string>();
-    public List<string> liste_continents = new List<string> {"Europe","Afrique","Asie","Oceanie","Amerique du Nord","Amerique du Sud"};
     public static List<string> liste_biome_jardin;
 
     Dictionary<string, List<string>> Dict_Continent_Biomes = new Dictionary<string, List<string>>()
@@ -27,7 +25,7 @@ public class Jardin
     public Jardin(string nom_continent)
     {
         name = nom_continent;
-        if (liste_biome_jardin == null)  //Pour pas réinitialiser la liste_biome_jardin
+        if (liste_biome_jardin == null)  //Pour pas rï¿½initialiser la liste_biome_jardin
         {
             liste_biome_jardin = new List<string>(Dict_Continent_Biomes[nom_continent]);
         }

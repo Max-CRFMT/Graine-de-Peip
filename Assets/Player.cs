@@ -24,7 +24,6 @@ public class Player
     public bool OuvrierAchete;
 
     public List<int> Liste_prix_ouvrier = new List<int>(){12, 8, 6, 4};
-    public Player monJoueur;
 
     public Player(string name, int coins, string name_map)
     {
@@ -37,17 +36,9 @@ public class Player
         ThuneARecolterDebutTourProchain = 0;
         
         OuvrierAchete = false;
-        Debug.Log("Pseudo du joueur : " + pseudo + "\nPieces du joueur : " + pieces + "\nMap que le joueur à choisi :" + name_map + "\n\n");
-
         //Liaison de classe
         continent = new Continent(map_choisie);
-
-    }
-
-    public void Testlien()
-    {
-        Debug.Log(monJoueur.continent.name);
-        //Debug.Log(monJoueur.continent.banque.indice_carte);
+        Debug.Log("Pseudo du joueur : " + pseudo + "\nPieces du joueur : " + pieces + "\nMap que le joueur à choisi :" + continent.name);
     }
 
     public bool VerifMontant(int nb)
