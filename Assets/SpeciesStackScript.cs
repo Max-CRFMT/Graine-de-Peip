@@ -1,14 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SpeciesStackScript : MonoBehaviour
 {
-
+    public GameObject SpeciesStack;
     public int CardAmount = 0;
     public bool IsDiscovered = true;
 
-    
-    public Text CardAmountText;
+    // Visual components
+    public TextMeshProUGUI CardAmountText;
     public SpriteRenderer SpeciesStackSprite;
     public Material originalMat;
 
@@ -35,7 +36,7 @@ public class SpeciesStackScript : MonoBehaviour
     {
         //SpeciesStack.SetActive(true); 
         IsDiscovered = true;
-
+        return;
     }
 
     public void IsSpeciesStackDiscovered() // FONCTION UTILISE POUR AFFICHER LE STACK SI CETTE CARTE EST DECOUVERTE
@@ -64,6 +65,7 @@ public class SpeciesStackScript : MonoBehaviour
         SpeciesStackSprite = GetComponent<SpriteRenderer>();
         SpeciesStackSprite.enabled = false;
         CardAmountText.enabled = false;
+        SpeciesStackCardIsDiscovered();
         originalMat = GetComponent<Renderer>().material;
     }
 

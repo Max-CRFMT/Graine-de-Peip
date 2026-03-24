@@ -7,6 +7,7 @@ public class TempsDiscution : MonoBehaviour
     [SerializeField] TextMeshProUGUI timertext;
     [SerializeField] float tempsrestant;
 
+
     public bool BoutonFinDiscutionPressed = false;
 
     private void Awake()
@@ -29,19 +30,23 @@ public class TempsDiscution : MonoBehaviour
 
     void Update()
     {
-        if ((BoutonFinDiscutionPressed) || tempsrestant <= 0)
+        if (!MenuInGame.instance.MenuEnCours)
         {
-            FinDiscution();
-            return;
+            if (BoutonFinDiscutionPressed || tempsrestant <= 0)
+            {
+                FinDiscution();
+                return;
+            }
+
+            if (tempsrestant > 0)
+            {
+                tempsrestant -= Time.deltaTime;
+                int minutes = Mathf.FloorToInt(tempsrestant / 60);
+                int secondes = Mathf.FloorToInt(tempsrestant % 60);
+                timertext.text = string.Format("{0:00}:{1:00}", minutes, secondes);
+            }
         }
 
-        if (tempsrestant > 0)
-        {
-            tempsrestant -= Time.deltaTime;
-            int minutes = Mathf.FloorToInt(tempsrestant / 60);
-            int secondes = Mathf.FloorToInt(tempsrestant % 60);
-            timertext.text = string.Format("{0:00}:{1:00}", minutes, secondes);
-        }
     }
 
     public void BoutonPressed()

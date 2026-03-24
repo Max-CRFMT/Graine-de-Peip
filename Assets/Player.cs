@@ -1,9 +1,14 @@
+using JetBrains.Annotations;
 using System;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Rendering;
 
-public class Player
+public class Player 
 {
+    
     public string pseudo;
     public int pieces;
     public string map_choisie;
@@ -16,21 +21,24 @@ public class Player
 
     public Continent continent;
 
+    public bool OuvrierAchete;
+
+    public List<int> Liste_prix_ouvrier = new List<int>(){12, 8, 6, 4};
+
     public Player(string name, int coins, string name_map)
     {
         pseudo = name;
         pieces = coins;
         map_choisie = name_map;
         Points_Action_Max = 3;
-        prix_ouvrier = 1000;
+        
+        Points_Action = Points_Action_Max;
         ThuneARecolterDebutTourProchain = 0;
-        Debug.Log("Pseudo du joueur : " + pseudo + "\nPieces du joueur : " + pieces + "\nMap que le joueur à choisi :" + name_map + "\n\n");
-    }
-
-    public void SetContinent()
-    {
-        //TODO - Modifier cette méthode pour attribuer un élément de la classe continent (et si il a des spécificités ça peut être pire)
-        continent = continent;
+        
+        OuvrierAchete = false;
+        //Liaison de classe
+        continent = new Continent(map_choisie);
+        Debug.Log("Pseudo du joueur : " + pseudo + "\nPieces du joueur : " + pieces + "\nMap que le joueur à choisi :" + continent.name);
     }
 
     public bool VerifMontant(int nb)
@@ -46,22 +54,26 @@ public class Player
     public void RajouterPointAction(int nb)
     {
         Points_Action += nb;
+        ChangementUITextJoueur.instance.ChangePointsActionJoueur();
     }
 
     public void RemplirPointAction()
     {
         Points_Action = Points_Action_Max;
+        ChangementUITextJoueur.instance.ChangePointsActionJoueur();
     }
 
     public void RetirerPointAction(int nb)
     {
         Points_Action -= nb;
+        ChangementUITextJoueur.instance.ChangePointsActionJoueur();
     }
 
     public void RajouterPointActionMax()
     {
         RetirerPieces(prix_ouvrier);
         Points_Action_Max++;
+        ChangementUITextJoueur.instance.ChangePointsActionJoueur();
     }
 
     public void RajouterPieces(int nb)
@@ -76,57 +88,126 @@ public class Player
 
     public void DemandeSubventions()
     {
-        if (VerifPointAction(1))
+        Debug.Log("Function demandeSubventions exec");
+        ThuneARecolterDebutTourProchain += 1;
+    }
+
+    public void Don(int montant_don, Player player_cible)
+    {
+        int prix_don = 1;
+        if (VerifMontant(1))
         {
-            ThuneARecolterDebutTourProchain += 1;
+            Debug.Log("Function Don exec");
+            //player_cible.RajouterPieces(montant_don);
+        }
+        else
+        {
+            Debug.Log("Montant non acquis, action annulée, cheh");
+        }
+    }
+
+    public void Restauration()
+    {
+        int prix_restauration = 2;
+        //mm continent ou pas determiner
+        if (VerifMontant(prix_restauration))
+        {
+            Debug.Log("Function restauration exec");
+            //Bien galère
+        }
+        else
+        {
+            Debug.Log("Montant non acquis, action annulée, cheh");
+        }
+    }
+
+    public void Controle()
+    {
+        int prix_controle = 1;
+        //mm continent ou pas determiner
+        if (VerifMontant(prix_controle))
+        {
+            Debug.Log("Function controle exec");
+            //ecrire la fonction
+        }
+        else
+        {
+            Debug.Log("Montant non acquis, action annulée, cheh");
         }
     }
 
     public void Eduquer()
     {
-        if (VerifMontant(50) && VerifPointAction(1))
+        if (VerifMontant(3))
         {
-            //Joueur.Continent.CompteurEducation += 1
-            RetirerPieces(50);
+            Debug.Log("Function eduquer exec");
+            //continent.EducationLevel += 1
+            //prix_ouvrier = Liste_prix_ouvrier[continent.EducationLevel];
         }
+        else
+        {
+            Debug.Log("Montant non acquis, action annulée, cheh");
+        }
+
     }
 
     public void Recruter_Ouvrier()
     {
-        if (VerifMontant(100) && VerifPointAction(1))
+        if (VerifMontant(prix_ouvrier))
         {
+            Debug.Log("Function recruter ouvrier exec");
             RajouterPointActionMax();
-            RetirerPieces(100);
-            //Bool qui dit que le joueur a déjà utilisé ça et donc ne peut plus l'utiliser
+            OuvrierAchete = true;
+            Debug.Log("Maintenant, pt actions max = " + Points_Action_Max);
         }
+        else
+        {
+            Debug.Log("Montant non acquis, action annulée, cheh");
+        }
+
     }
 
     public void RecencerGraines()
     {
-        if (VerifMontant(10) && VerifPointAction(1))
+        int prix_recensement = 1;
+        //Condition pour déterminer si c'est un autre continent
+        if (VerifMontant(prix_recensement))
         {
-            RetirerPieces(10);
-            
-            // TODO
+            Debug.Log("Function recenser exec");
+            //TODO
+        }
+        else
+        {
+            Debug.Log("Montant non acquis, action annulée, cheh");
         }
     }
 
     public void RecolterGraines()
     {
-        if (VerifMontant(20) && VerifPointAction(1))
+        int prix_recolte = 1;
+        //Condition pour déterminer si c'est un autre continent
+        if (VerifMontant(prix_recolte))
         {
-            RetirerPieces(20);
-
+            Debug.Log("Function recolter exec");
             //TODO
+        }
+        else
+        {
+            Debug.Log("Montant non acquis, action annulée, cheh");
         }
     }
 
     public void AmeliorerJardin()
     {
-        if (VerifMontant(200) && VerifPointAction(1))
+        int prix_jardin = 4;
+        if (VerifMontant(prix_jardin))
         {
-            RetirerPieces(200);
+            Debug.Log("Function ameliorer exec");
             //TODO
+        }
+        else
+        {
+            Debug.Log("Montant non acquis, action annulée, cheh");
         }
     }
 

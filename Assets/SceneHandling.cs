@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 public class SceneHandler : MonoBehaviour
 {
 
+    public static SceneHandler instance ;
+
+    void Awake()
+    {
+        instance = this;
+    }
     public void ChangeScene(string sceneNameToLoad)
     {
         if ((sceneNameToLoad == "Demarrage") || (sceneNameToLoad == "Lobby"))
@@ -14,8 +20,8 @@ public class SceneHandler : MonoBehaviour
                 Destroy(objects);
             }
         }
-
-        Console.WriteLine("On est là même si macron le veut pas nous on est là");
+        
+        Console.WriteLine("On est lï¿½ mï¿½me si macron le veut pas nous on est lï¿½");
         SceneManager.LoadScene(sceneNameToLoad);
     }
 
