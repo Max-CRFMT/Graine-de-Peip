@@ -67,5 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Graine-de-Peip.slnx"
+    "dotnet.defaultSolution": "Graine-de-Peip.slnx",
+    "FSharp.suggestGitignore": false
 }
