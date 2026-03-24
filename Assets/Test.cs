@@ -10,7 +10,7 @@ public class Test : MonoBehaviour
     [ContextMenu("TEST")]
     public void Test2()
     {
-        Player joueur = new Player("Jéremy",729,"Asie");
-        joueur.continent.jardin.Amelioration_du_jardin();
+        Player joueur = new Player("Jéremy", 729, "Asie");
+        joueur.continent.jardin.JSP();
     }
 }

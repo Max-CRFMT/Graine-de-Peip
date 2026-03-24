@@ -15,10 +15,10 @@ public class Continent
     {
         {"Europe", new List<string>(){"Bretagne", "Paris"} },
         {"Afrique", new List<string>(){"Mali", "Maroc"} },
-        {"Asie", new List<string>(){"Japon", "Cor�e"} },
-        {"Oc�anie", new List<string>(){"Iles", "Australie" } },
-        {"Am�rique du Sud", new List<string>(){"Bresil", "Argentine"} },
-        {"Am�rique du Nord", new List<string>(){"Canada", "US" } },
+        {"Asie", new List<string>(){"Japon", "Coree"} },
+        {"Oceanie", new List<string>(){"Iles", "Australie" } },
+        {"Amerique du Sud", new List<string>(){"Bresil", "Argentine"} },
+        {"Amerique du Nord", new List<string>(){"Canada", "US" } },
     };
     public Continent(string nom)
     {

@@ -1,15 +1,42 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Jardin
 {
     public string name;
     public int limite_max_jardin = 8;
-    public static int niveau_jardin = 0;
+    public static int niveau_jardin = 1;
     public static int fibo1 = 0;
     public static int fibo2 = 1;
+    public List<string> liste_biome = new List<string>();
+    public List<string> liste_continents = new List<string> {"Europe","Afrique","Asie","Oceanie","Amerique du Nord","Amerique du Sud"};
+    public static List<string> liste_biome_jardin;
+
+    Dictionary<string, List<string>> Dict_Continent_Biomes = new Dictionary<string, List<string>>()
+    {
+        {"Europe", new List<string>(){"Bretagne", "Paris"} },
+        {"Afrique", new List<string>(){"Mali", "Maroc"} },
+        {"Asie", new List<string>(){"Japon", "Coree"} },
+        {"Oceanie", new List<string>(){"Iles", "Australie" } },
+        {"Amerique du Sud", new List<string>(){"Bresil", "Argentine"} },
+        {"Amerique du Nord", new List<string>(){"Canada", "US" } },
+    };
+
     public Jardin(string nom_continent)
     {
         name = nom_continent;
+        liste_biome_jardin = new List<string>(Dict_Continent_Biomes[nom_continent]);
+    }
+
+    void Start()
+    {
+        foreach (string i in liste_continents)
+        {
+            string temporaire = string.Join(",", Dict_Continent_Biomes[i]);
+            liste_biome.Add(temporaire);
+        }
     }
 
     public void Amelioration_du_jardin()
@@ -25,5 +52,12 @@ public class Jardin
         {
             Debug.Log("Niveau maximal atteint");
         }
+    }
+
+    public void Ajout_un_biome_au_jardin(string nom_biome)
+    {
+        liste_biome_jardin.Add();
+        //string message = string.Join(",", Dict_Continent_Biomes[nom_biome]);
+        //Debug.Log(message);
     }
 }
