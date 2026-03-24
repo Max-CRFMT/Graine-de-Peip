@@ -19,6 +19,9 @@ TagManager:
   - Canvas
   - UIJoueur
   - SpeciesStack
+  - boutonFinTour
+  - topButtonToPlayerBoard
+  - bottomButtonToGameAtlas
   layers:
   - Default
   - TransparentFX

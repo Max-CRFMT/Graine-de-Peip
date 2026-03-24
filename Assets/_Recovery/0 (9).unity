@@ -133,8 +133,8 @@ GameObject:
   - component: {fileID: 16745207}
   - component: {fileID: 16745210}
   m_Layer: 0
-  m_Name: topButtonToPlayerBoard
-  m_TagString: topButtonToPlayerBoard
+  m_Name: switchToBoard
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -268,10 +268,9 @@ MonoBehaviour:
   yCoord: -9
   isButtonPressed: 0
   velocity: 5
+  buttonToBeDisabledDuringMovementToAvoidBlockingItEntirely: {fileID: 0}
   MainCamera: {fileID: 0}
   boutonFinTour: {fileID: 0}
-  gameObjectWithButtonToBeDisabled: {fileID: 0}
-  buttonToBeDisabledDuringMovement: {fileID: 0}
 --- !u!1 &109464422
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,8 +739,8 @@ GameObject:
   - component: {fileID: 855599477}
   - component: {fileID: 855599476}
   m_Layer: 0
-  m_Name: bottomButtonToGameAtlas
-  m_TagString: bottomButtonToGameAtlas
+  m_Name: switchToAtlas
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -781,10 +780,9 @@ MonoBehaviour:
   yCoord: 0
   isButtonPressed: 0
   velocity: 5
+  buttonToBeDisabledDuringMovementToAvoidBlockingItEntirely: {fileID: 0}
   MainCamera: {fileID: 0}
   boutonFinTour: {fileID: 0}
-  gameObjectWithButtonToBeDisabled: {fileID: 0}
-  buttonToBeDisabledDuringMovement: {fileID: 0}
 --- !u!114 &855599477
 MonoBehaviour:
   m_ObjectHideFlags: 0
