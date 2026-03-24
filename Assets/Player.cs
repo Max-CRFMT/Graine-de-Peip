@@ -1,11 +1,14 @@
+using JetBrains.Annotations;
 using System;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Rendering;
 
-public class Player
+public class Player 
 {
+    
     public string pseudo;
     public int pieces;
     public string map_choisie;
@@ -21,6 +24,7 @@ public class Player
     public bool OuvrierAchete;
 
     public List<int> Liste_prix_ouvrier = new List<int>(){12, 8, 6, 4};
+    public Player monJoueur;
 
     public Player(string name, int coins, string name_map)
     {
@@ -35,8 +39,15 @@ public class Player
         OuvrierAchete = false;
         Debug.Log("Pseudo du joueur : " + pseudo + "\nPieces du joueur : " + pieces + "\nMap que le joueur à choisi :" + name_map + "\n\n");
 
-        continent = new Continent(name_map);
-        //prix_ouvrier = Liste_prix_ouvrier[continent.EducationLevel];
+        //Liaison de classe
+        continent = new Continent(map_choisie);
+
+    }
+
+    public void Testlien()
+    {
+        Debug.Log(monJoueur.continent.name);
+        //Debug.Log(monJoueur.continent.banque.indice_carte);
     }
 
     public bool VerifMontant(int nb)

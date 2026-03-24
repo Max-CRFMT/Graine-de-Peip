@@ -2287,7 +2287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb9d536c9cba7b14da0da3fdeb81f0ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test
-  biome: Mangrove
 --- !u!1 &1366230040
 GameObject:
   m_ObjectHideFlags: 0
@@ -2641,7 +2640,6 @@ MonoBehaviour:
   FinDiscution: 0
   TxtCountdown: {fileID: 3202052191214865393, guid: 6733e3a77322354488729150e3171bd1, type: 3}
   ButtonCountdown: {fileID: 3265276803180875859, guid: b34ec9786e12d8242aaf31a4f9ce9765, type: 3}
-  Liste_PlayerActions: 060000000300000004000000070000000800000005000000020000000100000000000000
 --- !u!4 &1506371668
 Transform:
   m_ObjectHideFlags: 0
@@ -2669,7 +2667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff3fce790818b94fb87e4645854fcfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DontDestroy
-  objectIndex: 2
+  objectIndex: 0
 --- !u!1 &1521723630
 GameObject:
   m_ObjectHideFlags: 0
@@ -4249,7 +4247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff3fce790818b94fb87e4645854fcfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DontDestroy
-  objectIndex: 3
+  objectIndex: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
