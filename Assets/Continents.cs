@@ -10,13 +10,13 @@ public class Continent
     public Banque banque;
     public int EducationLevel;
     public string name;
-
+    public List<Carte> pileFaceCachee;
     public Continent(string nom)
     {
         name = nom;
-        int EducationLevel = 0;
+        EducationLevel = 0;
 
-        List<Carte> pileFaceCachee = new List<Carte>();
+        pileFaceCachee = new List<Carte>();
         
         //List<SpeciesStack> SocleSpeciesStacks = new List<SpeciesStack>(); //Socle contenant plusieurs piles d'espèces.
 

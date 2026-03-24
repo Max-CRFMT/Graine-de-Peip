@@ -47,7 +47,7 @@ public class MenuInGame : MonoBehaviour
     {
         Debug.Log("Afficher activé");
         
-        ChangementClicableBoutonSelonTags(false, new List<string>(){"UIJoueur", "TimerDIscution" }, "UIJoueur");
+        ChangementClicableBoutonSelonTags(false, new List<string>(){"UIJoueur", "TimerDIscution" }, "CanvasGUI");
 
         ChangementActiveBoutonRawImageOuTexteSelonTags(true, new List<string>(){"MenuPause"}, "UIJoueur", 0);
         ChangementActiveBoutonRawImageOuTexteSelonTags(true, new List<string>(){"MenuPause"}, "UIJoueur", 1);
@@ -59,7 +59,7 @@ public class MenuInGame : MonoBehaviour
     {
         Debug.Log("Desafficher activé");
 
-        ChangementClicableBoutonSelonTags(true, new List<string>(){"UIJoueur", "TimerDIscution" }, "UIJoueur");
+        ChangementClicableBoutonSelonTags(true, new List<string>(){"UIJoueur", "TimerDIscution" }, "CanvasGUI");
 
         ChangementActiveBoutonRawImageOuTexteSelonTags(false, new List<string>() { "MenuPause" }, "UIJoueur", 0);
         ChangementActiveBoutonRawImageOuTexteSelonTags(false, new List<string>() { "MenuPause" }, "UIJoueur", 1);
