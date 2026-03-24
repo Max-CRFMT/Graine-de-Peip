@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class GameLogic : MonoBehaviour
@@ -14,8 +15,8 @@ public class GameLogic : MonoBehaviour
     public string difficulte;
     public List<Player> Liste_Joueurs;
     public static GameLogic instance;
-
     public int ToursRestants;
+
 
     Dictionary<string, int> DicoTourEnFctDeDifficulte = new Dictionary<string, int>()
     {

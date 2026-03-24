@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fd00a60e9ee3a934b82b9a71abcb89c3
+guid: a36d682332a2bb04b8f2925ecb4df8f3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3573036208370857778
-    second: download_0
+      213: -295209704079149159
+    second: Design carte avec texte_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: download_0
+      name: Design carte avec texte_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 201
-        height: 251
+        width: 1546
+        height: 2160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 237bd813089f59130800000000000000
-      internalID: 3573036208370857778
+      spriteID: 9973d16965437ebf0800000000000000
+      internalID: -295209704079149159
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      download_0: 3573036208370857778
+      Design carte avec texte_0: -295209704079149159
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
