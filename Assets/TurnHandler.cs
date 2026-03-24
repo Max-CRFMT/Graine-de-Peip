@@ -114,15 +114,15 @@ public class TurnHandler : MonoBehaviour
 
     public void MasquerUIJoueur()
     {
-        MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(false, new List<string>() { "UIJoueur" }, "UIJoueur", 0);
+        MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(false, new List<string>() { "UIJoueur", "boutonFinTour" }, "UIJoueur", 0);
         MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(false, new List<string>() { "UIJoueur" }, "UIJoueur", 2);
     }
 
 
     public void ReafficherUI()
     {
-        MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(true, new List<string>() { "UIJoueur" }, "UIJoueur", 0);
-        MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(true, new List<string>() { "UIJoueur" }, "UIJoueur", 2);
+        MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(true, new List<string>() { "UIJoueur", "boutonFinTour" }, "UIJoueur", 0);
+        MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(true, new List<string>() { "UIJoueur", "boutonFinTour" }, "UIJoueur", 2);
     }
 
     public void ChangementTourJoueur(Player joueur_suivant)
