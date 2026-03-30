@@ -92,13 +92,15 @@ public class Player
         ThuneARecolterDebutTourProchain += 1;
     }
 
-    public void Don(int montant_don, Player player_cible)
+    public void Don(int montant_don, Player player_source, Player player_cible)
     {
         int prix_don = 1;
-        if (VerifMontant(1))
+        if (VerifMontant(prix_don))
         {
             Debug.Log("Function Don exec");
-            //player_cible.RajouterPieces(montant_don);
+            player_cible.RajouterPieces(montant_don);
+
+            player_source.RetirerPieces(montant_don + prix_don);
         }
         else
         {
@@ -106,18 +108,60 @@ public class Player
         }
     }
 
-    public void Restauration()
+    public void RestaurationBanque(Carte carte_selectionnee)
+    {
+        Debug.Log("Function restauration Banque exec");
+        foreach (Player player in GameLogic.instance.Liste_Joueurs)
+        {
+            if (player.continent.name == carte_selectionnee.continent_name)
+            {
+                //Ajouter dans la pile face pas cachée la carte
+                foreach (Carte carte in continent.banque.FileDeCartes)
+                {
+                    if (carte_selectionnee.nom == carte.nom)
+                    {
+                        continent.banque.RemoveCard(continent.banque.FileDeCartes, carte_selectionnee);
+                    }
+                }
+            }
+        }
+
+    }
+    public void Restauration(char name, Carte carte_selected)
     {
         int prix_restauration = 2;
-        //mm continent ou pas determiner
+        if (continent.name != carte_selected.continent_name)
+        {
+            prix_restauration = 3;
+        }
         if (VerifMontant(prix_restauration))
         {
-            Debug.Log("Function restauration exec");
-            //Bien galère
+            if (name == 'B')
+            {
+                RestaurationBanque(carte_selected);
+            }
+            else if (name == 'J')
+            {
+                RestaurationJardin(carte_selected);
+            }
         }
         else
         {
             Debug.Log("Montant non acquis, action annulée, cheh");
+        }
+
+    }
+    public void RestaurationJardin(Carte carte_selectionnee)
+    {
+        Debug.Log("Function restauration Jardin exec");
+        //Compost.retirer(Carte)
+        foreach (Player player in GameLogic.instance.Liste_Joueurs)
+        {
+            if (player.continent.name == carte_selectionnee.continent_name)
+            {
+                player.continent.pileFaceCachee.Add(carte_selectionnee);
+                GameLogic.instance.ShuffleListeCartes(player.continent.pileFaceCachee);
+            }
         }
     }
 

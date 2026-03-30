@@ -175,7 +175,7 @@ public class GameLogic : MonoBehaviour
         }
         return liste_carte;
     }
-    public List<Carte> Creation_carte_plante(List<List<string>> liste_de_caracteristique)
+    public List<Carte> Creation_carte_plante(List<List<string>> liste_de_caracteristique, string nom_continent)
     {
         List<Carte> liste_instance = new();
         bool conservable;
@@ -191,13 +191,38 @@ public class GameLogic : MonoBehaviour
             }
             for (int j = 0; j < int.Parse(liste_de_caracteristique[i][7]); j++)
             {
-                Carte une_carte = new Carte(liste_de_caracteristique[i][0], liste_de_caracteristique[i][2], conservable, int.Parse(liste_de_caracteristique[i][8]));
+                Carte une_carte = new Carte(liste_de_caracteristique[i][0], liste_de_caracteristique[i][2], conservable, int.Parse(liste_de_caracteristique[i][8]), nom_continent);
                 liste_instance.Add(une_carte);
 
             }
 
         }
         return liste_instance;
+    }
+    public void ShuffleListeJoueur(List<Player> ts)
+    {
+        var count = ts.Count;
+        var last = count - 1;
+        for (var i = 0; i < last; ++i)
+        {
+            var r = UnityEngine.Random.Range(i, count);
+            var tmp = ts[i];
+            ts[i] = ts[r];
+            ts[r] = tmp;
+        }
+    }
+
+    public void ShuffleListeCartes(List<Carte> ts)
+    {
+        var count = ts.Count;
+        var last = count - 1;
+        for (var i = 0; i < last; ++i)
+        {
+            var r = UnityEngine.Random.Range(i, count);
+            var tmp = ts[i];
+            ts[i] = ts[r];
+            ts[r] = tmp;
+        }
     }
 }
 
