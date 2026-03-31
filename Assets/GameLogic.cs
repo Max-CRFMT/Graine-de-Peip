@@ -78,7 +78,7 @@ public class GameLogic : MonoBehaviour
         {
             string map_joueur = SelectionMaps[random.Next(SelectionMaps.Count)];
             SelectionMaps.Remove(map_joueur);
-            instance.Liste_Joueurs.Add(new Player(couple.Item1, 0, map_joueur));
+            instance.Liste_Joueurs.Add(new Player(couple.Item1, 1, map_joueur));
         }
     }
 

@@ -18,6 +18,21 @@ public class TurnHandler : MonoBehaviour
     public Player PlayerActuel;
     public GameObject TxtCountdown;
     public GameObject ButtonCountdown;
+    //Action don
+    public List<Player> liste_player_cible_don;
+    public int indice_player_cible_don;
+    public List<int> liste_montant_don;
+    public int indice_liste_montant_don;
+    //Action restauration
+    public List<char> liste_JB_restauration;
+    public int indice_JB_restauration;
+    public List<Carte> liste_carte_selected_restauration;
+    public int indice_carte_selected_restauration;
+    //Action recnesement
+    public List<Player> liste_player_cible_recensement;
+    public int indice_liste_player_cible_recensement;
+    //
+
     public TurnHandler() { }
 
     public enum PlayerAction
@@ -51,11 +66,11 @@ public class TurnHandler : MonoBehaviour
         {PlayerAction.Subventions, player => player.DemandeSubventions()},
         {PlayerAction.Eduquer, player => player.Eduquer()},
         {PlayerAction.Recruter, player => player.Recruter_Ouvrier()},
-        {PlayerAction.Recenser, player => player.RecencerGraines()},
+        {PlayerAction.Recenser, player => player.RecencerGraines(instance.liste_player_cible_recensement[instance.indice_liste_player_cible_recensement])},
         {PlayerAction.Recolter, player => player.RecolterGraines()},
         {PlayerAction.Ameliorer, player => player.AmeliorerJardin()},
-        {PlayerAction.Don, player => player.Don(3, player)},
-        {PlayerAction.Restauration, player => player.Restauration()},
+        {PlayerAction.Don, player => player.Don(instance.liste_montant_don[instance.indice_liste_montant_don], player, instance.liste_player_cible_don[instance.indice_player_cible_don])},
+        {PlayerAction.Restauration, player => player.Restauration(instance.liste_JB_restauration[instance.indice_JB_restauration], instance.liste_carte_selected_restauration[instance.indice_carte_selected_restauration])},
         {PlayerAction.Controle, player => player.Controle()}
     };
 
@@ -66,6 +81,62 @@ public class TurnHandler : MonoBehaviour
         instance.FinTour = false;
         instance.FinDiscution = false;
         instance.PlayerActuel = new Player("John", 0, "Amerique du Sud");
+        //Action don
+        instance.liste_player_cible_don = new List<Player>();
+        instance.indice_player_cible_don = 0;
+        instance.liste_montant_don = new List<int>();
+        instance.indice_liste_montant_don = 0;
+        //Action restauration
+        instance.liste_JB_restauration = new List<char>();
+        instance.indice_JB_restauration = 0;
+        instance.liste_carte_selected_restauration = new List<Carte>();
+        instance.indice_carte_selected_restauration = 0;
+        //Action recensement
+        instance.liste_player_cible_recensement = new List<Player>();
+        instance.indice_liste_player_cible_recensement = 0;
+        //Action recolte 
+
+        //Action controle
+    
+    }
+
+    public void EffectuerActions()
+    {
+        Dictionary<Player, List<PlayerAction>>.KeyCollection keys = Dico_JoueurActions.Keys; 
+        //Parcours sur le nombre d'actions
+        for (int i = 0; i < Liste_PlayerActions.Count; i++)
+        {
+            //Parcours sur les joueurs
+            foreach (Player key in keys)
+            {
+                //Parcours sur les actions des joueurs
+                foreach (PlayerAction Action in Dico_JoueurActions[key])
+                {
+                    //Si l'action du joueur est la même que l'action alors on effectue l'action
+                    if (Liste_PlayerActions[i] == Action)
+                    {
+                        Dico_Actions[Action](key);
+                    }
+                }
+            }
+        }
+        
+        //Une fois que les actions sont effectuées on supprime la liste pour en créer une nouvelle
+        instance.Dico_JoueurActions = new Dictionary<Player, List<PlayerAction>>();
+    }
+    public void AjouterActionDansDicoJoueursAction(PlayerAction action)
+    {
+        //Faut que al fonction soit appellée par une autre fonction 
+        //Si le nom du joueur est dans déjà dans les clées du dico, on rajoute l'action
+        if (PresenceKeyJoueur(PlayerActuel))
+        {
+            instance.Dico_JoueurActions[PlayerActuel].Add(action);
+        }
+        //Si le nom du joueur n'est pas déjà dans les clées du dico, on ajoute le joueur et l'action
+        else
+        {
+            instance.Dico_JoueurActions.Add(PlayerActuel, new List<PlayerAction>(){action});
+        }
     }
     public void Creationlisteevenement()
     {
@@ -137,42 +208,6 @@ public class TurnHandler : MonoBehaviour
     {
         //TODO - Doit s'occuper de tout ce qui precede le changement de tour, necessitera aussi des fonctions sous-jacentes (suppression de l'UI)
         instance.FinTour = true;
-    }
-
-    public void EffectuerActions()
-    {
-        Dictionary<Player, List<PlayerAction>>.KeyCollection keys = Dico_JoueurActions.Keys; 
-
-        for (int i = 0; i < Liste_PlayerActions.Count; i++)
-        {
-            foreach (Player key in keys)
-            {
-                foreach (PlayerAction Action in Dico_JoueurActions[key])
-                {
-                    if (Liste_PlayerActions[i] == Action)
-                    {
-                        Dico_Actions[Action](key);
-                    }
-                }
-            }
-        }
-        
-        //Une fois que les actions sont effectuées on supprime la liste pour en créer une nouvelle
-        instance.Dico_JoueurActions = new Dictionary<Player, List<PlayerAction>>();
-    }
-    public void AjouterActionDansDicoJoueursAction(PlayerAction action)
-    {
-        //Faut que al fonction soit appellée par une autre fonction 
-        //Si le nom du joueur est dans déjà dans les clées du dico, on rajoute l'action
-        if (PresenceKeyJoueur(PlayerActuel))
-        {
-            instance.Dico_JoueurActions[PlayerActuel].Add(action);
-        }
-        //Si le nom du joueur n'est pas déjà dans les clées du dico, on ajoute le joueur et l'action
-        else
-        {
-            instance.Dico_JoueurActions.Add(PlayerActuel, new List<PlayerAction>(){action});
-        }
     }
 
     public bool PresenceKeyJoueur(Player player)

@@ -12,8 +12,6 @@ public class Player
     public string pseudo;
     public int pieces;
     public string map_choisie;
-
-    public int prix_ouvrier;
     public int Points_Action_Max;
     public int Points_Action;
 
@@ -71,7 +69,7 @@ public class Player
 
     public void RajouterPointActionMax()
     {
-        RetirerPieces(prix_ouvrier);
+        RetirerPieces(Liste_prix_ouvrier[continent.EducationLevel]);
         Points_Action_Max++;
         ChangementUITextJoueur.instance.ChangePointsActionJoueur();
     }
@@ -88,8 +86,16 @@ public class Player
 
     public void DemandeSubventions()
     {
-        Debug.Log("Function demandeSubventions exec");
-        ThuneARecolterDebutTourProchain += 1;
+        int montantSubvention = 1;
+        if (VerifMontant(montantSubvention))
+        {
+            Debug.Log("Function demandeSubventions exec");
+            pieces += 2;
+        }
+        else
+        {
+            Debug.Log("Pas assez de thune rip bozo");
+        }
     }
 
     public void Don(int montant_don, Player player_source, Player player_cible)
@@ -99,8 +105,9 @@ public class Player
         {
             Debug.Log("Function Don exec");
             player_cible.RajouterPieces(montant_don);
-
             player_source.RetirerPieces(montant_don + prix_don);
+            TurnHandler.instance.indice_player_cible_don++;
+            TurnHandler.instance.indice_liste_montant_don++;
         }
         else
         {
@@ -144,6 +151,8 @@ public class Player
             {
                 RestaurationJardin(carte_selected);
             }
+            TurnHandler.instance.indice_JB_restauration++;
+            TurnHandler.instance.indice_carte_selected_restauration++;
         }
         else
         {
@@ -197,7 +206,7 @@ public class Player
 
     public void Recruter_Ouvrier()
     {
-        if (VerifMontant(prix_ouvrier))
+        if (VerifMontant(Liste_prix_ouvrier[continent.EducationLevel]))
         {
             Debug.Log("Function recruter ouvrier exec");
             RajouterPointActionMax();
@@ -211,9 +220,13 @@ public class Player
 
     }
 
-    public void RecencerGraines()
+    public void RecencerGraines(Player cible_recensement)
     {
         int prix_recensement = 1;
+        if (cible_recensement.continent.name != continent.name)
+        {
+            prix_recensement = 2;
+        }
         //Condition pour déterminer si c'est un autre continent
         if (VerifMontant(prix_recensement))
         {
@@ -224,6 +237,7 @@ public class Player
         {
             Debug.Log("Montant non acquis, action annulée, cheh");
         }
+        TurnHandler.instance.indice_liste_player_cible_recensement++;
     }
 
     public void RecolterGraines()
