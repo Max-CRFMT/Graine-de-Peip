@@ -4,7 +4,7 @@ This project is an adaptation of Ecolapse, a seed vault theme serious game. It i
 
 ## Authors
 
-- [@bytouille](https://github.com/bytouille)
+- [@bytouille](https://github.com/Max-CRFMT)
 - [@NL-42](https://github.com/NL-42)
 - [@PizzaRoyal](https://github.com/PizzaRoyal)
 - [@ejupin44](https://github.com/ejupin44)
