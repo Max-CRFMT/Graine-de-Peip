@@ -8,14 +8,14 @@ using UnityEngine.Rendering;
 
 public class Player 
 {
-    
+    public bool SubventionDemandee = false;
     public string pseudo;
     public int pieces;
     public string map_choisie;
     public int Points_Action_Max;
     public int Points_Action;
 
-    public int ThuneARecolterDebutTourProchain;
+    public int ThuneARecolterDebutTourProchain_base;
 
     public Continent continent;
 
@@ -31,7 +31,7 @@ public class Player
         Points_Action_Max = 3;
         
         Points_Action = Points_Action_Max;
-        ThuneARecolterDebutTourProchain = 0;
+        ThuneARecolterDebutTourProchain_base = 2;
         
         OuvrierAchete = false;
         //Liaison de classe
@@ -132,7 +132,6 @@ public class Player
                 }
             }
         }
-
     }
     public void Restauration(char name, Carte carte_selected)
     {
@@ -191,11 +190,12 @@ public class Player
 
     public void Eduquer()
     {
-        if (VerifMontant(3))
+        int prix_education = 4;
+        if (VerifMontant(prix_education) && continent.EducationLevel <=3)
         {
             Debug.Log("Function eduquer exec");
-            //continent.EducationLevel += 1
-            //prix_ouvrier = Liste_prix_ouvrier[continent.EducationLevel];
+            continent.EducationLevel += 1;
+            RetirerPieces(prix_education);
         }
         else
         {
@@ -260,8 +260,9 @@ public class Player
         int prix_jardin = 4;
         if (VerifMontant(prix_jardin))
         {
+            RetirerPieces(prix_jardin);
             Debug.Log("Function ameliorer exec");
-            //TODO
+            //TODO - ajouter un biome ou ajouter un espace dans le jardin
         }
         else
         {
@@ -271,7 +272,6 @@ public class Player
 
     public void MiseAJourDebutTourPieces()
     {
-        pieces += ThuneARecolterDebutTourProchain;
-        ThuneARecolterDebutTourProchain = 0;
+        pieces += ThuneARecolterDebutTourProchain_base + continent.EducationLevel+2;
     }
 }

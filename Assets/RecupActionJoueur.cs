@@ -2,20 +2,24 @@ using UnityEngine;
 
 public class RecupActionJoueur : MonoBehaviour
 {
-
     public void RecupSubventions()
     {
-        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
+        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1) && !TurnHandler.instance.PlayerActuel.SubventionDemandee)
         {
             TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
             TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Subventions);
+            TurnHandler.instance.PlayerActuel.SubventionDemandee = true;
             Debug.Log("Subvention appel");
+        }
+        else
+        {
+            Debug.Log("Pas assez de pts d'actions ou subventions déjà demandée ce tour-ci");
         }
     }
 
     public void RecupEduquer()
     {
-        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1)) //Ajouter verification du montant (VerifMontant(50) && VerifPointAction(1)
+        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
         {
             TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Eduquer);
             TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
@@ -24,7 +28,7 @@ public class RecupActionJoueur : MonoBehaviour
     }
     public void RecupRecruter()
     {
-        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1) && (!TurnHandler.instance.PlayerActuel.OuvrierAchete)) //VerifMontant(100) && VerifPointAction(1)
+        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1) && (!TurnHandler.instance.PlayerActuel.OuvrierAchete)) 
         {
             TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Recruter);
             Debug.Log("Recrute appel");
@@ -33,7 +37,7 @@ public class RecupActionJoueur : MonoBehaviour
     }
     public void RecupRecenser()
     {
-        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1)) //(VerifMontant(10) && VerifPointAction(1)) + s�rement d'autres conditions sur la pioche
+        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1)) // s�rement d'autres conditions sur la pioche
         {
             TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Recenser);
             Debug.Log("Recenser appel");
@@ -43,7 +47,7 @@ public class RecupActionJoueur : MonoBehaviour
     }
     public void RecupRecolter()
     {
-        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1)) //VerifMontant(20) && VerifPointAction(1)
+        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
         {
             TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Recolter);
             Debug.Log("Recolter appel");
@@ -80,7 +84,7 @@ public class RecupActionJoueur : MonoBehaviour
         }
     }
 
-        public void RecupControle()
+    public void RecupControle()
     {
         if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
         {

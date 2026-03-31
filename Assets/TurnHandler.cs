@@ -221,6 +221,10 @@ public class TurnHandler : MonoBehaviour
         {
             Debug.Log("Action Removed");
             instance.PlayerActuel.Points_Action += 1 ;
+            if (instance.Dico_JoueurActions[instance.PlayerActuel][instance.Dico_JoueurActions[instance.PlayerActuel].Count() - 1] == PlayerAction.Subventions)
+            {
+                instance.PlayerActuel.SubventionDemandee = false;
+            }
             instance.Dico_JoueurActions[instance.PlayerActuel].RemoveAt(instance.Dico_JoueurActions[instance.PlayerActuel].Count() - 1);
         } 
         else
@@ -268,7 +272,7 @@ public class TurnHandler : MonoBehaviour
     
     public IEnumerator RoundComplet()
     {
-        //RajouterAToutLesJoueursPiecesMissionEct();
+        RajouterAToutLesJoueursPiecesMissionEct();
         //Evenement();
         MasquerUIJoueur();
         yield return StartCoroutine(TempsDeDiscussion());
