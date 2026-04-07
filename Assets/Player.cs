@@ -20,6 +20,7 @@ public class Player
     public Continent continent;
 
     public bool OuvrierAchete;
+    public Carte carte_drawn;
 
     public List<int> Liste_prix_ouvrier = new List<int>(){12, 8, 6, 4};
 
@@ -157,7 +158,8 @@ public class Player
         {
             Debug.Log("Montant non acquis, action annulée, cheh");
         }
-
+        TurnHandler.instance.indice_JB_restauration++;
+        TurnHandler.instance.indice_carte_selected_restauration++;
     }
     public void RestaurationJardin(Carte carte_selectionnee)
     {
@@ -173,19 +175,40 @@ public class Player
         }
     }
 
-    public void Controle()
+    public void Controle(Carte carte_controlee, char JardinOuPiohe, int Nb_carte_Controlee)
     {
         int prix_controle = 1;
-        //mm continent ou pas determiner
+        if (carte_controlee.continent_name != map_choisie)   
+        {
+            prix_controle = 2;
+        }
         if (VerifMontant(prix_controle))
         {
             Debug.Log("Function controle exec");
-            //ecrire la fonction
+            
+            if (JardinOuPiohe == 'J')
+            {
+                foreach (Carte carte_jardin in continent.jardin.Liste_Carte)
+                {
+                    if (carte_jardin == carte_controlee)
+                    {
+                        continent.jardin.Liste_Carte.Remove(carte_jardin);
+                        //defausse.add(carte_jardin);
+                    }
+                }
+            }
+            else if (JardinOuPiohe == 'P')
+            {
+                //Parcourir la pioche ça attendra que nico ait fini
+            }
         }
         else
         {
             Debug.Log("Montant non acquis, action annulée, cheh");
         }
+        TurnHandler.instance.indice_liste_liste_cartes_controle++;
+        TurnHandler.instance.indice_liste_JP_controle++;
+        TurnHandler.instance.indice_liste_nb_cartes_controle++;
     }
 
     public void Eduquer()
@@ -227,11 +250,14 @@ public class Player
         {
             prix_recensement = 2;
         }
-        //Condition pour déterminer si c'est un autre continent
+
         if (VerifMontant(prix_recensement))
         {
             Debug.Log("Function recenser exec");
-            //TODO
+            carte_drawn = cible_recensement.continent.pileFaceCachee[0];
+            cible_recensement.continent.pileFaceCachee.RemoveAt(0);
+            //Ajouter à la pioche du continent de là où ça a été pioché
+            //Attendre que nico ait fini aussi
         }
         else
         {
@@ -253,6 +279,7 @@ public class Player
         {
             Debug.Log("Montant non acquis, action annulée, cheh");
         }
+        instance.indice_liste_player_cible_recolte++;
     }
 
     public void AmeliorerJardin()

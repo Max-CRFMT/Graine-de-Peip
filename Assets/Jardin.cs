@@ -12,6 +12,8 @@ public class Jardin
     public static int fibo2 = 1;
     public static List<string> liste_biome_jardin;
 
+    public List<Carte> Liste_Carte;
+
     Dictionary<string, List<string>> Dict_Continent_Biomes = new Dictionary<string, List<string>>()
     {
         {"Europe", new List<string>(){"Bretagne", "Paris"} },
@@ -29,6 +31,7 @@ public class Jardin
         {
             liste_biome_jardin = new List<string>(Dict_Continent_Biomes[nom_continent]);
         }
+        Liste_Carte = new List<Carte>();
     }
 
     public void Amelioration_du_jardin()

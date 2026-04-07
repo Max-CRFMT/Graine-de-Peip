@@ -28,10 +28,22 @@ public class TurnHandler : MonoBehaviour
     public int indice_JB_restauration;
     public List<Carte> liste_carte_selected_restauration;
     public int indice_carte_selected_restauration;
-    //Action recnesement
+    //Action recensement
     public List<Player> liste_player_cible_recensement;
     public int indice_liste_player_cible_recensement;
-    //
+    //Action recolte 
+    public List<Player> liste_player_cible_recolte;
+    public int indice_liste_player_cible_recolte;
+    //Action controle
+    public List<Player> liste_player_cible_controle;
+    public int indice_liste_player_cible_controle;
+    public List<Carte> liste_liste_carte_controle;
+    public int indice_liste_liste_cartes_controle;
+    public List<char> liste_JP_controle;
+    public int indice_liste_JP_controle;
+    public List<int> liste_nb_cartes_controle;
+    public int indice_liste_nb_cartes_controle;
+
 
     public TurnHandler() { }
 
@@ -69,9 +81,14 @@ public class TurnHandler : MonoBehaviour
         {PlayerAction.Recenser, player => player.RecencerGraines(instance.liste_player_cible_recensement[instance.indice_liste_player_cible_recensement])},
         {PlayerAction.Recolter, player => player.RecolterGraines()},
         {PlayerAction.Ameliorer, player => player.AmeliorerJardin()},
-        {PlayerAction.Don, player => player.Don(instance.liste_montant_don[instance.indice_liste_montant_don], player, instance.liste_player_cible_don[instance.indice_player_cible_don])},
-        {PlayerAction.Restauration, player => player.Restauration(instance.liste_JB_restauration[instance.indice_JB_restauration], instance.liste_carte_selected_restauration[instance.indice_carte_selected_restauration])},
-        {PlayerAction.Controle, player => player.Controle()}
+        {PlayerAction.Don, player => player.Don(instance.liste_montant_don[instance.indice_liste_montant_don], 
+                                            player,
+                                            instance.liste_player_cible_don[instance.indice_player_cible_don])},
+        {PlayerAction.Restauration, player => player.Restauration(instance.liste_JB_restauration[instance.indice_JB_restauration],
+                                                    instance.liste_carte_selected_restauration[instance.indice_carte_selected_restauration])},
+        {PlayerAction.Controle, player => player.Controle(instance.liste_liste_carte_controle[instance.indice_liste_liste_cartes_controle],
+                                                        instance.liste_JP_controle[instance.indice_liste_JP_controle],
+                                                        instance.liste_nb_cartes_controle[instance.indice_liste_nb_cartes_controle])}
     };
 
     private void Awake()
@@ -81,22 +98,34 @@ public class TurnHandler : MonoBehaviour
         instance.FinTour = false;
         instance.FinDiscution = false;
         instance.PlayerActuel = new Player("John", 0, "Amerique du Sud");
+
         //Action don
         instance.liste_player_cible_don = new List<Player>();
         instance.indice_player_cible_don = 0;
         instance.liste_montant_don = new List<int>();
         instance.indice_liste_montant_don = 0;
+
         //Action restauration
         instance.liste_JB_restauration = new List<char>();
         instance.indice_JB_restauration = 0;
         instance.liste_carte_selected_restauration = new List<Carte>();
         instance.indice_carte_selected_restauration = 0;
+
         //Action recensement
         instance.liste_player_cible_recensement = new List<Player>();
         instance.indice_liste_player_cible_recensement = 0;
-        //Action recolte 
 
         //Action controle
+        instance.liste_liste_carte_controle = new List<Carte>();
+        instance.indice_liste_liste_cartes_controle = 0;
+        instance.liste_JP_controle = new List<char>();
+        instance.indice_liste_JP_controle = 0;
+        instance.liste_nb_cartes_controle = new List<int>();
+        instance.indice_liste_nb_cartes_controle = 0;
+
+        //Action recolte 
+        instance.liste_player_cible_recolte = new List<Player>();
+        instance.indice_liste_player_cible_recolte = 0;
     
     }
 
