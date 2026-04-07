@@ -26,7 +26,7 @@ public class ScriptDemarrer : MonoBehaviour
         foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
         {
             List<List<string>> tableau = new();
-            tableau = GameLogic.instance.Traduction_csv("Assets/data/tableau/tableau_oceanie.csv", 10, tableau);
+            tableau = GameLogic.instance.Traduction_csv($"Assets/data/tableau/tableau_{joueur.map_choisie}.csv", 10, tableau);
             joueur.continent.pileFaceCachee = GameLogic.instance.Creation_carte_plante(tableau);
             Debug.Log(joueur.pseudo + " " + joueur.continent.pileFaceCachee.Count);
         }

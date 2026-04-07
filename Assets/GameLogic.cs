@@ -191,11 +191,24 @@ public class GameLogic : MonoBehaviour
             }
             for (int j = 0; j < int.Parse(liste_de_caracteristique[i][7]); j++)
             {
-                Carte une_carte = new Carte(liste_de_caracteristique[i][0], liste_de_caracteristique[i][2], conservable, int.Parse(liste_de_caracteristique[i][8]));
+                Carte une_carte = new Carte(liste_de_caracteristique[i][0], liste_de_caracteristique[i][2], conservable, 
+                    int.Parse(liste_de_caracteristique[i][8]), int.Parse(liste_de_caracteristique[i][9]), liste_de_caracteristique[i][10]);
                 liste_instance.Add(une_carte);
 
             }
 
+        }
+        return liste_instance;
+    }
+    public List<Carte_event> Creation_carte_event(List<List<string>> liste_de_caracteristique)
+    {
+        List<Carte_event> liste_instance = new();
+        for (int i = 0; i < liste_de_caracteristique.Count; i++)
+        {
+            Carte_event une_carte_event = new Carte_event(liste_de_caracteristique[i][0], liste_de_caracteristique[i][1],
+                liste_de_caracteristique[i][2], liste_de_caracteristique[i][3], liste_de_caracteristique[i][4], 
+                liste_de_caracteristique[i][5],int.Parse(liste_de_caracteristique[i][7]));
+            liste_instance.Add(une_carte_event);
         }
         return liste_instance;
     }

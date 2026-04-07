@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 12a23582438d28f47a62c4e03dd7ef2a
+guid: 73b4e8b2c652795489614afbefa10ffa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1722397398197735143
-    second: Rafflesia_0
+      213: 4629841513214346886
+    second: Dompte-Venin noir_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rafflesia_0
+      name: Dompte-Venin noir_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 911fd5621b0d818e0800000000000000
-      internalID: -1722397398197735143
+      spriteID: 6868f798350804040800000000000000
+      internalID: 4629841513214346886
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Rafflesia_0: -1722397398197735143
+      Dompte-Venin noir_0: 4629841513214346886
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

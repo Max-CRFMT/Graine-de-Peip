@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 12a23582438d28f47a62c4e03dd7ef2a
+guid: ef1f82e062ff3ab4c8e4669a4e85edd5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1722397398197735143
-    second: Rafflesia_0
+      213: -7637801678573721809
+    second: "Marguerite de l'\xEEle Campbell_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rafflesia_0
+      name: "Marguerite de l'\xEEle Campbell_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 911fd5621b0d818e0800000000000000
-      internalID: -1722397398197735143
+      spriteID: f272bb317d3110690800000000000000
+      internalID: -7637801678573721809
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Rafflesia_0: -1722397398197735143
+      "Marguerite de l'\xEEle Campbell_0": -7637801678573721809
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 12a23582438d28f47a62c4e03dd7ef2a
+guid: e788b9ca87796ee468e122f86b9afaf0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1722397398197735143
-    second: Rafflesia_0
+      213: 7790679918260131851
+    second: Arum Titan_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rafflesia_0
+      name: Arum Titan_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 911fd5621b0d818e0800000000000000
-      internalID: -1722397398197735143
+      spriteID: b081aaedb1e0e1c60800000000000000
+      internalID: 7790679918260131851
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Rafflesia_0: -1722397398197735143
+      Arum Titan_0: 7790679918260131851
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

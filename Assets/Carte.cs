@@ -7,17 +7,22 @@ public class Carte
     public string biome;
     public string PathImage;
     public bool conservable;
+    public int effectif;
     public int vitesse;
-    public Carte(string nom, string biome, bool conservable, int vitesse)
+    public string rarete;
+    public Carte(string nom, string biome, bool conservable, int effectif, int vitesse, string rarete)
     {
         this.nom = nom;
         this.biome = biome;
         this.PathImage = "Assets/data/image_carte/" + nom + ".png";
         this.conservable = conservable;
         this.vitesse = vitesse;
+        this.effectif = effectif;
+        this.rarete = rarete;
     }
     public override string ToString()
     {
-        return $"(nom={nom}, biome={biome}, PathImage={PathImage}, conservable={conservable}, vitesse={vitesse})";
+        return $"(nom={nom}, biome={biome}, PathImage={PathImage}, conservable={conservable}, " +
+            $"vitesse={vitesse},effectif_total={effectif},rarete={rarete})";
     }
 }
