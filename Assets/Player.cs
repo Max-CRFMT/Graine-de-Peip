@@ -266,20 +266,45 @@ public class Player
         TurnHandler.instance.indice_liste_player_cible_recensement++;
     }
 
-    public void RecolterGraines()
+    public void RecolterGraines(Carte carte_cible, char PiocheOuBanque, char PiocheToJardinOuPiocheToBanque, char BanqueReloadOuBanqueToJardin)
     {
         int prix_recolte = 1;
-        //Condition pour déterminer si c'est un autre continent
+        if (carte_cible.continent_name != map_choisie)
+        {
+            prix_recolte = 2;
+        }
         if (VerifMontant(prix_recolte))
         {
             Debug.Log("Function recolter exec");
-            //TODO
+
+            if (PiocheOuBanque == 'P')
+            {
+                if (PiocheToJardinOuPiocheToBanque == 'J')
+                {
+                    
+                }
+                else if (PiocheToJardinOuPiocheToBanque == 'B')
+                {
+                    
+                }
+            }
+            else if (PiocheOuBanque == 'B')
+            {
+                if (BanqueReloadOuBanqueToJardin == 'R')
+                {
+                    
+                }
+                else if (BanqueReloadOuBanqueToJardin == 'J')
+                {
+                    
+                }
+            }
         }
-        else
+        else    
         {
             Debug.Log("Montant non acquis, action annulée, cheh");
         }
-        instance.indice_liste_player_cible_recolte++;
+        TurnHandler.instance.indice_liste_player_cible_recolte++;
     }
 
     public void AmeliorerJardin()

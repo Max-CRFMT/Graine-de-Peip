@@ -131,7 +131,6 @@ public class GameLogic : MonoBehaviour
 
     public void FinDePartie()
     {
-        //TODO - 
         foreach (var objects in GameObject.FindGameObjectsWithTag("LogiqueJeu"))
         {
             Destroy(objects);
