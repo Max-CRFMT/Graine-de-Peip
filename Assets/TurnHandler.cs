@@ -79,7 +79,7 @@ public class TurnHandler : MonoBehaviour
         {PlayerAction.Eduquer, player => player.Eduquer()},
         {PlayerAction.Recruter, player => player.Recruter_Ouvrier()},
         {PlayerAction.Recenser, player => player.RecencerGraines(instance.liste_player_cible_recensement[instance.indice_liste_player_cible_recensement])},
-        {PlayerAction.Recolter, player => player.RecolterGraines(instance.liste_player_cible_recolte[instance.indice_liste_player_cible_recolte])},
+        {PlayerAction.Recolter, player => player.RecolterGraines(instance.liste_player_cible_recolte[instance.indice_liste_player_cible_recolte], 'a', 'a', 'a')},
         {PlayerAction.Ameliorer, player => player.AmeliorerJardin()},
         {PlayerAction.Don, player => player.Don(instance.liste_montant_don[instance.indice_liste_montant_don], 
                                             player,
