@@ -99,6 +99,7 @@ public class GameLogic : MonoBehaviour
 
     public void DemarrerJeu()
     {
+        Debug.Log("Skibidi ça lance");
         StartCoroutine(Jeu());
     }
 
