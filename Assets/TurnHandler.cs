@@ -32,8 +32,14 @@ public class TurnHandler : MonoBehaviour
     public List<Player> liste_player_cible_recensement;
     public int indice_liste_player_cible_recensement;
     //Action recolte 
-    public List<Player> liste_player_cible_recolte;
-    public int indice_liste_player_cible_recolte;
+    public List<Carte> liste_carte_cible_recolte;
+    public int indice_liste_carte_cible_recolte;
+    public List<Char> liste_PiocheOuBanque;
+    public int indice_liste_PiocheOuBanque;
+    public List<Char> liste_PiocheToJardinOuPiocheToBanque;
+    public int indice_liste_PiocheToJardinOuPiocheToBanque;
+    public List<Char> liste_BanqueReloadOuBanqueToJardin;
+    public int indice_liste_BanqueReloadOuBanqueToJardin;
     //Action controle
     public List<Player> liste_player_cible_controle;
     public int indice_liste_player_cible_controle;
@@ -79,7 +85,10 @@ public class TurnHandler : MonoBehaviour
         {PlayerAction.Eduquer, player => player.Eduquer()},
         {PlayerAction.Recruter, player => player.Recruter_Ouvrier()},
         {PlayerAction.Recenser, player => player.RecencerGraines(instance.liste_player_cible_recensement[instance.indice_liste_player_cible_recensement])},
-        {PlayerAction.Recolter, player => player.RecolterGraines(instance.liste_player_cible_recolte[instance.indice_liste_player_cible_recolte], 'a', 'a', 'a')},
+        {PlayerAction.Recolter, player => player.RecolterGraines(instance.liste_carte_cible_recolte[instance.indice_liste_carte_cible_recolte],
+                                                                instance.liste_PiocheOuBanque[instance.indice_liste_PiocheOuBanque],
+                                                                instance.liste_PiocheToJardinOuPiocheToBanque[instance.indice_liste_PiocheToJardinOuPiocheToBanque],
+                                                                instance.liste_BanqueReloadOuBanqueToJardin[instance.indice_liste_BanqueReloadOuBanqueToJardin])},
         {PlayerAction.Ameliorer, player => player.AmeliorerJardin()},
         {PlayerAction.Don, player => player.Don(instance.liste_montant_don[instance.indice_liste_montant_don], 
                                             player,
@@ -124,11 +133,17 @@ public class TurnHandler : MonoBehaviour
         instance.indice_liste_nb_cartes_controle = 0;
 
         //Action recolte 
-        instance.liste_player_cible_recolte = new List<Player>();
-        instance.indice_liste_player_cible_recolte = 0;
-        
-    
-    }
+        instance.liste_carte_cible_recolte = new List<Carte>();
+        instance.indice_liste_carte_cible_recolte = 0;
+        instance.liste_PiocheOuBanque = new List<char>();
+        instance.indice_liste_PiocheOuBanque = 0;
+        instance.liste_PiocheToJardinOuPiocheToBanque = new List<char>();
+        instance.indice_liste_PiocheToJardinOuPiocheToBanque = 0;
+        instance.liste_BanqueReloadOuBanqueToJardin = new List<char>();
+        instance.indice_liste_BanqueReloadOuBanqueToJardin = 0;
+
+
+}
 
     public void EffectuerActions()
     {

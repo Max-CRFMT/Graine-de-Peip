@@ -277,24 +277,24 @@ public class Player
         {
             Debug.Log("Function recolter exec");
 
-            if (PiocheOuBanque == 'P')
+            if (PiocheOuBanque == 'P') //Carte prise de la pioche
             {
-                if (PiocheToJardinOuPiocheToBanque == 'J')
+                if (PiocheToJardinOuPiocheToBanque == 'J') //Carte va dans le jardin du joueur
                 {
                     
                 }
-                else if (PiocheToJardinOuPiocheToBanque == 'B')
+                else if (PiocheToJardinOuPiocheToBanque == 'B') //Carte va dans la banque du joueur
                 {
                     
                 }
             }
-            else if (PiocheOuBanque == 'B')
+            else if (PiocheOuBanque == 'B') // Carte prise de la banque
             {
-                if (BanqueReloadOuBanqueToJardin == 'R')
+                if (BanqueReloadOuBanqueToJardin == 'R') //Remettre la carte à un autre endroit de la banque
                 {
                     
                 }
-                else if (BanqueReloadOuBanqueToJardin == 'J')
+                else if (BanqueReloadOuBanqueToJardin == 'J') //Envoyer la carte dans le jardfin
                 {
                     
                 }
@@ -304,7 +304,10 @@ public class Player
         {
             Debug.Log("Montant non acquis, action annulée, cheh");
         }
-        TurnHandler.instance.indice_liste_player_cible_recolte++;
+        TurnHandler.instance.indice_liste_carte_cible_recolte++;
+        TurnHandler.instance.indice_liste_PiocheOuBanque++;
+        TurnHandler.instance.indice_liste_BanqueReloadOuBanqueToJardin++;
+        TurnHandler.instance.indice_liste_PiocheToJardinOuPiocheToBanque++;
     }
 
     public void AmeliorerJardin()
