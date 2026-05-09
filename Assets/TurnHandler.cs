@@ -185,7 +185,7 @@ public class TurnHandler : MonoBehaviour
     }
     public void Creationlisteevenement()
     {
-        string filePath = Application.dataPath + "Assets/data/tableau_event.csv";
+        string filePath = Application.streamingAssetsPath + "Assets/data/tableau_event.csv";
         using (StreamReader reader = new StreamReader(filePath))
         {
             reader.ReadLine();
