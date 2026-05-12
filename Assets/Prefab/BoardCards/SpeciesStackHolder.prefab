@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8304943146347213142}
   m_Layer: 0
   m_Name: SpeciesStackHolder
-  m_TagString: Untagged
+  m_TagString: SpeciesStackHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e952c6278d2018489a00d274df819cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  SpeciesStackHolder: {fileID: 0}
   SpeciesStack: {fileID: 4885711917239349002, guid: b40983e2ee7d150418969b4d8cdcdb29, type: 3}
   SpeciesStackAmount: 3
   SpeciesStackOffset: {x: 0, y: 0, z: 0}
