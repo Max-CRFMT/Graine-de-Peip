@@ -42,4 +42,11 @@ public class BoutonDonSpawn : MonoBehaviour
         espace = 40;
     }
     
+    [ContextMenu("AjouterThunes")]
+    public void Test()
+    {
+        TurnHandler.instance.PlayerActuel.pieces += 10;
+        Debug.Log(TurnHandler.instance.PlayerActuel.pieces);
+        Debug.Log(TurnHandler.instance.PlayerActuel);
+    }
 }

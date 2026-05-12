@@ -8,9 +8,11 @@ public class SliderControl : MonoBehaviour
     public Slider amountSlider;
     public TMP_Text amountText;
 
-    int thunesdujoueur = TurnHandler.instance.PlayerActuel.pieces;
-    void Start()
+
+
+    public void initialisationSlider()
     {
+        int thunesdujoueur = TurnHandler.instance.PlayerActuel.pieces;
         amountSlider.minValue = 1;
         amountSlider.maxValue = thunesdujoueur;
         amountSlider.value = 1;
