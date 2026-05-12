@@ -1,6 +1,7 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 public class BoutonDonSpawn : MonoBehaviour
@@ -9,6 +10,7 @@ public class BoutonDonSpawn : MonoBehaviour
     public Transform CanvasTransform;
     public RectTransform SpawnBoutonDON;
     public int espace = 40;
+    private List<GameObject> boutonsCrees = new List<GameObject>();
     [ContextMenu("Apparaition")]
     public void AparaitionBouton()
     {
@@ -18,7 +20,7 @@ public class BoutonDonSpawn : MonoBehaviour
         {
             bouton.tag = "Joueur" + (i + 1).ToString();
             GameObject nouveauBouton = Instantiate(bouton, CanvasTransform);
-            GameObject.FindWithTag(bouton.tag);
+            boutonsCrees.Add(nouveauBouton);
             TMP_Text nom_joueur = nouveauBouton.GetComponentInChildren<TMP_Text>();
             nom_joueur.text = GameLogic.instance.Liste_Joueurs[i].pseudo;
             RectTransform rt = nouveauBouton.GetComponent<RectTransform>();
@@ -29,4 +31,15 @@ public class BoutonDonSpawn : MonoBehaviour
             espace = espace - temp;
         }
     }
+    [ContextMenu("Destroy")]
+    public void DestroyBouton()
+    {
+        foreach (GameObject boutons in boutonsCrees)
+        {
+            Destroy(boutons);
+        }
+        boutonsCrees.Clear();
+        espace = 40;
+    }
+    
 }
