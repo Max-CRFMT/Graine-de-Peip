@@ -17,6 +17,8 @@ public class GameLogic : MonoBehaviour
     public List<Player> Liste_Joueurs;
     public static GameLogic instance;
     public int ToursRestants;
+    public string texte;
+    public bool partiefinie;
 
 
     Dictionary<string, int> DicoTourEnFctDeDifficulte = new Dictionary<string, int>()
@@ -35,6 +37,7 @@ public class GameLogic : MonoBehaviour
         instance.difficulte = "Facile";
         instance.Liste_Joueurs = new List<Player>();
         instance.ToursRestants = DicoTourEnFctDeDifficulte[difficulte];
+        instance.partiefinie = false;
     }
 
     public void SetNbJoueurs(int nombre)
@@ -125,11 +128,28 @@ public class GameLogic : MonoBehaviour
 
             instance.ToursRestants--;
         }
-
-        FinDePartie();
+        FindePartie();
     }
-
-    public void FinDePartie()
+    public void SpawnVoileEtTextFindePartie(string texte)
+    {
+        MenuOptions.instance.ResearchCanvasSelonTag("CanvasFin").gameObject.SetActive(true);
+        MenuOptions.instance.ChangerTexteDansCanvas(MenuOptions.instance.ResearchCanvasSelonTag("CanvasFin"), texte, "CanvasFin");
+    }
+    public void FindePartie()
+    {
+        instance.partiefinie = true;
+        bool placeholder = true;
+        if (placeholder) //partie gagnée
+        {
+            texte = "Partie gagnée ! Vous avez sauvé la terre !";
+        }
+        else //partie perdue 
+        {
+            texte = "Partie perdue... Try again, Save the Earth";
+        }
+        SpawnVoileEtTextFindePartie(texte);
+    }
+    public void RebootGame()
     {
         foreach (var objects in GameObject.FindGameObjectsWithTag("LogiqueJeu"))
         {
@@ -137,7 +157,6 @@ public class GameLogic : MonoBehaviour
         }
         Debug.Log("Fonction FinDePartie() executée");
         SceneManager.LoadScene("Lobby");
-        
     }
     public List<List<string>> Traduction_csv(string fichier_csv, int nombre_de_caracteristique, List<List<string>> liste_carte)
     {

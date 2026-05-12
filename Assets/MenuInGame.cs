@@ -27,16 +27,36 @@ public class MenuInGame : MonoBehaviour
     {
         if (touche_echap.WasPerformedThisFrame() && !MenuOptions.instance.MenuOptionsEnCours) //Rajouter condition nomScene = "Game"
         {
-            if (MenuEnCours == false)
+            if (SceneManager.GetActiveScene().name == "Game")
             {
-                MenuEnCours = true;
-                AfficherMenuInGame();
+                if (GameLogic.instance.partiefinie != true)
+                {
+                    if (MenuEnCours == false)
+                    {
+                        MenuEnCours = true;
+                        AfficherMenuInGame();
+                    }
+                    else
+                    {
+                        MenuEnCours = false;
+                        EnleverMenuIngame();
+                    }  
+                }
             }
             else
             {
-                MenuEnCours = false;
-                EnleverMenuIngame();
-            }  
+                if (MenuEnCours == false)
+                {
+                    MenuEnCours = true;
+                    AfficherMenuInGame();
+                }
+                else
+                {
+                    MenuEnCours = false;
+                    EnleverMenuIngame();
+                }   
+            }
+
         }
         else if (touche_echap.WasPerformedThisFrame() && MenuOptions.instance.MenuOptionsEnCours)
         {
