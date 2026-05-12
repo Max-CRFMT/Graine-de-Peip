@@ -1,18 +1,35 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering.HighDefinition;
+
 
 public class MenuOptions : MonoBehaviour
 {
     public bool MenuOptionsEnCours = false;
     public static MenuOptions instance;
 
+    public Slider brightnessSlider;
+
+    public Volume volume;
+    private ColorAdjustments ca;
+    private float brightness;
+
     private void Awake()
     {
         instance = this;
+        brightness = PlayerPrefs.GetFloat("brightness");
+        if (volume.profile.TryGet<ColorAdjustments>(out ca))
+        {
+            ca.postExposure.value = brightness;
+        }
+        brightnessSlider.value = brightness;
     }
 
     public Canvas ResearchCanvasSelonTag(string tagCanvas)
@@ -78,6 +95,15 @@ public class MenuOptions : MonoBehaviour
                 }
             }
 
+        }
+    }
+
+    public void sliderCallBack(float value)
+    {
+        if (volume.profile.TryGet<ColorAdjustments>(out ca))
+        {
+            ca.postExposure.value = brightnessSlider.value;
+            PlayerPrefs.SetFloat("brightness", brightnessSlider.value);
         }
     }
 }
