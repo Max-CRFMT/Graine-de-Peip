@@ -26,6 +26,15 @@ TagManager:
   - topButtonToPlayerBoard
   - bottomButtonToGameAtlas
   - CanvasGUI
+  - SpeciesStackHolder
+  - SAMPLE
+  - DrawPile
+  - Europe
+  - Africa
+  - Asia
+  - Oceania
+  - NorthAmerica
+  - SouthAmerica
   layers:
   - Default
   - TransparentFX

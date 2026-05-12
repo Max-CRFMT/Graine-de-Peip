@@ -6,18 +6,20 @@ public class SpeciesStackScript : MonoBehaviour
 {
     public GameObject SpeciesStack;
     public int CardAmount = 0;
-    public bool IsDiscovered = true;
+    public bool IsDiscovered = false;
 
     // Visual components
     public TextMeshProUGUI CardAmountText;
-    public SpriteRenderer SpeciesStackSprite;
-    public Material originalMat;
+    public Image SpeciesStackSprite;
+    public Material coloredMat;
+    public Material greyscaleMat;
 
     [ContextMenu("Increase Card Amount")]
     public void IncreaseCardAmount()
     {
         CardAmount += 1;
         CardAmountText.text = CardAmount.ToString();
+        CardStackColor();
     }
 
     [ContextMenu("Decrease Card Amount")]
@@ -28,13 +30,12 @@ public class SpeciesStackScript : MonoBehaviour
         else
             CardAmount -= 1;
         CardAmountText.text = CardAmount.ToString();
-
+        CardStackColor();
     }
 
     [ContextMenu("Card is drawn")]
     public void SpeciesStackCardIsDiscovered() // FONCTION FAIS POUR *SI* LA CARTE EST DECOUVERTE
     {
-        //SpeciesStack.SetActive(true); 
         IsDiscovered = true;
         return;
     }
@@ -50,28 +51,29 @@ public class SpeciesStackScript : MonoBehaviour
 
     public void CardStackColor()
     {
-        if (CardAmount <= 0)
-        {
-            GetComponentInParent<Renderer>().material = Resources.Load<Material>("GreyscaleMaterial"); //On lit le parent de l'objet, ici SpeciesStack et on charge le matériau "Greyscale"
-        }
-        else
-        {
-            GetComponentInParent<Renderer>().material = originalMat;
-        }
+        if (SpeciesStackSprite != null)
+            if (CardAmount <= 0)
+            {
+                SpeciesStackSprite.material = greyscaleMat; //On lit le parent de l'objet, ici SpeciesStack et on charge le matériau "Greyscale"
+            }
+            else
+            {
+                SpeciesStackSprite.material = coloredMat;
+            }
     }
+
     void Start()
     {
-        //SpeciesStack.SetActive(false);
-        SpeciesStackSprite = GetComponent<SpriteRenderer>();
-        SpeciesStackSprite.enabled = false;
+        if (SpeciesStackSprite != null)
+        {
+            SpeciesStackSprite.enabled = false;
+        }
         CardAmountText.enabled = false;
-        SpeciesStackCardIsDiscovered();
-        originalMat = GetComponent<Renderer>().material;
+        // SpeciesStackCardIsDiscovered();
     }
 
     void Update()
     {
-        CardStackColor();
         IsSpeciesStackDiscovered();
     }
 }
