@@ -21,8 +21,9 @@ public class SliderControl : MonoBehaviour
         amountText.text = ((int)value).ToString();
     }
 
-    public void OnMaxButtonClicked()
+    public void OnValidateClicked()
     {
-        amountSlider.value = amountSlider.maxValue;
+        int montantSelectionne = (int)amountSlider.value;
+        Debug.Log("Montant : " + montantSelectionne);
     }
 }

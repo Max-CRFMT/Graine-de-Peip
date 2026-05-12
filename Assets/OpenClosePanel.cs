@@ -3,6 +3,7 @@ using UnityEngine;
 public class OpenClosePanel : MonoBehaviour 
 {
     public GameObject panel;
+    public static OpenClosePanel instance;
 
     public void openPanel()
     {
