@@ -18,6 +18,39 @@ public class TurnHandler : MonoBehaviour
     public Player PlayerActuel;
     public GameObject TxtCountdown;
     public GameObject ButtonCountdown;
+    //Action don
+    public List<Player> liste_player_cible_don;
+    public int indice_player_cible_don;
+    public List<int> liste_montant_don;
+    public int indice_liste_montant_don;
+    //Action restauration
+    public List<char> liste_JB_restauration;
+    public int indice_JB_restauration;
+    public List<Carte> liste_carte_selected_restauration;
+    public int indice_carte_selected_restauration;
+    //Action recensement
+    public List<Player> liste_player_cible_recensement;
+    public int indice_liste_player_cible_recensement;
+    //Action recolte 
+    public List<Carte> liste_carte_cible_recolte;
+    public int indice_liste_carte_cible_recolte;
+    public List<Char> liste_PiocheOuBanque;
+    public int indice_liste_PiocheOuBanque;
+    public List<Char> liste_PiocheToJardinOuPiocheToBanque;
+    public int indice_liste_PiocheToJardinOuPiocheToBanque;
+    public List<Char> liste_BanqueReloadOuBanqueToJardin;
+    public int indice_liste_BanqueReloadOuBanqueToJardin;
+    //Action controle
+    public List<Player> liste_player_cible_controle;
+    public int indice_liste_player_cible_controle;
+    public List<Carte> liste_liste_carte_controle;
+    public int indice_liste_liste_cartes_controle;
+    public List<char> liste_JP_controle;
+    public int indice_liste_JP_controle;
+    public List<int> liste_nb_cartes_controle;
+    public int indice_liste_nb_cartes_controle;
+
+
     public TurnHandler() { }
 
     public enum PlayerAction
@@ -51,12 +84,20 @@ public class TurnHandler : MonoBehaviour
         {PlayerAction.Subventions, player => player.DemandeSubventions()},
         {PlayerAction.Eduquer, player => player.Eduquer()},
         {PlayerAction.Recruter, player => player.Recruter_Ouvrier()},
-        {PlayerAction.Recenser, player => player.RecencerGraines()},
-        {PlayerAction.Recolter, player => player.RecolterGraines()},
+        {PlayerAction.Recenser, player => player.RecencerGraines(instance.liste_player_cible_recensement[instance.indice_liste_player_cible_recensement])},
+        {PlayerAction.Recolter, player => player.RecolterGraines(instance.liste_carte_cible_recolte[instance.indice_liste_carte_cible_recolte],
+                                                                instance.liste_PiocheOuBanque[instance.indice_liste_PiocheOuBanque],
+                                                                instance.liste_PiocheToJardinOuPiocheToBanque[instance.indice_liste_PiocheToJardinOuPiocheToBanque],
+                                                                instance.liste_BanqueReloadOuBanqueToJardin[instance.indice_liste_BanqueReloadOuBanqueToJardin])},
         {PlayerAction.Ameliorer, player => player.AmeliorerJardin()},
-        {PlayerAction.Don, player => player.Don(3, player)},
-        {PlayerAction.Restauration, player => player.Restauration()},
-        {PlayerAction.Controle, player => player.Controle()}
+        {PlayerAction.Don, player => player.Don(instance.liste_montant_don[instance.indice_liste_montant_don], 
+                                            player,
+                                            instance.liste_player_cible_don[instance.indice_player_cible_don])},
+        {PlayerAction.Restauration, player => player.Restauration(instance.liste_JB_restauration[instance.indice_JB_restauration],
+                                                    instance.liste_carte_selected_restauration[instance.indice_carte_selected_restauration])},
+        {PlayerAction.Controle, player => player.Controle(instance.liste_liste_carte_controle[instance.indice_liste_liste_cartes_controle],
+                                                        instance.liste_JP_controle[instance.indice_liste_JP_controle],
+                                                        instance.liste_nb_cartes_controle[instance.indice_liste_nb_cartes_controle])}
     };
 
     private void Awake()
@@ -66,10 +107,85 @@ public class TurnHandler : MonoBehaviour
         instance.FinTour = false;
         instance.FinDiscution = false;
         instance.PlayerActuel = new Player("John", 0, "Amerique du Sud");
+
+        //Action don
+        instance.liste_player_cible_don = new List<Player>();
+        instance.indice_player_cible_don = 0;
+        instance.liste_montant_don = new List<int>();
+        instance.indice_liste_montant_don = 0;
+
+        //Action restauration
+        instance.liste_JB_restauration = new List<char>();
+        instance.indice_JB_restauration = 0;
+        instance.liste_carte_selected_restauration = new List<Carte>();
+        instance.indice_carte_selected_restauration = 0;
+
+        //Action recensement
+        instance.liste_player_cible_recensement = new List<Player>();
+        instance.indice_liste_player_cible_recensement = 0;
+
+        //Action controle
+        instance.liste_liste_carte_controle = new List<Carte>();
+        instance.indice_liste_liste_cartes_controle = 0;
+        instance.liste_JP_controle = new List<char>();
+        instance.indice_liste_JP_controle = 0;
+        instance.liste_nb_cartes_controle = new List<int>();
+        instance.indice_liste_nb_cartes_controle = 0;
+
+        //Action recolte 
+        instance.liste_carte_cible_recolte = new List<Carte>();
+        instance.indice_liste_carte_cible_recolte = 0;
+        instance.liste_PiocheOuBanque = new List<char>();
+        instance.indice_liste_PiocheOuBanque = 0;
+        instance.liste_PiocheToJardinOuPiocheToBanque = new List<char>();
+        instance.indice_liste_PiocheToJardinOuPiocheToBanque = 0;
+        instance.liste_BanqueReloadOuBanqueToJardin = new List<char>();
+        instance.indice_liste_BanqueReloadOuBanqueToJardin = 0;
+
+
+}
+
+    public void EffectuerActions()
+    {
+        Dictionary<Player, List<PlayerAction>>.KeyCollection keys = Dico_JoueurActions.Keys; 
+        //Parcours sur le nombre d'actions
+        for (int i = 0; i < Liste_PlayerActions.Count; i++)
+        {
+            //Parcours sur les joueurs
+            foreach (Player key in keys)
+            {
+                //Parcours sur les actions des joueurs
+                foreach (PlayerAction Action in Dico_JoueurActions[key])
+                {
+                    //Si l'action du joueur est la même que l'action alors on effectue l'action
+                    if (Liste_PlayerActions[i] == Action)
+                    {
+                        Dico_Actions[Action](key);
+                    }
+                }
+            }
+        }
+        
+        //Une fois que les actions sont effectuées on supprime la liste pour en créer une nouvelle
+        instance.Dico_JoueurActions = new Dictionary<Player, List<PlayerAction>>();
+    }
+    public void AjouterActionDansDicoJoueursAction(PlayerAction action)
+    {
+        //Faut que al fonction soit appellée par une autre fonction 
+        //Si le nom du joueur est dans déjà dans les clées du dico, on rajoute l'action
+        if (PresenceKeyJoueur(PlayerActuel))
+        {
+            instance.Dico_JoueurActions[PlayerActuel].Add(action);
+        }
+        //Si le nom du joueur n'est pas déjà dans les clées du dico, on ajoute le joueur et l'action
+        else
+        {
+            instance.Dico_JoueurActions.Add(PlayerActuel, new List<PlayerAction>(){action});
+        }
     }
     public void Creationlisteevenement()
     {
-        string filePath = Application.dataPath + "Assets/data/tableau_event.csv";
+        string filePath = Application.streamingAssetsPath + "Assets/data/tableau_event.csv";
         using (StreamReader reader = new StreamReader(filePath))
         {
             reader.ReadLine();
@@ -139,42 +255,6 @@ public class TurnHandler : MonoBehaviour
         instance.FinTour = true;
     }
 
-    public void EffectuerActions()
-    {
-        Dictionary<Player, List<PlayerAction>>.KeyCollection keys = Dico_JoueurActions.Keys; 
-
-        for (int i = 0; i < Liste_PlayerActions.Count; i++)
-        {
-            foreach (Player key in keys)
-            {
-                foreach (PlayerAction Action in Dico_JoueurActions[key])
-                {
-                    if (Liste_PlayerActions[i] == Action)
-                    {
-                        Dico_Actions[Action](key);
-                    }
-                }
-            }
-        }
-        
-        //Une fois que les actions sont effectuées on supprime la liste pour en créer une nouvelle
-        instance.Dico_JoueurActions = new Dictionary<Player, List<PlayerAction>>();
-    }
-    public void AjouterActionDansDicoJoueursAction(PlayerAction action)
-    {
-        //Faut que al fonction soit appellée par une autre fonction 
-        //Si le nom du joueur est dans déjà dans les clées du dico, on rajoute l'action
-        if (PresenceKeyJoueur(PlayerActuel))
-        {
-            instance.Dico_JoueurActions[PlayerActuel].Add(action);
-        }
-        //Si le nom du joueur n'est pas déjà dans les clées du dico, on ajoute le joueur et l'action
-        else
-        {
-            instance.Dico_JoueurActions.Add(PlayerActuel, new List<PlayerAction>(){action});
-        }
-    }
-
     public bool PresenceKeyJoueur(Player player)
     {
         return instance.Dico_JoueurActions.ContainsKey(player);
@@ -186,6 +266,10 @@ public class TurnHandler : MonoBehaviour
         {
             Debug.Log("Action Removed");
             instance.PlayerActuel.Points_Action += 1 ;
+            if (instance.Dico_JoueurActions[instance.PlayerActuel][instance.Dico_JoueurActions[instance.PlayerActuel].Count() - 1] == PlayerAction.Subventions)
+            {
+                instance.PlayerActuel.SubventionDemandee = false;
+            }
             instance.Dico_JoueurActions[instance.PlayerActuel].RemoveAt(instance.Dico_JoueurActions[instance.PlayerActuel].Count() - 1);
         } 
         else
@@ -233,7 +317,7 @@ public class TurnHandler : MonoBehaviour
     
     public IEnumerator RoundComplet()
     {
-        //RajouterAToutLesJoueursPiecesMissionEct();
+        RajouterAToutLesJoueursPiecesMissionEct();
         //Evenement();
         MasquerUIJoueur();
         yield return StartCoroutine(TempsDeDiscussion());

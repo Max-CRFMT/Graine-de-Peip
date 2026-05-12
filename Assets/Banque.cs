@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Banque
 {
-    public Queue<Cartes> FileDeCartes = new Queue<Cartes>();
+    public Queue<Carte> FileDeCartes = new Queue<Carte>();
     public int indice_carte = 0;
     public void Regulation_cartes(int indice_carte)
     {
-        Cartes NouvelleCarte = new Cartes(indice_carte.ToString(), true, "Montagne", 5);
+        Carte NouvelleCarte = new Carte(indice_carte.ToString(), "Montagne", true, 0, "Continent");
 
         if (FileDeCartes.Count < 3)
         {
@@ -38,18 +39,8 @@ public class Banque
         FileDeCartes.Dequeue();
         Debug.Log("Nombre de Cartes dans la banque :" + FileDeCartes.Count);
     }
-}
-
-public class Cartes
-{
-    public static int nombredecartes;
-    public Cartes(string name, bool boolstockable, string typebiome, int effectiftotal)
+    public void RemoveCard(Queue<Carte> queue, Carte carte_a_remove)
     {
-        string nom = name;
-        bool stockable = boolstockable;
-        string biome = typebiome;
-        string PathImage = Application.persistentDataPath + "\assets ou un truc du genre" + nom + ".png";
-        int effectif_total = effectiftotal;
-        nombredecartes++;
+        queue = new Queue<Carte>(queue.Where(x => x != carte_a_remove));
     }
 }

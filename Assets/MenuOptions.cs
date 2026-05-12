@@ -56,6 +56,18 @@ public class MenuOptions : MonoBehaviour
         }
     }
 
+    public void ChangerTexteDansCanvas(Canvas canvas, string nouveau_texte, string tag_texte)
+    {
+        TMPro.TextMeshProUGUI[] gameobjects = canvas.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
+        foreach (TMPro.TextMeshProUGUI go in gameobjects)
+        {
+            if (go.gameObject.tag == tag_texte)
+            {
+                go.text = nouveau_texte;
+            }
+        }
+    }
+
     public void MasquerMenuOptions()
     {
         MenuOptionsEnCours = false;

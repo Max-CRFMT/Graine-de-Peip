@@ -17,6 +17,8 @@ public class GameLogic : MonoBehaviour
     public List<Player> Liste_Joueurs;
     public static GameLogic instance;
     public int ToursRestants;
+    public string texte;
+    public bool partiefinie;
 
 
     Dictionary<string, int> DicoTourEnFctDeDifficulte = new Dictionary<string, int>()
@@ -35,6 +37,7 @@ public class GameLogic : MonoBehaviour
         instance.difficulte = "Facile";
         instance.Liste_Joueurs = new List<Player>();
         instance.ToursRestants = DicoTourEnFctDeDifficulte[difficulte];
+        instance.partiefinie = false;
     }
 
     public void SetNbJoueurs(int nombre)
@@ -78,7 +81,7 @@ public class GameLogic : MonoBehaviour
         {
             string map_joueur = SelectionMaps[random.Next(SelectionMaps.Count)];
             SelectionMaps.Remove(map_joueur);
-            instance.Liste_Joueurs.Add(new Player(couple.Item1, 0, map_joueur));
+            instance.Liste_Joueurs.Add(new Player(couple.Item1, 1, map_joueur));
         }
     }
 
@@ -126,20 +129,35 @@ public class GameLogic : MonoBehaviour
 
             instance.ToursRestants--;
         }
-
-        FinDePartie();
+        FindePartie();
     }
-
-    public void FinDePartie()
+    public void SpawnVoileEtTextFindePartie(string texte)
     {
-        //TODO - 
+        MenuOptions.instance.ResearchCanvasSelonTag("CanvasFin").gameObject.SetActive(true);
+        MenuOptions.instance.ChangerTexteDansCanvas(MenuOptions.instance.ResearchCanvasSelonTag("CanvasFin"), texte, "CanvasFin");
+    }
+    public void FindePartie()
+    {
+        instance.partiefinie = true;
+        bool placeholder = true;
+        if (placeholder) //partie gagnée
+        {
+            texte = "Partie gagnée ! Vous avez sauvé la terre !";
+        }
+        else //partie perdue 
+        {
+            texte = "Partie perdue... Try again, Save the Earth";
+        }
+        SpawnVoileEtTextFindePartie(texte);
+    }
+    public void RebootGame()
+    {
         foreach (var objects in GameObject.FindGameObjectsWithTag("LogiqueJeu"))
         {
             Destroy(objects);
         }
         Debug.Log("Fonction FinDePartie() executée");
         SceneManager.LoadScene("Lobby");
-        
     }
     public List<List<string>> Traduction_csv(string fichier_csv, int nombre_de_caracteristique, List<List<string>> liste_carte)
     {
@@ -176,7 +194,7 @@ public class GameLogic : MonoBehaviour
         }
         return liste_carte;
     }
-    public List<Carte> Creation_carte_plante(List<List<string>> liste_de_caracteristique)
+    public List<Carte> Creation_carte_plante(List<List<string>> liste_de_caracteristique, string nom_continent)
     {
         List<Carte> liste_instance = new();
         bool conservable;
@@ -192,13 +210,38 @@ public class GameLogic : MonoBehaviour
             }
             for (int j = 0; j < int.Parse(liste_de_caracteristique[i][7]); j++)
             {
-                Carte une_carte = new Carte(liste_de_caracteristique[i][0], liste_de_caracteristique[i][2], conservable, int.Parse(liste_de_caracteristique[i][8]));
+                Carte une_carte = new Carte(liste_de_caracteristique[i][0], liste_de_caracteristique[i][2], conservable, int.Parse(liste_de_caracteristique[i][8]), nom_continent);
                 liste_instance.Add(une_carte);
 
             }
 
         }
         return liste_instance;
+    }
+    public void ShuffleListeJoueur(List<Player> ts)
+    {
+        var count = ts.Count;
+        var last = count - 1;
+        for (var i = 0; i < last; ++i)
+        {
+            var r = UnityEngine.Random.Range(i, count);
+            var tmp = ts[i];
+            ts[i] = ts[r];
+            ts[r] = tmp;
+        }
+    }
+
+    public void ShuffleListeCartes(List<Carte> ts)
+    {
+        var count = ts.Count;
+        var last = count - 1;
+        for (var i = 0; i < last; ++i)
+        {
+            var r = UnityEngine.Random.Range(i, count);
+            var tmp = ts[i];
+            ts[i] = ts[r];
+            ts[r] = tmp;
+        }
     }
 }
 

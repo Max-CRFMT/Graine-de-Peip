@@ -26,6 +26,7 @@ TagManager:
   - topButtonToPlayerBoard
   - bottomButtonToGameAtlas
   - CanvasGUI
+  - CanvasFin
   layers:
   - Default
   - TransparentFX
