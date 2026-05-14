@@ -67,6 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "P2A.slnx",
+    "dotnet.defaultSolution": "Graine_de_Peip.slnx",
     "FSharp.suggestGitignore": false
 }

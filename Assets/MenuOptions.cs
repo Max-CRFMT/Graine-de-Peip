@@ -15,21 +15,56 @@ public class MenuOptions : MonoBehaviour
     public bool MenuOptionsEnCours = false;
     public static MenuOptions instance;
 
-    public Slider brightnessSlider;
+    private Slider brightnessSlider;
 
-    public Volume volume;
+    private Volume volume;
     private ColorAdjustments ca;
     private float brightness;
+    private Array obj;
+    private Canvas canvasOptions;
+    private Array sliders;
 
     private void Awake()
     {
         instance = this;
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        obj = scene.GetRootGameObjects();
+        foreach (GameObject o in obj)
+        {
+            if (o.name == "Brightness")
+            {
+                volume = o.GetComponent<Volume>();
+            }
+            if (o.name == "CanvasOptions")
+            {
+                canvasOptions = o.GetComponent<Canvas>();
+                sliders = canvasOptions.GetComponentsInChildren<Slider>();
+                foreach (Slider s in sliders)
+                {
+                    if (s.name == "Slider:Luminosite")
+                    {
+                        brightnessSlider = s;
+                    }
+                }
+            }
+        }
         brightness = PlayerPrefs.GetFloat("brightness");
         if (volume.profile.TryGet<ColorAdjustments>(out ca))
         {
             ca.postExposure.value = brightness;
         }
-        brightnessSlider.value = brightness;
+        if (brightnessSlider != null)
+        {
+            brightnessSlider.value = brightness;    
+        }
     }
 
     public Canvas ResearchCanvasSelonTag(string tagCanvas)
@@ -98,12 +133,19 @@ public class MenuOptions : MonoBehaviour
         }
     }
 
-    public void sliderCallBack(float value)
+    public void sliderCallBack()
     {
-        if (volume.profile.TryGet<ColorAdjustments>(out ca))
+        if (volume != null)
         {
-            ca.postExposure.value = brightnessSlider.value;
-            PlayerPrefs.SetFloat("brightness", brightnessSlider.value);
+            if (volume.profile.TryGet<ColorAdjustments>(out ca))
+            {
+                if (brightnessSlider != null)
+                {
+                    ca.postExposure.value = brightnessSlider.value;
+                    PlayerPrefs.SetFloat("brightness", brightnessSlider.value);
+                }
+            }
         }
+        
     }
 }
