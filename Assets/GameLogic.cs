@@ -2,7 +2,9 @@ using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
+using System.Text;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -19,6 +21,7 @@ public class GameLogic : MonoBehaviour
     public int ToursRestants;
     public string texte;
     public bool partiefinie;
+    public List<Carte_event> liste_event;
 
 
     Dictionary<string, int> DicoTourEnFctDeDifficulte = new Dictionary<string, int>()
@@ -54,6 +57,23 @@ public class GameLogic : MonoBehaviour
     }
 
     public List<string> SelectionMaps = new List<string>() { "Europe", "Afrique", "Asie", "Oceanie", "Amerique du Nord", "Amerique du Sud" };
+
+    public static string RemoveAccents(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+            return text;
+
+        string normalized = text.Normalize(NormalizationForm.FormD);
+        var sb = new StringBuilder();
+
+        foreach (char c in normalized)
+        {
+            if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                sb.Append(c);
+        }
+
+        return sb.ToString().Normalize(NormalizationForm.FormC);
+    }
     public void SetListeJoueurs()
     {
         System.Random random = new System.Random();
@@ -64,9 +84,9 @@ public class GameLogic : MonoBehaviour
             string nom_a_trouver = "Joueur" + (i+1).ToString();
             GameObject[] couple_nom_map = GameObject.FindGameObjectsWithTag(nom_a_trouver);
             string nom_joueur = couple_nom_map[0].GetComponent<TMP_InputField>().text;
-            string map_joueur = couple_nom_map[1].GetComponent<TMP_Dropdown>().options[couple_nom_map[1].GetComponent<TMP_Dropdown>().value].text;
-
-            if (map_joueur == "Aléatoire")
+            string map_joueur_accent = couple_nom_map[1].GetComponent<TMP_Dropdown>().options[couple_nom_map[1].GetComponent<TMP_Dropdown>().value].text;
+            string map_joueur= RemoveAccents(map_joueur_accent);
+            if (map_joueur == "Aleatoire")
             {
                 ListeJoueursAttente.Add((nom_joueur, map_joueur));
             }
@@ -79,7 +99,8 @@ public class GameLogic : MonoBehaviour
 
         foreach ((string, string) couple in ListeJoueursAttente)
         {
-            string map_joueur = SelectionMaps[random.Next(SelectionMaps.Count)];
+            string map_joueur_accent = SelectionMaps[random.Next(SelectionMaps.Count)];
+            string map_joueur = RemoveAccents(map_joueur_accent);
             SelectionMaps.Remove(map_joueur);
             instance.Liste_Joueurs.Add(new Player(couple.Item1, 1, map_joueur));
         }
@@ -210,7 +231,33 @@ public class GameLogic : MonoBehaviour
             }
             for (int j = 0; j < int.Parse(liste_de_caracteristique[i][7]); j++)
             {
-                Carte une_carte = new Carte(liste_de_caracteristique[i][0], liste_de_caracteristique[i][2], conservable, int.Parse(liste_de_caracteristique[i][8]), nom_continent);
+                Carte une_carte = new Carte(liste_de_caracteristique[i][0], liste_de_caracteristique[i][2], conservable, 
+                int.Parse(liste_de_caracteristique[i][7]), int.Parse(liste_de_caracteristique[i][8]), liste_de_caracteristique[i][9]);
+                liste_instance.Add(une_carte);
+
+            }
+
+        }
+        return liste_instance;
+    }
+    public List<Carte> Creation_carte_defausse(List<List<string>> liste_de_caracteristique)
+    {
+        List<Carte> liste_instance = new();
+        bool conservable;
+        for (int i = 0; i < liste_de_caracteristique.Count; i++)
+        {
+            if (liste_de_caracteristique[i][6] == "Orthodoxe (Oui)")
+            {
+                conservable = true;
+            }
+            else
+            {
+                conservable = false;
+            }
+            for (int j = 0; j < 9-int.Parse(liste_de_caracteristique[i][7]); j++)
+            {
+                Carte une_carte = new Carte(liste_de_caracteristique[i][0], liste_de_caracteristique[i][2], conservable,
+                int.Parse(liste_de_caracteristique[i][7]), int.Parse(liste_de_caracteristique[i][8]), liste_de_caracteristique[i][9]);
                 liste_instance.Add(une_carte);
 
             }
@@ -242,6 +289,18 @@ public class GameLogic : MonoBehaviour
             ts[i] = ts[r];
             ts[r] = tmp;
         }
+    }
+    public List<Carte_event> Creation_carte_event(List<List<string>> liste_de_caracteristique)
+    {
+        List<Carte_event> liste_instance = new();
+        for (int i = 0; i < liste_de_caracteristique.Count; i++)
+        {
+            Carte_event une_carte_event = new Carte_event(liste_de_caracteristique[i][0], liste_de_caracteristique[i][1],
+                liste_de_caracteristique[i][2], liste_de_caracteristique[i][3], liste_de_caracteristique[i][4], 
+                liste_de_caracteristique[i][5],int.Parse(liste_de_caracteristique[i][7]));
+            liste_instance.Add(une_carte_event);
+        }
+        return liste_instance;
     }
 }
 

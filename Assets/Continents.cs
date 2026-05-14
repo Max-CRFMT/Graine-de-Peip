@@ -11,6 +11,7 @@ public class Continent
     public int EducationLevel;
     public string name;
     public List<Carte> pileFaceCachee;
+    public List<Carte> defausse;
     public Continent(string nom)
     {
         name = nom;

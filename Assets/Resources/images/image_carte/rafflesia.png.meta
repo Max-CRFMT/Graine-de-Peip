@@ -3,8 +3,13 @@ guid: 69cbe1d01e1d20347bcf979e837cbc14
 TextureImporter:
   internalIDToNameTable:
   - first:
+<<<<<<< HEAD:Assets/Resources/images/image_carte/rafflesia.png.meta
       213: 6937817954938267909
     second: 2_0
+=======
+      213: -1722397398197735143
+    second: Rafflesia_0
+>>>>>>> origin/carte_event:Assets/data/image_carte/rafflesia.png.meta
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +118,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
+<<<<<<< HEAD:Assets/Resources/images/image_carte/rafflesia.png.meta
       name: 2_0
+=======
+      name: Rafflesia_0
+>>>>>>> origin/carte_event:Assets/data/image_carte/rafflesia.png.meta
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +137,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
+<<<<<<< HEAD:Assets/Resources/images/image_carte/rafflesia.png.meta
       spriteID: 5092c600ca4184060800000000000000
       internalID: 6937817954938267909
+=======
+      spriteID: 911fd5621b0d818e0800000000000000
+      internalID: -1722397398197735143
+>>>>>>> origin/carte_event:Assets/data/image_carte/rafflesia.png.meta
       vertices: []
       indices: 
       edges: []
@@ -148,7 +162,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+<<<<<<< HEAD:Assets/Resources/images/image_carte/rafflesia.png.meta
       2_0: 6937817954938267909
+=======
+      Rafflesia_0: -1722397398197735143
+>>>>>>> origin/carte_event:Assets/data/image_carte/rafflesia.png.meta
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

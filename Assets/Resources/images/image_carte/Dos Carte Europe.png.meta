@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Resources/images/image_carte/Koki'o.jpg.meta
-guid: 0b97b9126cd659040bf35a5685b7afc7
+guid: e3215b4611b26a644b54e9af1b61e1c4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1126203163849841241
-    second: Kokio_0
-========
-guid: 99f08877657114649b62837883db64ae
-TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -5529303612920589857
-    second: Paw Paw_0
->>>>>>>> origin/carte_event:Assets/Resources/images/image_carte/Paw Paw.png.meta
+      213: -8052995347755483222
+    second: Dos Carte Europe_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,17 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-<<<<<<<< HEAD:Assets/Resources/images/image_carte/Koki'o.jpg.meta
-      name: Kokio_0
-========
-      name: Paw Paw_0
->>>>>>>> origin/carte_event:Assets/Resources/images/image_carte/Paw Paw.png.meta
+      name: Dos Carte Europe_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1736
-        height: 2426
+        width: 868
+        height: 1213
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,13 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-<<<<<<<< HEAD:Assets/Resources/images/image_carte/Koki'o.jpg.meta
-      spriteID: 7a52fc9703cee50f0800000000000000
-      internalID: -1126203163849841241
-========
-      spriteID: fd19598d8a7f343b0800000000000000
-      internalID: -5529303612920589857
->>>>>>>> origin/carte_event:Assets/Resources/images/image_carte/Paw Paw.png.meta
+      spriteID: aaf3927d5630e3090800000000000000
+      internalID: -8052995347755483222
       vertices: []
       indices: 
       edges: []
@@ -166,11 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-<<<<<<<< HEAD:Assets/Resources/images/image_carte/Koki'o.jpg.meta
-      Kokio_0: -1126203163849841241
-========
-      Paw Paw_0: -5529303612920589857
->>>>>>>> origin/carte_event:Assets/Resources/images/image_carte/Paw Paw.png.meta
+      Dos Carte Europe_0: -8052995347755483222
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

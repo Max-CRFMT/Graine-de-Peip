@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Resources/images/image_carte/Koki'o.jpg.meta
-guid: 0b97b9126cd659040bf35a5685b7afc7
+guid: ef1f82e062ff3ab4c8e4669a4e85edd5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1126203163849841241
-    second: Kokio_0
-========
-guid: 99f08877657114649b62837883db64ae
-TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -5529303612920589857
-    second: Paw Paw_0
->>>>>>>> origin/carte_event:Assets/Resources/images/image_carte/Paw Paw.png.meta
+      213: -7637801678573721809
+    second: "Marguerite de l'\xEEle Campbell_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,11 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-<<<<<<<< HEAD:Assets/Resources/images/image_carte/Koki'o.jpg.meta
-      name: Kokio_0
-========
-      name: Paw Paw_0
->>>>>>>> origin/carte_event:Assets/Resources/images/image_carte/Paw Paw.png.meta
+      name: "Marguerite de l'\xEEle Campbell_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -141,13 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-<<<<<<<< HEAD:Assets/Resources/images/image_carte/Koki'o.jpg.meta
-      spriteID: 7a52fc9703cee50f0800000000000000
-      internalID: -1126203163849841241
-========
-      spriteID: fd19598d8a7f343b0800000000000000
-      internalID: -5529303612920589857
->>>>>>>> origin/carte_event:Assets/Resources/images/image_carte/Paw Paw.png.meta
+      spriteID: f272bb317d3110690800000000000000
+      internalID: -7637801678573721809
       vertices: []
       indices: 
       edges: []
@@ -166,11 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-<<<<<<<< HEAD:Assets/Resources/images/image_carte/Koki'o.jpg.meta
-      Kokio_0: -1126203163849841241
-========
-      Paw Paw_0: -5529303612920589857
->>>>>>>> origin/carte_event:Assets/Resources/images/image_carte/Paw Paw.png.meta
+      "Marguerite de l'\xEEle Campbell_0": -7637801678573721809
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
