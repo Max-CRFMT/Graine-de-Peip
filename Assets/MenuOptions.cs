@@ -1,18 +1,70 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering.HighDefinition;
+
 
 public class MenuOptions : MonoBehaviour
 {
     public bool MenuOptionsEnCours = false;
     public static MenuOptions instance;
 
+    private Slider brightnessSlider;
+
+    private Volume volume;
+    private ColorAdjustments ca;
+    private float brightness;
+    private Array obj;
+    private Canvas canvasOptions;
+    private Array sliders;
+
     private void Awake()
     {
         instance = this;
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        obj = scene.GetRootGameObjects();
+        foreach (GameObject o in obj)
+        {
+            if (o.name == "Brightness")
+            {
+                volume = o.GetComponent<Volume>();
+            }
+            if (o.name == "CanvasOptions")
+            {
+                canvasOptions = o.GetComponent<Canvas>();
+                sliders = canvasOptions.GetComponentsInChildren<Slider>();
+                foreach (Slider s in sliders)
+                {
+                    if (s.name == "Slider:Luminosite")
+                    {
+                        brightnessSlider = s;
+                    }
+                }
+            }
+        }
+        brightness = PlayerPrefs.GetFloat("brightness");
+        if (volume.profile.TryGet<ColorAdjustments>(out ca))
+        {
+            ca.postExposure.value = brightness;
+        }
+        if (brightnessSlider != null)
+        {
+            brightnessSlider.value = brightness;    
+        }
     }
 
     public Canvas ResearchCanvasSelonTag(string tagCanvas)
@@ -91,5 +143,21 @@ public class MenuOptions : MonoBehaviour
             }
 
         }
+    }
+
+    public void sliderCallBack()
+    {
+        if (volume != null)
+        {
+            if (volume.profile.TryGet<ColorAdjustments>(out ca))
+            {
+                if (brightnessSlider != null)
+                {
+                    ca.postExposure.value = brightnessSlider.value;
+                    PlayerPrefs.SetFloat("brightness", brightnessSlider.value);
+                }
+            }
+        }
+        
     }
 }
