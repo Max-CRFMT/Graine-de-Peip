@@ -8,8 +8,6 @@ public class SliderControl : MonoBehaviour
     public Slider amountSlider;
     public TMP_Text amountText;
 
-
-
     public void initialisationSlider()
     {
         int thunesdujoueur = TurnHandler.instance.PlayerActuel.pieces;

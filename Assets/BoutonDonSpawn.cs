@@ -11,7 +11,6 @@ public class BoutonDonSpawn : MonoBehaviour
     public RectTransform SpawnBoutonDON;
     public int espace = 40;
     private List<GameObject> boutonsCrees = new List<GameObject>();
-    [ContextMenu("Apparaition")]
     public void AparaitionBouton()
     {
         int nb_bouton = GameLogic.instance.Liste_Joueurs.Count;
@@ -31,7 +30,6 @@ public class BoutonDonSpawn : MonoBehaviour
             espace = espace - temp;
         }
     }
-    [ContextMenu("Destroy")]
     public void DestroyBouton()
     {
         foreach (GameObject boutons in boutonsCrees)
@@ -40,13 +38,5 @@ public class BoutonDonSpawn : MonoBehaviour
         }
         boutonsCrees.Clear();
         espace = 40;
-    }
-    
-    [ContextMenu("AjouterThunes")]
-    public void Test()
-    {
-        TurnHandler.instance.PlayerActuel.pieces += 10;
-        Debug.Log(TurnHandler.instance.PlayerActuel.pieces);
-        Debug.Log(TurnHandler.instance.PlayerActuel);
     }
 }
