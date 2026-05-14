@@ -18,9 +18,9 @@ public class Fonction_event : MonoBehaviour
         foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
         {
             List<Carte> liste_carte = joueur.continent.pileFaceCachee;
-            print($"première carte avant suppression {liste_carte[0].ToString()}");
+            print($"premiere carte avant suppression {liste_carte[0].ToString()}");
             liste_carte.RemoveAt(0);
-            print($"première carte après suppression {liste_carte[0].ToString()}");
+            print($"premiere carte apres suppression {liste_carte[0].ToString()}");
         }
     }
     public void Avalanche()
@@ -28,29 +28,29 @@ public class Fonction_event : MonoBehaviour
         System.Random random = new System.Random();
         Player joueur = GameLogic.instance.Liste_Joueurs[random.Next(GameLogic.instance.Liste_Joueurs.Count)];
         List<Carte> liste_carte = joueur.continent.pileFaceCachee;
-        print($"première carte avant suppression {liste_carte[0].ToString()}");
+        print($"premiere carte avant suppression {liste_carte[0].ToString()}");
         liste_carte.RemoveAt(0);
-        print($"deuxième carte avant suppression {liste_carte[0].ToString()}");
+        print($"deuxieme carte avant suppression {liste_carte[0].ToString()}");
         liste_carte.RemoveAt(0);
-        print($"troisième carte avant suppression {liste_carte[0].ToString()}");
+        print($"troisieme carte avant suppression {liste_carte[0].ToString()}");
         liste_carte.RemoveAt(0);
-        print($"première carte après suppression {liste_carte[0].ToString()}");
+        print($"premiere carte apres suppression {liste_carte[0].ToString()}");
     }
     public void Incendies()
     {
         foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
         {
             List<Carte> liste_carte = joueur.continent.pileFaceCachee;
-            print($"première carte avant suppression {liste_carte[0].ToString()}");
+            print($"premiere carte avant suppression {liste_carte[0].ToString()}");
             liste_carte.RemoveAt(0);
-            print($"deuxième carte avant suppression {liste_carte[0].ToString()}");
+            print($"deuxieme carte avant suppression {liste_carte[0].ToString()}");
             liste_carte.RemoveAt(0);
-            print($"troisième carte avant suppression {liste_carte[0].ToString()}");
+            print($"troisieme carte avant suppression {liste_carte[0].ToString()}");
             liste_carte.RemoveAt(0);
-            print($"première carte après suppression {liste_carte[0].ToString()}");
+            print($"premiere carte apres suppression {liste_carte[0].ToString()}");
         }
     }
-     public void Théorie_du_Complot()
+     public void Theorie_du_Complot()
     {
         foreach(Player joueur in GameLogic.instance.Liste_Joueurs)
         {
@@ -58,7 +58,7 @@ public class Fonction_event : MonoBehaviour
             if (niveau_education != -1)  
             {
                 niveau_education -= 1;
-                print($"niveau d'éducation après modif{niveau_education}");
+                print($"niveau d'education apres modif{niveau_education}");
             }
             else
             {
@@ -66,7 +66,7 @@ public class Fonction_event : MonoBehaviour
             }
         }
     }
-    public void Espèce_invasive()
+    public void Espece_invasive()
     {
         System.Random random = new System.Random();
         Player joueur = GameLogic.instance.Liste_Joueurs[random.Next(GameLogic.instance.Liste_Joueurs.Count)];

@@ -5,7 +5,6 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
-
 public class ScriptDemarrer : MonoBehaviour
 {
     public static void ShuffleListeJoueur(List<Player> ts)
@@ -20,6 +19,7 @@ public class ScriptDemarrer : MonoBehaviour
             ts[r] = tmp;
         }
     }
+
     public static void ShuffleListeCartes(List<Carte> liste_carte)
     {
         var count = liste_carte.Count;
@@ -32,6 +32,7 @@ public class ScriptDemarrer : MonoBehaviour
             liste_carte[r] = tmp;
         }
     }
+
     public static void ShuffleListeCartesevent(List<Carte_event> liste_carte_event)
     {
         var count = liste_carte_event.Count;
@@ -51,26 +52,27 @@ public class ScriptDemarrer : MonoBehaviour
         
         foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
         {
-            //g�n�ration des cartes non recens�es pour chaque continent
+            //generation des cartes non recensees pour chaque continent
             List<List<string>> tableau = new();
-            tableau = GameLogic.instance.Traduction_csv($"Assets/data/tableau/tableau_{joueur.map_choisie}.csv", 10, tableau);
-            joueur.continent.pileFaceCachee = GameLogic.instance.Creation_carte_plante(tableau);
+            tableau = GameLogic.instance.Traduction_csv(Application.streamingAssetsPath + $"/data/tableau/tableau_{joueur.map_choisie}.csv", 10, tableau);
+            joueur.continent.pileFaceCachee = GameLogic.instance.Creation_carte_plante(tableau, joueur.continent.name);
             Debug.Log(joueur.pseudo + " " + joueur.continent.pileFaceCachee.Count);
             ShuffleListeCartes(joueur.continent.pileFaceCachee);
-            //g�n�ration des cartes de la d�fauce pour chaque continent
-            joueur.continent.defausse = GameLogic.instance.Creation_carte_defausse(tableau);
+            //generation des cartes de la defausse pour chaque continent
+            joueur.continent.defausse = GameLogic.instance.Creation_carte_defausse(tableau, joueur.continent.name);
         }
 
         GameLogic.instance.SupprimerGameObjectSelonTag("SupprB");
-        GameLogic.instance.ShuffleListeJoueur(GameLogic.instance.Liste_Joueurs);
+        ShuffleListeJoueur(GameLogic.instance.Liste_Joueurs);
         TurnHandler.instance.PlayerActuel = GameLogic.instance.Liste_Joueurs[0];
 
-        //g�n�ration des cartes �v�nement
+        //generation des cartes evenement
         List<List<string>> tableau_event = new();
-        tableau_event = GameLogic.instance.Traduction_csv($"Assets/data/tableau/tableau_event.csv", 8, tableau_event);
+        tableau_event = GameLogic.instance.Traduction_csv(Application.streamingAssetsPath + "/data/tableau/tableau_event.csv", 8, tableau_event);
         GameLogic.instance.liste_event = GameLogic.instance.Creation_carte_event(tableau_event);
+        Debug.Log("On est là");
         ShuffleListeCartesevent(GameLogic.instance.liste_event);
-
+        Debug.Log("Et ici");
         GameLogic.instance.DemarrerJeu();
         
     }

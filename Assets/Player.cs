@@ -170,7 +170,7 @@ public class Player
             if (player.continent.name == carte_selectionnee.continent_name)
             {
                 player.continent.pileFaceCachee.Add(carte_selectionnee);
-                GameLogic.instance.ShuffleListeCartes(player.continent.pileFaceCachee);
+                ShuffleListeCartes(player.continent.pileFaceCachee);
             }
         }
     }
@@ -328,5 +328,18 @@ public class Player
     public void MiseAJourDebutTourPieces()
     {
         pieces += ThuneARecolterDebutTourProchain_base + continent.EducationLevel+2;
+    }
+
+    public static void ShuffleListeCartes(List<Carte> liste_carte)
+    {
+        var count = liste_carte.Count;
+        var last = count - 1;
+        for (var i = 0; i < last; ++i)
+        {
+            var r = UnityEngine.Random.Range(i, count);
+            var tmp = liste_carte[i];
+            liste_carte[i] = liste_carte[r];
+            liste_carte[r] = tmp;
+        }
     }
 }

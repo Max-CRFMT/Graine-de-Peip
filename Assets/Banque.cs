@@ -12,7 +12,7 @@ public class Banque
     public int indice_carte = 0;
     public void Regulation_cartes(int indice_carte)
     {
-        Carte NouvelleCarte = new Carte(indice_carte.ToString(), "Montagne", true, 0, "Continent");
+        Carte NouvelleCarte = new Carte(indice_carte.ToString(), "Montagne", true, 0, 1, "jsp", "Continent");
 
         if (FileDeCartes.Count < 3)
         {
