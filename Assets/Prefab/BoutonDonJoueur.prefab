@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 744396537127975083}
   - component: {fileID: 1972079169662957959}
   - component: {fileID: 5137311010633503495}
-  - component: {fileID: 3164784733021536009}
   - component: {fileID: 8551734447117808530}
+  - component: {fileID: -4892572966792129712}
   m_Layer: 5
   m_Name: BoutonDonJoueur
   m_TagString: Joueur2
@@ -78,18 +78,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3164784733021536009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4260372115201933819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7745bd9071b2e245b1d095880e5764a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RecupActionJoueur
 --- !u!114 &8551734447117808530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,7 +121,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5137311010633503495}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -4892572966792129712}
+        m_TargetAssemblyTypeName: Recup_joueurdonc, Assembly-CSharp
+        m_MethodName: Onclicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-4892572966792129712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4260372115201933819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89c19591e45ff9866b40fe2d38e19bb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Recup_joueurdonc
 --- !u!1 &6514132366267043629
 GameObject:
   m_ObjectHideFlags: 0
