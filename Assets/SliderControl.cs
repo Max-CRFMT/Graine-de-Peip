@@ -33,7 +33,6 @@ public class SliderControl : MonoBehaviour
                 joueur_cible = joueur;
             }
         }
-        
     }
 
     public void OnSliderChange(float value)
