@@ -20,7 +20,7 @@ public class SliderControl : MonoBehaviour
     {
         int thunesdujoueur = TurnHandler.instance.PlayerActuel.pieces;
         amountSlider.minValue = 1;
-        amountSlider.maxValue = thunesdujoueur;
+        amountSlider.maxValue = thunesdujoueur-1;
         amountSlider.value = 1;
     }
 
