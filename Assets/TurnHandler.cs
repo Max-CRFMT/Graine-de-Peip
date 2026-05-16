@@ -141,8 +141,6 @@ public class TurnHandler : MonoBehaviour
         instance.indice_liste_PiocheToJardinOuPiocheToBanque = 0;
         instance.liste_BanqueReloadOuBanqueToJardin = new List<char>();
         instance.indice_liste_BanqueReloadOuBanqueToJardin = 0;
-
-
 }
 
     public void EffectuerActions()
@@ -166,9 +164,43 @@ public class TurnHandler : MonoBehaviour
             }
         }
         
-        //Une fois que les actions sont effectuées on supprime la liste pour en créer une nouvelle
+        //Une fois que les actions sont effectuées on supprime la liste pour en créer une nouvelle et on réinitialise tout
         instance.Dico_JoueurActions = new Dictionary<Player, List<PlayerAction>>();
+        //Action don
+        instance.liste_player_cible_don = new List<Player>();
+        instance.indice_player_cible_don = 0;
+        instance.liste_montant_don = new List<int>();
+        instance.indice_liste_montant_don = 0;
+
+        //Action restauration
+        instance.liste_JB_restauration = new List<char>();
+        instance.indice_JB_restauration = 0;
+        instance.liste_carte_selected_restauration = new List<Carte>();
+        instance.indice_carte_selected_restauration = 0;
+
+        //Action recensement
+        instance.liste_player_cible_recensement = new List<Player>();
+        instance.indice_liste_player_cible_recensement = 0;
+
+        //Action controle
+        instance.liste_liste_carte_controle = new List<Carte>();
+        instance.indice_liste_liste_cartes_controle = 0;
+        instance.liste_JP_controle = new List<char>();
+        instance.indice_liste_JP_controle = 0;
+        instance.liste_nb_cartes_controle = new List<int>();
+        instance.indice_liste_nb_cartes_controle = 0;
+
+        //Action recolte 
+        instance.liste_carte_cible_recolte = new List<Carte>();
+        instance.indice_liste_carte_cible_recolte = 0;
+        instance.liste_PiocheOuBanque = new List<char>();
+        instance.indice_liste_PiocheOuBanque = 0;
+        instance.liste_PiocheToJardinOuPiocheToBanque = new List<char>();
+        instance.indice_liste_PiocheToJardinOuPiocheToBanque = 0;
+        instance.liste_BanqueReloadOuBanqueToJardin = new List<char>();
+        instance.indice_liste_BanqueReloadOuBanqueToJardin = 0;
     }
+
     public void AjouterActionDansDicoJoueursAction(PlayerAction action)
     {
         //Faut que al fonction soit appellée par une autre fonction 
@@ -183,6 +215,7 @@ public class TurnHandler : MonoBehaviour
             instance.Dico_JoueurActions.Add(PlayerActuel, new List<PlayerAction>(){action});
         }
     }
+    
     public void Creationlisteevenement()
     {
         string filePath = Application.streamingAssetsPath + "Assets/data/tableau_event.csv";
@@ -266,7 +299,14 @@ public class TurnHandler : MonoBehaviour
         {
             Debug.Log("Action Removed");
             instance.PlayerActuel.Points_Action += 1 ;
-            if (instance.Dico_JoueurActions[instance.PlayerActuel][instance.Dico_JoueurActions[instance.PlayerActuel].Count() - 1] == PlayerAction.Subventions)
+
+            if (instance.Dico_JoueurActions[instance.PlayerActuel][instance.Dico_JoueurActions[instance.PlayerActuel].Count() - 1] == PlayerAction.Don)
+            {
+                instance.liste_player_cible_don.RemoveAt(instance.liste_player_cible_don.Count() - 1);
+                instance.liste_montant_don.RemoveAt(instance.liste_montant_don.Count() - 1);
+            }
+
+            else if (instance.Dico_JoueurActions[instance.PlayerActuel][instance.Dico_JoueurActions[instance.PlayerActuel].Count() - 1] == PlayerAction.Subventions)
             {
                 instance.PlayerActuel.SubventionDemandee = false;
             }
