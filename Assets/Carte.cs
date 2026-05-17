@@ -11,6 +11,7 @@ public class Carte
     public int vitesse;
     public string rarete;
     public string continent_name;
+    public string etat;
     public Carte(string nom, string biome, bool conservable, int effectif, int vitesse, string rarete, string continent_name)
     {
         this.nom = nom;
@@ -21,10 +22,11 @@ public class Carte
         this.effectif = effectif;
         this.rarete = rarete;
         this.continent_name = continent_name;
+        this.etat = "normale";
     }
     public override string ToString()
     {
         return $"(nom={nom}, biome={biome}, PathImage={PathImage}, conservable={conservable}, " +
-            $"vitesse={vitesse},effectif_total={effectif},rarete={rarete})";
+            $"vitesse={vitesse},effectif_total={effectif},rarete={rarete},continent={continent_name}, etat={etat})";
     }
 }

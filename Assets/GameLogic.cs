@@ -277,7 +277,6 @@ public class GameLogic : MonoBehaviour
         }
         return liste_instance;
     }
-
     public List<Carte_event> Creation_carte_event(List<List<string>> liste_de_caracteristique)
     {
         Debug.Log("Exec");
@@ -297,6 +296,66 @@ public class GameLogic : MonoBehaviour
             liste_instance.Add(une_carte_event);
         }
         return liste_instance;
+    }
+    public static void ShuffleListeCartes(List<Carte> liste_carte)
+    {
+        var count = liste_carte.Count;
+        var last = count - 1;
+        for (var i = 0; i < last; ++i)
+        {
+            var r = UnityEngine.Random.Range(i, count);
+            var tmp = liste_carte[i];
+            liste_carte[i] = liste_carte[r];
+            liste_carte[r] = tmp;
+        }
+    }
+    public List<Carte> Ajout_carte(Carte carte_a_ajouter, List<Carte> list_carte_pioche, List<Carte> list_carte_défausse)
+    {
+        for (int i = 0; i < carte_a_ajouter.vitesse; i++)
+        {
+            if (carte_a_ajouter.etat != "extinction")
+            {
+                if (list_carte_défausse.Exists(carte => carte.nom == carte_a_ajouter.nom))
+                {
+                    Debug.Log("carte bouger");
+                    list_carte_défausse.RemoveAt(list_carte_défausse.FindIndex(carte => carte.nom == carte_a_ajouter.nom));
+                    list_carte_pioche.Add(carte_a_ajouter);
+                    ShuffleListeCartes(list_carte_pioche);
+                }
+                else
+                {
+                    Debug.Log("y a plus la carte");
+                }
+            }
+        }
+        return list_carte_pioche;
+    }
+    public void Reproduction()
+    {
+        foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
+        {
+            Debug.Log(joueur.pseudo);
+            List<Carte> list_carte_reproduit = new List<Carte>();
+            for (int i = 0; i<joueur.continent.pileFaceCachee.Count; i++)
+            {
+                Carte carte_actuel = joueur.continent.pileFaceCachee[i];
+                Debug.Log(list_carte_reproduit.Exists(carte => carte.nom == carte_actuel.nom));
+                Debug.Log(carte_actuel);
+                if (list_carte_reproduit.Exists(carte => carte.nom == carte_actuel.nom)== false)
+                {
+                    list_carte_reproduit.Add(carte_actuel);
+                    joueur.continent.pileFaceCachee = Ajout_carte(carte_actuel,
+                                                     joueur.continent.pileFaceCachee,
+                                                     joueur.continent.defausse);
+                    string ble = "";
+                    for (int j = 0; j < list_carte_reproduit.Count; j++)
+                    {
+                        ble += list_carte_reproduit[j].ToString();
+                    }
+                    Debug.Log(ble);
+                }
+            }
+        }
     }
 }
 
