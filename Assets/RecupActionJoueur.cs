@@ -45,7 +45,6 @@ public class RecupActionJoueur : MonoBehaviour
             TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
 
             TurnHandler.instance.resencement_en_cours = true;
-            GestionRecensement.Glow();
             ButtonScreenMoverScript.instance.ScreenMoverBottomButtonPressed();
 
             
