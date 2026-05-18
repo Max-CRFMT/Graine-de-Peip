@@ -29,8 +29,8 @@ public class TurnHandler : MonoBehaviour
     public List<Carte> liste_carte_selected_restauration;
     public int indice_carte_selected_restauration;
     //Action recensement
-    public List<Player> liste_player_cible_recensement;
-    public int indice_liste_player_cible_recensement;
+    public List<string> liste_continent_cible_recensement;
+    public int indice_liste_continent_cible_recensement;
     //Action recolte 
     public List<Carte> liste_carte_cible_recolte;
     public int indice_liste_carte_cible_recolte;
@@ -49,6 +49,8 @@ public class TurnHandler : MonoBehaviour
     public int indice_liste_JP_controle;
     public List<int> liste_nb_cartes_controle;
     public int indice_liste_nb_cartes_controle;
+
+    public bool resencement_en_cours;
 
 
     public TurnHandler() { }
@@ -84,7 +86,7 @@ public class TurnHandler : MonoBehaviour
         {PlayerAction.Subventions, player => player.DemandeSubventions()},
         {PlayerAction.Eduquer, player => player.Eduquer()},
         {PlayerAction.Recruter, player => player.Recruter_Ouvrier()},
-        {PlayerAction.Recenser, player => player.RecencerGraines(instance.liste_player_cible_recensement[instance.indice_liste_player_cible_recensement])},
+        {PlayerAction.Recenser, player => player.RecencerGraines(instance.liste_continent_cible_recensement[instance.indice_liste_continent_cible_recensement])},
         {PlayerAction.Recolter, player => player.RecolterGraines(instance.liste_carte_cible_recolte[instance.indice_liste_carte_cible_recolte],
                                                                 instance.liste_PiocheOuBanque[instance.indice_liste_PiocheOuBanque],
                                                                 instance.liste_PiocheToJardinOuPiocheToBanque[instance.indice_liste_PiocheToJardinOuPiocheToBanque],
@@ -121,8 +123,8 @@ public class TurnHandler : MonoBehaviour
         instance.indice_carte_selected_restauration = 0;
 
         //Action recensement
-        instance.liste_player_cible_recensement = new List<Player>();
-        instance.indice_liste_player_cible_recensement = 0;
+        instance.liste_continent_cible_recensement = new List<string>();
+        instance.indice_liste_continent_cible_recensement = 0;
 
         //Action controle
         instance.liste_liste_carte_controle = new List<Carte>();
@@ -141,6 +143,8 @@ public class TurnHandler : MonoBehaviour
         instance.indice_liste_PiocheToJardinOuPiocheToBanque = 0;
         instance.liste_BanqueReloadOuBanqueToJardin = new List<char>();
         instance.indice_liste_BanqueReloadOuBanqueToJardin = 0;
+
+        instance.resencement_en_cours = false;
 }
 
     public void EffectuerActions()
@@ -179,8 +183,8 @@ public class TurnHandler : MonoBehaviour
         instance.indice_carte_selected_restauration = 0;
 
         //Action recensement
-        instance.liste_player_cible_recensement = new List<Player>();
-        instance.indice_liste_player_cible_recensement = 0;
+        instance.liste_continent_cible_recensement = new List<string>();
+        instance.indice_liste_continent_cible_recensement = 0;
 
         //Action controle
         instance.liste_liste_carte_controle = new List<Carte>();
@@ -302,13 +306,20 @@ public class TurnHandler : MonoBehaviour
 
             if (instance.Dico_JoueurActions[instance.PlayerActuel][instance.Dico_JoueurActions[instance.PlayerActuel].Count() - 1] == PlayerAction.Don)
             {
-                instance.liste_player_cible_don.RemoveAt(instance.liste_player_cible_don.Count() - 1);
-                instance.liste_montant_don.RemoveAt(instance.liste_montant_don.Count() - 1);
+                if (instance.liste_player_cible_don.Count() * instance.liste_montant_don.Count() > 0)
+                {
+                    instance.liste_player_cible_don.RemoveAt(instance.liste_player_cible_don.Count() - 1);
+                    instance.liste_montant_don.RemoveAt(instance.liste_montant_don.Count() - 1);
+                }
             }
 
             else if (instance.Dico_JoueurActions[instance.PlayerActuel][instance.Dico_JoueurActions[instance.PlayerActuel].Count() - 1] == PlayerAction.Subventions)
             {
                 instance.PlayerActuel.SubventionDemandee = false;
+            }
+            else if (instance.Dico_JoueurActions[instance.PlayerActuel][instance.Dico_JoueurActions[instance.PlayerActuel].Count() - 1] == PlayerAction.Recenser)
+            {
+                GestionRecensement.instance.ReactivationPostRecensement();
             }
             instance.Dico_JoueurActions[instance.PlayerActuel].RemoveAt(instance.Dico_JoueurActions[instance.PlayerActuel].Count() - 1);
         } 

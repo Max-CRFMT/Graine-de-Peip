@@ -10,6 +10,6 @@ public class Recup_joueurdonc : MonoBehaviour
 
         string nom_joueur = texte.text;
         Debug.Log("On est passés");
-        SliderControl.instance.joueurdoncliqued(nom_joueur);
+        SliderControl.instance.JoueurDonCliqued(nom_joueur);
     }
 }

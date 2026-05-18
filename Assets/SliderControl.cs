@@ -24,7 +24,7 @@ public class SliderControl : MonoBehaviour
         amountSlider.value = 1;
     }
 
-    public void joueurdoncliqued(string nom_a_trouver)
+    public void JoueurDonCliqued(string nom_a_trouver)
     {
         foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
         {

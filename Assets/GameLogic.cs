@@ -56,7 +56,7 @@ public class GameLogic : MonoBehaviour
         Debug.Log("La difficulte selectionnee est : " + difficulte);
     }
 
-    public List<string> SelectionMaps = new List<string>() { "Europe", "Afrique", "Asie", "Oceanie", "Amerique du Nord", "Amerique du Sud" };
+    public List<string> SelectionMaps = new List<string>() {"Europe", "Afrique", "Asie", "Océanie", "Amérique du Nord", "Amérique du Sud"};
 
     public static string RemoveAccents(string text)
     {
@@ -74,6 +74,7 @@ public class GameLogic : MonoBehaviour
 
         return sb.ToString().Normalize(NormalizationForm.FormC);
     }
+
     public void SetListeJoueurs()
     {
         System.Random random = new System.Random();
@@ -85,7 +86,7 @@ public class GameLogic : MonoBehaviour
             GameObject[] couple_nom_map = GameObject.FindGameObjectsWithTag(nom_a_trouver);
             string nom_joueur = couple_nom_map[0].GetComponent<TMP_InputField>().text;
             string map_joueur_accent = couple_nom_map[1].GetComponent<TMP_Dropdown>().options[couple_nom_map[1].GetComponent<TMP_Dropdown>().value].text;
-            string map_joueur= RemoveAccents(map_joueur_accent);
+            string map_joueur = RemoveAccents(map_joueur_accent);
             if (map_joueur == "Aleatoire")
             {
                 ListeJoueursAttente.Add((nom_joueur, map_joueur));
@@ -93,7 +94,7 @@ public class GameLogic : MonoBehaviour
             else
             {
                 instance.Liste_Joueurs.Add(new Player(nom_joueur, 0, map_joueur));
-                SelectionMaps.Remove(map_joueur);
+                SelectionMaps.Remove(map_joueur_accent);
             }
         }
 
@@ -101,7 +102,7 @@ public class GameLogic : MonoBehaviour
         {
             string map_joueur_accent = SelectionMaps[random.Next(SelectionMaps.Count)];
             string map_joueur = RemoveAccents(map_joueur_accent);
-            SelectionMaps.Remove(map_joueur);
+            SelectionMaps.Remove(map_joueur_accent);
             instance.Liste_Joueurs.Add(new Player(couple.Item1, 1, map_joueur));
         }
     }
@@ -135,11 +136,39 @@ public class GameLogic : MonoBehaviour
         }
     }
 
+    Dictionary<string, string> Dico_traduction_useless = new Dictionary<string, string>(){
+        {"Asie", "Asia"},
+        {"Europe", "Europe"},
+        {"Amerique du Nord", "NorthAmerica"},
+        {"Oceanie", "Oceania"},
+        {"Afrique", "Africa"},
+        {"Amerique du Sud", "SouthAmerica"},
+    };
+
+    public GameObject continent_joueur;
+    public void ActivateContinents()
+    {
+        foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
+        {
+            var continents = Resources.FindObjectsOfTypeAll<GameObject>();
+            foreach (var continent in continents)
+            {
+                if (continent.tag == Dico_traduction_useless[joueur.map_choisie])
+                {
+                    continent_joueur = continent;
+                }
+            }
+            continent_joueur.gameObject.SetActive(true);
+        }
+    }
+
     public IEnumerator Jeu()
     {
         AsyncOperation ChargenementScene = SceneManager.LoadSceneAsync("Game");
 
         yield return ChargenementScene;
+
+        ActivateContinents();
 
         while (instance.ToursRestants > 0)
         {
@@ -152,11 +181,13 @@ public class GameLogic : MonoBehaviour
         }
         FindePartie();
     }
+
     public void SpawnVoileEtTextFindePartie(string texte)
     {
         MenuOptions.instance.ResearchCanvasSelonTag("CanvasFin").gameObject.SetActive(true);
         MenuOptions.instance.ChangerTexteDansCanvas(MenuOptions.instance.ResearchCanvasSelonTag("CanvasFin"), texte, "CanvasFin");
     }
+
     public void FindePartie()
     {
         instance.partiefinie = true;
@@ -171,6 +202,7 @@ public class GameLogic : MonoBehaviour
         }
         SpawnVoileEtTextFindePartie(texte);
     }
+
     public void RebootGame()
     {
         foreach (var objects in GameObject.FindGameObjectsWithTag("LogiqueJeu"))
@@ -180,6 +212,7 @@ public class GameLogic : MonoBehaviour
         Debug.Log("Fonction FinDePartie() executée");
         SceneManager.LoadScene("Lobby");
     }
+
     public List<List<string>> Traduction_csv(string fichier_csv, int nombre_de_caracteristique, List<List<string>> liste_carte)
     {
         string tableau_evenement = fichier_csv;
@@ -215,6 +248,7 @@ public class GameLogic : MonoBehaviour
         }
         return liste_carte;
     }
+
     public List<Carte> Creation_carte_plante(List<List<string>> liste_de_caracteristique, string nom_continent)
     {
         List<Carte> liste_instance = new();
@@ -246,6 +280,7 @@ public class GameLogic : MonoBehaviour
         }
         return liste_instance;
     }
+
     public List<Carte> Creation_carte_defausse(List<List<string>> liste_de_caracteristique, string nom_continent)
     {
         List<Carte> liste_instance = new();

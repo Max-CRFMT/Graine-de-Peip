@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class RecupActionJoueur : MonoBehaviour
 {
@@ -37,11 +39,20 @@ public class RecupActionJoueur : MonoBehaviour
     }
     public void RecupRecenser()
     {
-        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1)) // s�rement d'autres conditions sur la pioche
+        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
         {
             TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Recenser);
-            Debug.Log("Recenser appel");
             TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
+
+            TurnHandler.instance.resencement_en_cours = true;
+            GestionRecensement.Glow();
+            ButtonScreenMoverScript.instance.ScreenMoverBottomButtonPressed();
+
+            
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"bottomButtonToGameAtlas", "topButtonToPlayerBoard"}, "CanvasGUI");
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"boutonFinTour"}, "UIJoueur");
+            MenuOptions.instance.ResearchCanvasSelonTag("TxtRecensement").gameObject.SetActive(true);
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"DrawPile"}, "CanvasGUI");
         }
 
     }
@@ -93,7 +104,6 @@ public class RecupActionJoueur : MonoBehaviour
             TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
         }
     }
-
 
 
 

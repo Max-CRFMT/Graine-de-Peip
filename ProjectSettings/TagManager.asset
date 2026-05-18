@@ -36,6 +36,7 @@ TagManager:
   - Oceania
   - NorthAmerica
   - SouthAmerica
+  - TxtRecensement
   layers:
   - Default
   - TransparentFX
