@@ -125,21 +125,21 @@ public class Player
 
     public void RestaurationBanque(Carte carte_selectionnee)
     {
-        Debug.Log("Function restauration Banque exec");
-        foreach (Player player in GameLogic.instance.Liste_Joueurs)
-        {
-            if (player.continent.name == carte_selectionnee.continent_name)
-            {
+    //    Debug.Log("Function restauration Banque exec");
+    //    foreach (Player player in GameLogic.instance.Liste_Joueurs)
+    //    {
+    //        if (player.continent.name == carte_selectionnee.continent_name)
+    //        {
                 //Ajouter dans la pile face pas cachée la carte
-                foreach (Carte carte in continent.banque.FileDeCartes)
-                {
-                    if (carte_selectionnee.nom == carte.nom)
-                    {
-                        continent.banque.RemoveCard(continent.banque.FileDeCartes, carte_selectionnee);
-                    }
-                }
-            }
-        }
+                //foreach (Carte carte in continent.banque.FileDeCartes)
+                //{
+                    //if (carte_selectionnee.nom == carte.nom)
+                    //{
+                       // continent.banque.RemoveCard(continent.banque.FileDeCartes, carte_selectionnee);
+                    //}
+    //            }
+    //        }
+    //    }
     }
     public void Restauration(char name, Carte carte_selected)
     {
@@ -287,8 +287,6 @@ public class Player
             {" Plantes  à  bisous   ","PlantesABisous"},
         };
 
-        
-
         foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
         {
             if (joueur.map_choisie == Dico_ContinentUI_ContinentBack[nom_continent])
@@ -309,11 +307,17 @@ public class Player
         {
             Debug.Log("Function recenser exec");
             RetirerPieces(prix_recensement);
-            carte_drawn = joueur_cible.continent.pileFaceCachee[0];
-            joueur_cible.continent.pileFaceCachee.RemoveAt(0);
 
-            GameObject.Find(Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().SpeciesStackCardIsDiscovered();
-            GameObject.Find(Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().IncreaseCardAmount();
+            for (int i = 0; i != 3; i++)
+            {
+                carte_drawn = joueur_cible.continent.pileFaceCachee[0];
+                joueur_cible.continent.pileFaceCachee.RemoveAt(0);
+
+                continent.banque.listeDeListes[0].Add(carte_drawn);
+
+                GameObject.Find(Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().SpeciesStackCardIsDiscovered();
+                GameObject.Find(Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().IncreaseCardAmount();   
+            }
         }
         else
         {

@@ -24,7 +24,7 @@ public class GameLogic : MonoBehaviour
     public List<Carte_event> liste_event;
 
 
-    Dictionary<string, int> DicoTourEnFctDeDifficulte = new Dictionary<string, int>()
+    public Dictionary<string, int> DicoTourEnFctDeDifficulte = new Dictionary<string, int>()
     {
         {"Facile",7},
         {"Normal", 14},

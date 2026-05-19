@@ -28,6 +28,7 @@ public class RecupActionJoueur : MonoBehaviour
             Debug.Log("Eduquer appel");
         }
     }
+    
     public void RecupRecruter()
     {
         if (TurnHandler.instance.PlayerActuel.VerifPointAction(1) && (!TurnHandler.instance.PlayerActuel.OuvrierAchete)) 
@@ -37,6 +38,7 @@ public class RecupActionJoueur : MonoBehaviour
             TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
         }
     }
+
     public void RecupRecenser()
     {
         if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
@@ -55,6 +57,7 @@ public class RecupActionJoueur : MonoBehaviour
         }
 
     }
+
     public void RecupRecolter()
     {
         if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
@@ -64,6 +67,7 @@ public class RecupActionJoueur : MonoBehaviour
             TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
         }
     }
+
     public void RecupAmeliorer()
     {
         if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))

@@ -8,39 +8,111 @@ using System.Linq;
 
 public class Banque
 {
-    public Queue<Carte> FileDeCartes = new Queue<Carte>();
-    public int indice_carte = 0;
-    public void Regulation_cartes(int indice_carte)
-    {
-        Carte NouvelleCarte = new Carte(indice_carte.ToString(), "Montagne", true, 0, 1, "jsp", "Continent");
 
-        if (FileDeCartes.Count < 3)
-        {
-            FileDeCartes.Enqueue(NouvelleCarte);
-        }
-        else if (FileDeCartes.Count == 3)
-        {
-            FileDeCartes.Enqueue(NouvelleCarte);
-            FileDeCartes.Dequeue();
-        }
-        else
-        {
-            FileDeCartes.Dequeue();
-        }
-        Debug.Log("Nombre de Cartes dans la banque :" + FileDeCartes.Count);
-    }
-    public void plus_une_carte()
+    public GameObject Banque1;
+    public GameObject Banque2;
+    public GameObject Banque3;
+
+    public List<List<Carte>> listeDeListes = new()
     {
-        Regulation_cartes(indice_carte);
-        indice_carte++;
-    }
-    public void moins_une_carte()
+        new List<Carte>(),
+        new List<Carte>(),
+        new List<Carte>(),
+    };    
+
+    public bool VerificationPresence(string CarteAVerifier, string carte)
     {
-        FileDeCartes.Dequeue();
-        Debug.Log("Nombre de Cartes dans la banque :" + FileDeCartes.Count);
+        return CarteAVerifier == carte;
     }
-    public void RemoveCard(Queue<Carte> queue, Carte carte_a_remove)
+
+    public bool contient;
+
+    public void AjouterCarteAuDebut(Carte CarteARajouter)
     {
-        queue = new Queue<Carte>(queue.Where(x => x != carte_a_remove));
+        contient = false;
+        foreach (var liste in listeDeListes)
+        {
+            foreach (var carte in liste)
+            {
+                if (VerificationPresence(carte, CarteARajouter))
+                {
+                    contient = true;
+                }
+            }
+        }
+        if (contient == false) 
+        {
+            listeDeListes[0].Add(CarteARajouter);
+        }
+    }
+
+    public void Regulation_cartes()
+    {
+        listeDeListes[2].Clear();
+        listeDeListes[2].AddRange(listeDeListes[1]);
+
+        listeDeListes[1].Clear();      
+        listeDeListes[1].AddRange(listeDeListes[0]);
+
+        listeDeListes[0].Clear();     
+
+        Debug.Log(listeDeListes[0].Count());
+        Debug.Log(listeDeListes[1].Count());
+        Debug.Log(listeDeListes[2].Count());
+
+        Remontage1Carte(listeDeListes[1][0]);
+        Debug.Log("MAcrton");
+        UpdateUIJoueur();
+    }
+
+    public void UpdateUIJoueur()
+    {
+        Banque1 = GameObject.Find("Banque1");
+        Banque2 = GameObject.Find("Banque2");
+        Banque3 = GameObject.Find("Banque3");
+
+        Debug.Log(listeDeListes[0].Count());
+        Debug.Log(listeDeListes[1].Count());
+        Debug.Log(listeDeListes[2].Count());
+
+        if (listeDeListes[0].Count() != 0)
+        {
+            Debug.Log("Diff 0");
+        } else {
+            Debug.Log("0");
+        }
+
+        if (listeDeListes[1].Count() != 0)
+        {
+            Debug.Log("Diff 0");
+        } else {
+            Debug.Log("0");
+        }
+
+        if (listeDeListes[2].Count() != 0)
+        {
+            Debug.Log("Diff 0");
+        } else {
+            Debug.Log("0");
+        }
+    }
+
+    public void Remontage1Carte(string CarteARemonter)
+    {
+        foreach (var liste in listeDeListes)
+        {
+            foreach (var carte in liste)
+            {
+                if (VerificationPresence(carte.nom, CarteARemonter))
+                {
+                    Debug.Log("ici");
+                    listeDeListes[0].Add(carte);
+                    Debug.Log("c passe");
+                    liste.Remove(carte);
+                    Debug.Log("Heee Heee");
+                    return;
+                }
+            }
+        }
     }
 }
