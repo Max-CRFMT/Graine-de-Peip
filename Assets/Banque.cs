@@ -29,7 +29,6 @@ public class Banque
     {
         return CarteAVerifier == carte;
     }
-
     public void AjouterCarteAuDebut(Carte CarteARajouter)
     {
         contient = false;
@@ -111,11 +110,8 @@ public class Banque
             {
                 if (VerificationPresence(carte.nom, CarteARemonter))
                 {
-                    Debug.Log("ici");
                     listeDeListes[0].Add(carte);
-                    Debug.Log("c passe");
                     liste.Remove(carte);
-                    Debug.Log("Heee Heee");
                     return;
                 }
             }

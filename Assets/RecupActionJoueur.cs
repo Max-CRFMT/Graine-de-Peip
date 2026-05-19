@@ -65,6 +65,16 @@ public class RecupActionJoueur : MonoBehaviour
             TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Recolter);
             Debug.Log("Recolter appel");
             TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
+
+
+            ButtonScreenMoverScript.instance.ScreenMoverBottomButtonPressed();
+
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>() { "UIJoueur" }, "CanvasGUI");
+
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>() { "boutonFinTour" }, "UIJoueur");
+            MenuOptions.instance.ResearchCanvasSelonTag("TxtRecolte").gameObject.SetActive(true);
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>() { "SpeciesStack" }, "CanvasGUI");
+
         }
     }
 

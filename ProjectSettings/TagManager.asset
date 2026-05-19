@@ -37,6 +37,7 @@ TagManager:
   - NorthAmerica
   - SouthAmerica
   - TxtRecensement
+  - TxtRecolte
   layers:
   - Default
   - TransparentFX

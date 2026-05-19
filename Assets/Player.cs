@@ -313,8 +313,6 @@ public class Player
                 carte_drawn = joueur_cible.continent.pileFaceCachee[0];
                 joueur_cible.continent.pileFaceCachee.RemoveAt(0);
 
-                continent.banque.listeDeListes[0].Add(carte_drawn);
-
                 GameObject.Find(Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().SpeciesStackCardIsDiscovered();
                 GameObject.Find(Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().IncreaseCardAmount();   
             }
@@ -345,14 +343,14 @@ public class Player
                 }
                 else if (PiocheToJardinOuPiocheToBanque == 'B') //Carte va dans la banque du joueur
                 {
-                    
+                    continent.banque.listeDeListes[0].Add(carte_cible);
                 }
             }
             else if (PiocheOuBanque == 'B') // Carte prise de la banque
             {
                 if (BanqueReloadOuBanqueToJardin == 'R') //Remettre la carte à un autre endroit de la banque
                 {
-                    
+                    continent.banque.AjouterCarteAuDebut(carte_cible);
                 }
                 else if (BanqueReloadOuBanqueToJardin == 'J') //Envoyer la carte dans le jardfin
                 {
