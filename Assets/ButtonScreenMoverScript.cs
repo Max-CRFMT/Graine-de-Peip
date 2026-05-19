@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class ButtonScreenMoverScript : MonoBehaviour
 {
     //coordon�es ajustables pour le d�placement de la cam�ra
-    public int yCoord;
+    public float yCoord;
     public bool isButtonPressed = false;
     public float velocity;
 
@@ -29,7 +29,7 @@ public class ButtonScreenMoverScript : MonoBehaviour
 
 
 
-    public void MoveCamera(int yCoord, float velocity) 
+    public void MoveCamera(float yCoord, float velocity) 
     {
         MainCamera.transform.position = Vector3.Lerp(MainCamera.transform.position, new Vector3(0, yCoord, -10), velocity * Time.deltaTime);
     }

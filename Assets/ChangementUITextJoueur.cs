@@ -12,14 +12,16 @@ public class ChangementUITextJoueur : MonoBehaviour
     [SerializeField] TextMeshProUGUI TMPCompteurPointsAction;
     [SerializeField] TextMeshProUGUI TMPThunePrevisionnelle;
 
-
-
+    public Sprite plateauJoueurSprite;
+    public GameObject plateauJoueur;
+    public SpriteRenderer plateauJoueurSpriteRenderer;
 
     public static ChangementUITextJoueur instance;
 
     private void Awake()
     {
         instance = this;
+        plateauJoueur = GameObject.FindGameObjectWithTag("playerBoard");
     }
 
     public void ChangePseudoJoueur()
@@ -40,18 +42,23 @@ public class ChangementUITextJoueur : MonoBehaviour
     {
         TMPCompteurPointsAction.text = TurnHandler.instance.PlayerActuel.Points_Action.ToString();
     }
+
+
+    public void ChangePlateauJoueur()
+    {
+        plateauJoueur.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("PlayerBoard/" + TurnHandler.instance.PlayerActuel.map_choisie.ToString());
+        if (plateauJoueur.GetComponent<SpriteRenderer>().sprite == null)
+        {
+            Debug.Log("Marche pas" + " PlayerBoard/" + TurnHandler.instance.PlayerActuel.map_choisie.ToString());
+        }
+        
+    }
     public void ChangerChangementJoueur()
     {
         ChangeContinentJoueur();
         ChangePseudoJoueur();
         ChangeThuneJoueur();
         ChangePointsActionJoueur();
+        ChangePlateauJoueur();
     }
-
-    public void UpdateThunePrevisionnelle()
-    {
-        // Doit changer la caractéristique de la thune qui devrait arriver au prochain tour normalement
-
-    }
-
 }

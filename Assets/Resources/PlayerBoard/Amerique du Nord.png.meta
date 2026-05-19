@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 33ee2c56f5505184bb9a740cbbe52bed
+guid: 9aaa4995ab2535347b0e3cddd0027a17
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 483256773399166742
-    second: "CrocDeSorci\xE8re_0"
+      213: -6083814345661299024
+    second: Amerique du Nord_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "CrocDeSorci\xE8re_0"
+      name: Amerique du Nord_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1736
-        height: 2426
+        width: 4488
+        height: 3543
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 61f32c9997fd4b600800000000000000
-      internalID: 483256773399166742
+      spriteID: 0b6ce670613f19ba0800000000000000
+      internalID: -6083814345661299024
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "CrocDeSorci\xE8re_0": 483256773399166742
+      Amerique du Nord_0: -6083814345661299024
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

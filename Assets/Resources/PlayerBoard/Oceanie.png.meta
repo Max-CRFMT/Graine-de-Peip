@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c0a32680801e1e143b96aa96c589c13f
+guid: 3173af152706a3147a1dd0b46bc6723f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2734867675511278051
-    second: ImpatienteDeLhimalaya_0
+      213: -9011657424234687364
+    second: Oceanie_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ImpatienteDeLhimalaya_0
+      name: Oceanie_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1736
-        height: 2426
+        width: 4488
+        height: 3543
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3e94c8239a334f520800000000000000
-      internalID: 2734867675511278051
+      spriteID: c74daf6815920f280800000000000000
+      internalID: -9011657424234687364
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ImpatienteDeLhimalaya_0: 2734867675511278051
+      Oceanie_0: -9011657424234687364
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
