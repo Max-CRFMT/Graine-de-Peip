@@ -318,6 +318,14 @@ PrefabInstance:
       propertyPath: CardAmountText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1817420714610208939, guid: b40983e2ee7d150418969b4d8cdcdb29, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1817420714610208939, guid: b40983e2ee7d150418969b4d8cdcdb29, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 4418947505147299846, guid: b40983e2ee7d150418969b4d8cdcdb29, type: 3}
       propertyPath: m_Name
       value: Banque3
@@ -6786,6 +6794,14 @@ PrefabInstance:
       propertyPath: CardAmountText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1817420714610208939, guid: b40983e2ee7d150418969b4d8cdcdb29, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1817420714610208939, guid: b40983e2ee7d150418969b4d8cdcdb29, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 4418947505147299846, guid: b40983e2ee7d150418969b4d8cdcdb29, type: 3}
       propertyPath: m_Name
       value: Banque1
@@ -10468,6 +10484,14 @@ PrefabInstance:
       propertyPath: CardAmountText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1817420714610208939, guid: b40983e2ee7d150418969b4d8cdcdb29, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1817420714610208939, guid: b40983e2ee7d150418969b4d8cdcdb29, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 4418947505147299846, guid: b40983e2ee7d150418969b4d8cdcdb29, type: 3}
       propertyPath: m_Name
       value: Banque2

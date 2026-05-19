@@ -380,11 +380,7 @@ public class TurnHandler : MonoBehaviour
             instance.FinTour = false;
             instance.PlayerActuel = joueur;
 
-            if (GameLogic.instance.ToursRestants != GameLogic.instance.DicoTourEnFctDeDifficulte[GameLogic.instance.difficulte])
-            {
-                instance.PlayerActuel.continent.banque.Regulation_cartes();
-            }
-
+            instance.PlayerActuel.continent.banque.Regulation_cartes();
 
             ChangementUITextJoueur.instance.ChangerChangementJoueur();
             

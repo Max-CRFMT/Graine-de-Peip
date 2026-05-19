@@ -12,6 +12,9 @@ public class Banque
     public GameObject Banque1;
     public GameObject Banque2;
     public GameObject Banque3;
+    public Color Invisible = new Color(1f, 1f, 1f, 0f);
+    public Color Visible = new Color(1f, 1f, 1f, 1f);
+
 
     public List<List<Carte>> listeDeListes = new()
     {
@@ -20,12 +23,12 @@ public class Banque
         new List<Carte>(),
     };    
 
+    public bool contient;
+
     public bool VerificationPresence(string CarteAVerifier, string carte)
     {
         return CarteAVerifier == carte;
     }
-
-    public bool contient;
 
     public void AjouterCarteAuDebut(Carte CarteARajouter)
     {
@@ -34,7 +37,7 @@ public class Banque
         {
             foreach (var carte in liste)
             {
-                if (VerificationPresence(carte, CarteARajouter))
+                if (VerificationPresence(carte.nom, CarteARajouter.nom))
                 {
                     contient = true;
                 }
@@ -56,12 +59,6 @@ public class Banque
 
         listeDeListes[0].Clear();     
 
-        Debug.Log(listeDeListes[0].Count());
-        Debug.Log(listeDeListes[1].Count());
-        Debug.Log(listeDeListes[2].Count());
-
-        Remontage1Carte(listeDeListes[1][0]);
-        Debug.Log("MAcrton");
         UpdateUIJoueur();
     }
 
@@ -71,29 +68,38 @@ public class Banque
         Banque2 = GameObject.Find("Banque2");
         Banque3 = GameObject.Find("Banque3");
 
-        Debug.Log(listeDeListes[0].Count());
-        Debug.Log(listeDeListes[1].Count());
-        Debug.Log(listeDeListes[2].Count());
-
         if (listeDeListes[0].Count() != 0)
         {
-            Debug.Log("Diff 0");
-        } else {
-            Debug.Log("0");
+            Sprite new_sprite = Resources.Load<Sprite>(listeDeListes[0][0].PetitPathImage);
+            Image image = Banque1.GetComponent<Image>();
+            image.sprite = new_sprite;
+            image.color = Visible;
+
+        } else
+        {
+            Banque1.GetComponent<Image>().color = Invisible;
         }
 
         if (listeDeListes[1].Count() != 0)
         {
-            Debug.Log("Diff 0");
-        } else {
-            Debug.Log("0");
+            Sprite new_sprite = Resources.Load<Sprite>(listeDeListes[1][0].PetitPathImage);
+            Image image = Banque2.GetComponent<Image>();
+            image.sprite = new_sprite;
+            image.color = Visible;
+        } else
+        {
+            Banque2.GetComponent<Image>().color = Invisible;
         }
 
         if (listeDeListes[2].Count() != 0)
         {
-            Debug.Log("Diff 0");
-        } else {
-            Debug.Log("0");
+            Sprite new_sprite = Resources.Load<Sprite>(listeDeListes[2][0].PetitPathImage);
+            Image image = Banque3.GetComponent<Image>();
+            image.sprite = new_sprite;
+            image.color = Visible;
+        } else
+        {
+            Banque3.GetComponent<Image>().color = Invisible;
         }
     }
 

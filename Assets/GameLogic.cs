@@ -23,6 +23,8 @@ public class GameLogic : MonoBehaviour
     public bool partiefinie;
     public List<Carte_event> liste_event;
 
+    public Dictionary<string, string> Dico_NomCarte_Attache;
+    public Dictionary<string, string> Dico_traduction_useless;
 
     public Dictionary<string, int> DicoTourEnFctDeDifficulte = new Dictionary<string, int>()
     {
@@ -33,7 +35,7 @@ public class GameLogic : MonoBehaviour
 
     public GameLogic() { }
 
-    private void Awake()
+    public void Awake()
     {
         instance = this;
         instance.nb_joueurs = 2;
@@ -41,6 +43,45 @@ public class GameLogic : MonoBehaviour
         instance.Liste_Joueurs = new List<Player>();
         instance.ToursRestants = DicoTourEnFctDeDifficulte[difficulte];
         instance.partiefinie = false;
+
+        instance.Dico_traduction_useless = new Dictionary<string, string>(){
+                    {"Asie", "Asia"},
+                    {"Europe", "Europe"},
+                    {"Amerique du Nord", "NorthAmerica"},
+                    {"Oceanie", "Oceania"},
+                    {"Afrique", "Africa"},
+                    {"Amerique du Sud", "SouthAmerica"},
+        };
+
+        instance.Dico_NomCarte_Attache =  new Dictionary<string, string>(){
+            {" Ambroisie  à  feuilles  d'armoise ","AmbroisieAFeuillesDarmoise"},
+            {" Pavot  Polaire ","PavotPolaire"},
+            {" Épicéa  de  Serbie   ","EpiceaDeSerbie"},
+            {" Croc  de  sorcière ","CrocDeSorcière"},
+            {" Cocotier  de  mer ","CocotierDeMer"},
+            {"Plantes-cailloux","PlantesCailloux"},
+            {" Arbre  tabatiére ","ArbreTabatiere"},
+            {" Impatiente  de  l'Himalaya ","ImpatianteDeLhimalaya"},
+            {" Adonis  de  printemps ","AdonisDuPrintemps"},
+            {" Rose  du  désert ","RoseDuDesert"},
+            {"Rafflesia","Rafflesia"},
+            {"Saxaoul","Saxaoul"},
+            {" Dompte-Venin  noir ","DompteVeninNoir"},
+            {" Reine  de  la  nuit ","ReineDeLaNuit"},
+            {" Paw  Paw ","PawPaw"},
+            {" Sapin  de  Fraser ","SapinDeFraser"},
+            {" Baîe  du  faisan   ","BaieDuFaisan"},
+            {" Marguerite  de  l'île  Campbell ","MargueriteDeLileCampbell"},
+            {" Pois  du  désert  de  Sturt ","PoisDuDesertDeSturt"},
+            {" Arum  Titan ","Kokio"}, //Non fonctionnelle
+            {" Herbe  de  la  Pampa ","HerbeDeLaPampa"},
+            {" Chapeau  de  Turc ","ChapeauDeTurc"},
+            {" Luzerne  tropicale ","LuzerneTropicale"},
+            {" Nénuphar  géant   ","NenupharGeant"},
+            {" Plantes  à  bisous   ","PlantesABisous"},
+        };
+
+
     }
 
     public void SetNbJoueurs(int nombre)
@@ -135,15 +176,6 @@ public class GameLogic : MonoBehaviour
             Destroy(objects);
         }
     }
-
-    Dictionary<string, string> Dico_traduction_useless = new Dictionary<string, string>(){
-        {"Asie", "Asia"},
-        {"Europe", "Europe"},
-        {"Amerique du Nord", "NorthAmerica"},
-        {"Oceanie", "Oceania"},
-        {"Afrique", "Africa"},
-        {"Amerique du Sud", "SouthAmerica"},
-    };
 
     public GameObject continent_joueur;
     public void ActivateContinents()
