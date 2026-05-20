@@ -199,7 +199,7 @@ public class Player
                 {
                     if (carte_jardin == carte_controlee)
                     {
-                        continent.jardin.Liste_Carte.Remove(carte_jardin);
+                        //continent.jardin.Liste_Carte.Remove(carte_jardin);
                         //defausse.add(carte_jardin);
                     }
                 }
@@ -279,7 +279,7 @@ public class Player
             {" Baîe  du  faisan   ","BaieDuFaisan"},
             {" Marguerite  de  l'île  Campbell ","MargueriteDeLileCampbell"},
             {" Pois  du  désert  de  Sturt ","PoisDuDesertDeSturt"},
-            {"DrawPilesAsia","Kokio"}, //Non fonctionnelle
+            {"Arum  Titan","Kokio"}, //Non fonctionnelle
             {" Herbe  de  la  Pampa ","HerbeDeLaPampa"},
             {" Chapeau  de  Turc ","ChapeauDeTurc"},
             {" Luzerne  tropicale ","LuzerneTropicale"},
