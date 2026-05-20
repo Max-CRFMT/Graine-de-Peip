@@ -356,9 +356,10 @@ public class Player
             {
                 if (BanqueReloadOuBanqueToJardin == 'R') //Remettre la carte à un autre endroit de la banque
                 {
-                    continent.banque.AjouterCarteAuDebut(carte_cible);
+                    Debug.Log("Reload");
+                    continent.banque.Remontage1Carte(carte_cible.nom);
                 }
-                else if (BanqueReloadOuBanqueToJardin == 'J') //Envoyer la carte dans le jardfin
+                else if (BanqueReloadOuBanqueToJardin == 'J') //Envoyer la carte dans le jardin
                 {
                     
                 }

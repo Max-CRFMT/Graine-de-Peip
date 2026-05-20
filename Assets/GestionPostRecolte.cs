@@ -8,11 +8,13 @@ public class GestionPostRecolte : MonoBehaviour
     public static GestionPostRecolte instance;
 
     public Carte carte_cible_recolte;
-    public char PiocheOuBanque = 'D';
+    public char PiocheOuBanque = 'D'; // D par defaut
 
     public char PiocheToJardinOuPiocheToBanque = 'D'; //Si pioche
 
     public char BanqueReloadOuBanqueToJardin = 'D'; //Si banque
+
+    public int banque2ou3;
     
     public void Awake()
     {
@@ -51,10 +53,11 @@ public class GestionPostRecolte : MonoBehaviour
 
     public void AjoutConstantesEctAuTurnHandlerEtCloture()
     {
+        
         TurnHandler.instance.liste_carte_cible_recolte.Add(carte_cible_recolte);
         TurnHandler.instance.liste_PiocheOuBanque.Add(PiocheOuBanque);
-        TurnHandler.instance.liste_BanqueReloadOuBanqueToJardin.Add(BanqueReloadOuBanqueToJardin);
         TurnHandler.instance.liste_PiocheToJardinOuPiocheToBanque.Add(PiocheToJardinOuPiocheToBanque);
+        TurnHandler.instance.liste_BanqueReloadOuBanqueToJardin.Add(BanqueReloadOuBanqueToJardin);
 
         ReactivationPostRecolte();
     }

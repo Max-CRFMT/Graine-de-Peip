@@ -133,7 +133,10 @@ public class RecupActionJoueur : MonoBehaviour
         ButtonScreenMoverScript.instance.ScreenMoverBottomButtonPressed();
     }
 
-
+    public void AnnulerInterfaceBanque()
+    {
+        MenuOptions.instance.ResearchCanvasSelonTag("BanqueList").gameObject.SetActive(false);
+    }
     public void RecupAnnulerAction()
     {
         TurnHandler.instance.AnnulerDerniereAction();

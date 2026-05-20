@@ -33,32 +33,6 @@ public class GameLogic : MonoBehaviour
         {"Difficile", 21}
     };
 
-    public Dictionary<string,string> Dico_NomCarte_Attache = new Dictionary<string, string>(){
-            {" Ambroisie  à  feuilles  d'armoise ","AmbroisieAFeuillesDarmoise"},
-            {" Pavot  Polaire ","PavotPolaire"},
-            {" Épicéa  de  Serbie   ","EpiceaDeSerbie"},
-            {" Croc  de  sorcière ","CrocDeSorcière"},
-            {" Cocotier  de  mer ","CocotierDeMer"},
-            {"Plantes-cailloux","PlantesCailloux"},
-            {" Impatiente  de  l'Himalaya ","ImpatianteDeLhimalaya"},
-            {" Adonis  de  printemps ","AdonisDuPrintemps"},
-            {" Rose  du  désert ","RoseDuDesert"},
-            {"Rafflesia","Rafflesia"},
-            {"Saxaoul","Saxaoul"},
-            {" Dompte-Venin  noir ","DompteVeninNoir"},
-            {" Reine  de  la  nuit ","ReineDeLaNuit"},
-            {" Paw  Paw ","PawPaw"},
-            {" Sapin  de  Fraser ","SapinDeFraser"},
-            {" Baîe  du  faisan   ","BaieDuFaisan"},
-            {" Marguerite  de  l'île  Campbell ","MargueriteDeLileCampbell"},
-            {" Pois  du  désert  de  Sturt ","PoisDuDesertDeSturt"},
-            {"Arum  Titan","Kokio"},
-            {" Herbe  de  la  Pampa ","HerbeDeLaPampa"},
-            {" Chapeau  de  Turc ","ChapeauDeTurc"},
-            {" Luzerne  tropicale ","LuzerneTropicale"},
-            {" Nénuphar  géant   ","NenupharGeant"},
-            {" Plantes  à  bisous   ","PlantesABisous"},
-        };
 public GameLogic() { }
 
     public void Awake()
