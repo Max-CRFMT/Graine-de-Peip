@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 
 public class SpeciesStackScript : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class SpeciesStackScript : MonoBehaviour
     public Image SpeciesStackSprite;
     public Material coloredMat;
     public Material greyscaleMat;
+
+    public List<Carte> Liste_Carte_Recensee = new List<Carte>();
 
     [ContextMenu("Increase Card Amount")]
     public void IncreaseCardAmount()
@@ -49,6 +53,11 @@ public class SpeciesStackScript : MonoBehaviour
         }
     }
 
+    public void Ajouter(Carte carte_a_ajouter)
+    {
+        Liste_Carte_Recensee.Add(carte_a_ajouter);
+    }
+
     public void CardStackColor()
     {
         if (SpeciesStackSprite != null)
@@ -70,6 +79,25 @@ public class SpeciesStackScript : MonoBehaviour
         }
         CardAmountText.enabled = false;
         // SpeciesStackCardIsDiscovered();
+    }
+
+    public void RenvoyerCartePioche()
+    {
+        Debug.Log(TurnHandler.instance.recolte_en_cours);
+        if (TurnHandler.instance.recolte_en_cours)
+        {
+            if (CardAmount > 0)
+            {
+                GestionPostRecolte.instance.carte_cible_recolte = Liste_Carte_Recensee[0];
+                GestionPostRecolte.instance.PiocheToJardinOuPiocheToBanque = 'P';
+                Debug.Log("C'est active");
+                GestionPostRecolte.instance.ChoixBanqueOuJardinVenantDePioche();
+            } else 
+            {
+                Debug.Log("Bah y'en a pas.");
+            }
+        }
+
     }
 
     void Update()

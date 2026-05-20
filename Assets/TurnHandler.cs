@@ -51,6 +51,8 @@ public class TurnHandler : MonoBehaviour
     public int indice_liste_nb_cartes_controle;
 
     public bool resencement_en_cours;
+    public bool recolte_en_cours;
+    public bool recolte_pioche_en_cours;
 
 
     public TurnHandler() { }
@@ -145,6 +147,8 @@ public class TurnHandler : MonoBehaviour
         instance.indice_liste_BanqueReloadOuBanqueToJardin = 0;
 
         instance.resencement_en_cours = false;
+        instance.recolte_en_cours = false;
+        instance.recolte_pioche_en_cours = false;
 }
 
     public void EffectuerActions()
@@ -321,6 +325,10 @@ public class TurnHandler : MonoBehaviour
             {
                 GestionRecensement.instance.ReactivationPostRecensement();
             }
+            else if (instance.Dico_JoueurActions[instance.PlayerActuel][instance.Dico_JoueurActions[instance.PlayerActuel].Count() - 1] == PlayerAction.Recolter)
+            {
+                GestionPostRecolte.instance.ReactivationPostRecolte();
+            }
             instance.Dico_JoueurActions[instance.PlayerActuel].RemoveAt(instance.Dico_JoueurActions[instance.PlayerActuel].Count() - 1);
         } 
         else
@@ -379,6 +387,9 @@ public class TurnHandler : MonoBehaviour
         {
             instance.FinTour = false;
             instance.PlayerActuel = joueur;
+
+            instance.PlayerActuel.continent.banque.Regulation_cartes();
+
             ChangementUITextJoueur.instance.ChangerChangementJoueur();
             
 

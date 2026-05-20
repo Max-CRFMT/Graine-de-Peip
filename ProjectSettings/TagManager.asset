@@ -37,6 +37,9 @@ TagManager:
   - NorthAmerica
   - SouthAmerica
   - TxtRecensement
+  - TxtRecolte
+  - BoutonUIJoueur
+  - TxtRecoltePioche
   layers:
   - Default
   - TransparentFX

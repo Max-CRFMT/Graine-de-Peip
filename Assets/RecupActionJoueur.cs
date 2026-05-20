@@ -28,6 +28,7 @@ public class RecupActionJoueur : MonoBehaviour
             Debug.Log("Eduquer appel");
         }
     }
+    
     public void RecupRecruter()
     {
         if (TurnHandler.instance.PlayerActuel.VerifPointAction(1) && (!TurnHandler.instance.PlayerActuel.OuvrierAchete)) 
@@ -37,6 +38,7 @@ public class RecupActionJoueur : MonoBehaviour
             TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
         }
     }
+
     public void RecupRecenser()
     {
         if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
@@ -55,6 +57,7 @@ public class RecupActionJoueur : MonoBehaviour
         }
 
     }
+
     public void RecupRecolter()
     {
         if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
@@ -62,8 +65,20 @@ public class RecupActionJoueur : MonoBehaviour
             TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Recolter);
             Debug.Log("Recolter appel");
             TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
+
+            TurnHandler.instance.recolte_en_cours = true;
+
+            ButtonScreenMoverScript.instance.ScreenMoverBottomButtonPressed();
+
+            MenuOptions.instance.ResearchCanvasSelonTag("TxtRecolte").gameObject.SetActive(true);
+
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"BoutonUIJoueur"}, "CanvasGUI");
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"boutonFinTour"}, "UIJoueur");
+            
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"SpeciesStack"}, "CanvasGUI");
         }
     }
+
     public void RecupAmeliorer()
     {
         if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
@@ -104,6 +119,15 @@ public class RecupActionJoueur : MonoBehaviour
         }
     }
 
+
+    public void AnnulerRecoltePioche()
+    {
+        MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"SpeciesStack"}, "CanvasGUI");
+        TurnHandler.instance.recolte_pioche_en_cours = false;
+        MenuOptions.instance.ResearchCanvasSelonTag("TxtRecoltePioche").gameObject.SetActive(false);
+        MenuOptions.instance.ResearchCanvasSelonTag("TxtRecolte").gameObject.SetActive(true);
+        ButtonScreenMoverScript.instance.ScreenMoverBottomButtonPressed();
+    }
 
 
     public void RecupAnnulerAction()

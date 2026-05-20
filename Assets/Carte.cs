@@ -11,6 +11,7 @@ public class Carte
     public int vitesse;
     public string rarete;
     public string continent_name;
+    public string PetitPathImage;
     public Carte(string nom, string biome, bool conservable, int effectif, int vitesse, string rarete, string continent_name)
     {
         this.nom = nom;
@@ -21,6 +22,7 @@ public class Carte
         this.effectif = effectif;
         this.rarete = rarete;
         this.continent_name = continent_name;
+        this.PetitPathImage = "Cards/" + GameLogic.instance.Dico_traduction_useless[continent_name] + "/" + GameLogic.instance.Dico_NomCarte_Attache[nom];
     }
     public override string ToString()
     {
