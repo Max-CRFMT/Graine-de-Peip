@@ -31,7 +31,33 @@ public class GameLogic : MonoBehaviour
         {"Difficile", 21}
     };
 
-    public GameLogic() { }
+    public Dictionary<string,string> Dico_NomCarte_Attache = new Dictionary<string, string>(){
+            {" Ambroisie  à  feuilles  d'armoise ","AmbroisieAFeuillesDarmoise"},
+            {" Pavot  Polaire ","PavotPolaire"},
+            {" Épicéa  de  Serbie   ","EpiceaDeSerbie"},
+            {" Croc  de  sorcière ","CrocDeSorcière"},
+            {" Cocotier  de  mer ","CocotierDeMer"},
+            {"Plantes-cailloux","PlantesCailloux"},
+            {" Impatiente  de  l'Himalaya ","ImpatianteDeLhimalaya"},
+            {" Adonis  de  printemps ","AdonisDuPrintemps"},
+            {" Rose  du  désert ","RoseDuDesert"},
+            {"Rafflesia","Rafflesia"},
+            {"Saxaoul","Saxaoul"},
+            {" Dompte-Venin  noir ","DompteVeninNoir"},
+            {" Reine  de  la  nuit ","ReineDeLaNuit"},
+            {" Paw  Paw ","PawPaw"},
+            {" Sapin  de  Fraser ","SapinDeFraser"},
+            {" Baîe  du  faisan   ","BaieDuFaisan"},
+            {" Marguerite  de  l'île  Campbell ","MargueriteDeLileCampbell"},
+            {" Pois  du  désert  de  Sturt ","PoisDuDesertDeSturt"},
+            {"Arum  Titan","Kokio"},
+            {" Herbe  de  la  Pampa ","HerbeDeLaPampa"},
+            {" Chapeau  de  Turc ","ChapeauDeTurc"},
+            {" Luzerne  tropicale ","LuzerneTropicale"},
+            {" Nénuphar  géant   ","NenupharGeant"},
+            {" Plantes  à  bisous   ","PlantesABisous"},
+        };
+public GameLogic() { }
 
     private void Awake()
     {
@@ -146,8 +172,10 @@ public class GameLogic : MonoBehaviour
     };
 
     public GameObject continent_joueur;
+    public List<GameObject> liste_continent_active;
     public void ActivateContinents()
     {
+        liste_continent_active = new List<GameObject>();
         foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
         {
             var continents = Resources.FindObjectsOfTypeAll<GameObject>();
@@ -156,12 +184,12 @@ public class GameLogic : MonoBehaviour
                 if (continent.tag == Dico_traduction_useless[joueur.map_choisie])
                 {
                     continent_joueur = continent;
+                    liste_continent_active.Add(continent);
                 }
             }
             continent_joueur.gameObject.SetActive(true);
         }
     }
-
     public IEnumerator Jeu()
     {
         AsyncOperation ChargenementScene = SceneManager.LoadSceneAsync("Game");
@@ -332,6 +360,17 @@ public class GameLogic : MonoBehaviour
             liste_instance.Add(une_carte_event);
         }
         return liste_instance;
+    }
+    public bool Is_invasif(string carte_a_tester, List<Carte> list_carte_défausse)
+    {
+        if (list_carte_défausse.Exists(carte => carte.nom == carte_a_tester))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }
 

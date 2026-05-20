@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class SliderControl : MonoBehaviour
 {
@@ -22,6 +23,16 @@ public class SliderControl : MonoBehaviour
         amountSlider.minValue = 1;
         amountSlider.maxValue = thunesdujoueur-1;
         amountSlider.value = 1;
+    }
+
+    public void InitialisationSliderControle()
+    {
+        GameObject carte_plante = GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[" Paw  Paw "]);
+        GameObject enfant_plante = carte_plante.transform.GetChild(0).gameObject;
+        TextMeshProUGUI compteur = enfant_plante.GetComponent<TextMeshProUGUI>();
+        int nb_espece_recense = int.Parse(compteur.text);
+        amountSlider.minValue = 1;
+        amountSlider.maxValue = Mathf.Min(3,nb_espece_recense);
     }
 
     public void JoueurDonCliqued(string nom_a_trouver)
@@ -47,5 +58,11 @@ public class SliderControl : MonoBehaviour
         //Faudrait maintenant que ça actionne 
         TurnHandler.instance.liste_player_cible_don.Add(joueur_cible);
         TurnHandler.instance.liste_montant_don.Add(montantSelectionne);
+    }
+
+    public void OnValidateClickedControle()
+    {   
+        int montantSelectionne = (int)amountSlider.value;
+        Debug.Log("Eradiquer" + montantSelectionne + "plantes");
     }
 }
