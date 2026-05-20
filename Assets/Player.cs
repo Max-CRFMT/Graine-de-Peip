@@ -315,6 +315,7 @@ public class Player
 
                 GameObject.Find(Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().SpeciesStackCardIsDiscovered();
                 GameObject.Find(Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().IncreaseCardAmount();   
+                GameObject.Find(Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().Ajouter(carte_drawn);   
             }
         }
         else
@@ -346,6 +347,7 @@ public class Player
                     continent.banque.listeDeListes[0].Add(carte_cible);
                 }
             }
+            
             else if (PiocheOuBanque == 'B') // Carte prise de la banque
             {
                 if (BanqueReloadOuBanqueToJardin == 'R') //Remettre la carte à un autre endroit de la banque
