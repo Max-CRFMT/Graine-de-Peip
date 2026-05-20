@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using TMPro;
 
 public class RecupActionJoueur : MonoBehaviour
 {
@@ -47,9 +49,10 @@ public class RecupActionJoueur : MonoBehaviour
             TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
 
             TurnHandler.instance.resencement_en_cours = true;
-            ButtonScreenMoverScript.instance.ScreenMoverBottomButtonPressed();
+            GameObject.FindGameObjectWithTag("bottomButtonToGameAtlas").GetComponent<ButtonScreenMoverScript>().ScreenMoverBottomButtonPressed();
 
-            
+
+
             MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"bottomButtonToGameAtlas", "topButtonToPlayerBoard"}, "CanvasGUI");
             MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"boutonFinTour"}, "UIJoueur");
             MenuOptions.instance.ResearchCanvasSelonTag("TxtRecensement").gameObject.SetActive(true);
@@ -68,7 +71,7 @@ public class RecupActionJoueur : MonoBehaviour
 
             TurnHandler.instance.recolte_en_cours = true;
 
-            ButtonScreenMoverScript.instance.ScreenMoverBottomButtonPressed();
+            GameObject.FindGameObjectWithTag("bottomButtonToGameAtlas").GetComponent<ButtonScreenMoverScript>().ScreenMoverBottomButtonPressed();
 
             MenuOptions.instance.ResearchCanvasSelonTag("TxtRecolte").gameObject.SetActive(true);
 
@@ -126,6 +129,7 @@ public class RecupActionJoueur : MonoBehaviour
         TurnHandler.instance.recolte_pioche_en_cours = false;
         MenuOptions.instance.ResearchCanvasSelonTag("TxtRecoltePioche").gameObject.SetActive(false);
         MenuOptions.instance.ResearchCanvasSelonTag("TxtRecolte").gameObject.SetActive(true);
+
         ButtonScreenMoverScript.instance.ScreenMoverBottomButtonPressed();
     }
 

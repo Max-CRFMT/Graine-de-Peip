@@ -83,14 +83,13 @@ public class SpeciesStackScript : MonoBehaviour
 
     public void RenvoyerCartePioche()
     {
-        Debug.Log(TurnHandler.instance.recolte_en_cours);
         if (TurnHandler.instance.recolte_en_cours)
         {
             if (CardAmount > 0)
             {
+                DecreaseCardAmount();
                 GestionPostRecolte.instance.carte_cible_recolte = Liste_Carte_Recensee[0];
-                GestionPostRecolte.instance.PiocheToJardinOuPiocheToBanque = 'P';
-                Debug.Log("C'est active");
+                GestionPostRecolte.instance.PiocheOuBanque = 'P';
                 GestionPostRecolte.instance.ChoixBanqueOuJardinVenantDePioche();
             } else 
             {

@@ -270,8 +270,8 @@ public class TurnHandler : MonoBehaviour
 
     public void MasquerUIJoueur()
     {
-        MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(false, new List<string>() { "UIJoueur", "boutonFinTour" }, "UIJoueur", 0);
-        MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(false, new List<string>() { "UIJoueur", "boutonFinTour" }, "CanvasGUI", 0);
+        MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(false, new List<string>() { "BoutonUIJoueur", "boutonFinTour" }, "UIJoueur", 0);
+        MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(false, new List<string>() { "BoutonUIJoueur", "boutonFinTour" }, "CanvasGUI", 0);
         MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(false, new List<string>() { "UIJoueur" }, "UIJoueur", 2);
         MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(false, new List<string>() { "UIJoueur" }, "CanvasGUI", 2);
     }
@@ -279,8 +279,8 @@ public class TurnHandler : MonoBehaviour
 
     public void ReafficherUI()
     {
-        MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(true, new List<string>() { "UIJoueur", "boutonFinTour" }, "UIJoueur", 0);
-        MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(true, new List<string>() { "UIJoueur", "boutonFinTour" }, "CanvasGUI", 0);
+        MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(true, new List<string>() { "BoutonUIJoueur", "boutonFinTour" }, "UIJoueur", 0);
+        MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(true, new List<string>() { "BoutonUIJoueur", "boutonFinTour" }, "CanvasGUI", 0);
         MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(true, new List<string>() { "UIJoueur" }, "UIJoueur", 2);
         MenuInGame.instance.ChangementActiveBoutonRawImageOuTexteSelonTags(true, new List<string>() { "UIJoueur" }, "CanvasGUI", 2);
     }

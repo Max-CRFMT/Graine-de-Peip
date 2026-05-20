@@ -40,6 +40,7 @@ TagManager:
   - TxtRecolte
   - BoutonUIJoueur
   - TxtRecoltePioche
+  - BanqueList
   layers:
   - Default
   - TransparentFX

@@ -26,9 +26,8 @@ public class ButtonScreenMoverScript : MonoBehaviour
 
     public void ScreenMoverTopButtonpressed()
     {
-       gameObjectWithButtonToBeDisabled = GameObject.FindGameObjectWithTag("bottomButtonToGameAtlas");
+        gameObjectWithButtonToBeDisabled = GameObject.FindGameObjectWithTag("bottomButtonToGameAtlas");
         isButtonPressed = true;
-        Debug.Log(isButtonPressed);
     }
 
     public void ScreenMoverBottomButtonPressed()
@@ -53,13 +52,20 @@ public class ButtonScreenMoverScript : MonoBehaviour
         {
             buttonToBeDisabledDuringMovement = gameObjectWithButtonToBeDisabled.GetComponentInParent<Button>();
             buttonToBeDisabledDuringMovement.enabled = false;
-            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"BoutonUIJoueur"}, "CanvasGUI");
+
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"BoutonUIJoueur", "SpeciesStack"}, "CanvasGUI");
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"TxtRecolte"}, "TxtRecolte");
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"TxtRecoltePioche"}, "TxtRecoltePioche");
+
             MoveCamera(yCoord, velocity);
             if (Mathf.Abs(MainCamera.transform.position.y - yCoord) <= 0.01) //Arr�te la cam�ra une foi str�s proche de la coordon�e voulue mais arrondie pour pouvoir ajuster la valeur proprement et non rester vers une limite jamais atteinte.
             {
                 MainCamera.transform.position = new Vector3(0, yCoord, -10); //Assure que la cam�ra est exactement � la coordonn�e voulue une fois le mouvement termin�
                 isButtonPressed = false;
-                MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"BoutonUIJoueur"}, "CanvasGUI");
+                MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"BoutonUIJoueur", "SpeciesStack"}, "CanvasGUI");
+                MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>() { "TxtRecolte" }, "TxtRecolte");
+                MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>() { "TxtRecoltePioche" }, "TxtRecoltePioche");
+
                 if (!TurnHandler.instance.resencement_en_cours && !TurnHandler.instance.recolte_pioche_en_cours)
                 {
                     buttonToBeDisabledDuringMovement.enabled = true;

@@ -335,6 +335,9 @@ public class Player
         if (VerifMontant(prix_recolte))
         {
             Debug.Log("Function recolter exec");
+            Debug.Log(PiocheOuBanque);
+            Debug.Log(PiocheToJardinOuPiocheToBanque);
+            Debug.Log(BanqueReloadOuBanqueToJardin);
 
             if (PiocheOuBanque == 'P') //Carte prise de la pioche
             {
@@ -344,6 +347,7 @@ public class Player
                 }
                 else if (PiocheToJardinOuPiocheToBanque == 'B') //Carte va dans la banque du joueur
                 {
+                    Debug.Log("Ajoute");
                     continent.banque.listeDeListes[0].Add(carte_cible);
                 }
             }
