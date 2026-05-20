@@ -1,4 +1,8 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UI;
+using TMPro;
 
 public class RecupActionJoueur : MonoBehaviour
 {
@@ -26,6 +30,7 @@ public class RecupActionJoueur : MonoBehaviour
             Debug.Log("Eduquer appel");
         }
     }
+    
     public void RecupRecruter()
     {
         if (TurnHandler.instance.PlayerActuel.VerifPointAction(1) && (!TurnHandler.instance.PlayerActuel.OuvrierAchete)) 
@@ -35,16 +40,27 @@ public class RecupActionJoueur : MonoBehaviour
             TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
         }
     }
+
     public void RecupRecenser()
     {
-        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1)) // s�rement d'autres conditions sur la pioche
+        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
         {
             TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Recenser);
-            Debug.Log("Recenser appel");
             TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
+
+            TurnHandler.instance.resencement_en_cours = true;
+            GameObject.FindGameObjectWithTag("bottomButtonToGameAtlas").GetComponent<ButtonScreenMoverScript>().ScreenMoverBottomButtonPressed();
+
+
+
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"bottomButtonToGameAtlas", "topButtonToPlayerBoard"}, "CanvasGUI");
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"boutonFinTour"}, "UIJoueur");
+            MenuOptions.instance.ResearchCanvasSelonTag("TxtRecensement").gameObject.SetActive(true);
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"DrawPile"}, "CanvasGUI");
         }
 
     }
+
     public void RecupRecolter()
     {
         if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
@@ -52,8 +68,20 @@ public class RecupActionJoueur : MonoBehaviour
             TurnHandler.instance.AjouterActionDansDicoJoueursAction(TurnHandler.PlayerAction.Recolter);
             Debug.Log("Recolter appel");
             TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
+
+            TurnHandler.instance.recolte_en_cours = true;
+
+            GameObject.FindGameObjectWithTag("bottomButtonToGameAtlas").GetComponent<ButtonScreenMoverScript>().ScreenMoverBottomButtonPressed();
+
+            MenuOptions.instance.ResearchCanvasSelonTag("TxtRecolte").gameObject.SetActive(true);
+
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"BoutonUIJoueur"}, "CanvasGUI");
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"boutonFinTour"}, "UIJoueur");
+            
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"SpeciesStack"}, "CanvasGUI");
         }
     }
+
     public void RecupAmeliorer()
     {
         if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
@@ -95,8 +123,20 @@ public class RecupActionJoueur : MonoBehaviour
     }
 
 
+    public void AnnulerRecoltePioche()
+    {
+        MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"SpeciesStack"}, "CanvasGUI");
+        TurnHandler.instance.recolte_pioche_en_cours = false;
+        MenuOptions.instance.ResearchCanvasSelonTag("TxtRecoltePioche").gameObject.SetActive(false);
+        MenuOptions.instance.ResearchCanvasSelonTag("TxtRecolte").gameObject.SetActive(true);
 
+        ButtonScreenMoverScript.instance.ScreenMoverBottomButtonPressed();
+    }
 
+    public void AnnulerInterfaceBanque()
+    {
+        MenuOptions.instance.ResearchCanvasSelonTag("BanqueList").gameObject.SetActive(false);
+    }
     public void RecupAnnulerAction()
     {
         TurnHandler.instance.AnnulerDerniereAction();

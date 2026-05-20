@@ -24,6 +24,13 @@ public class Player
 
     public List<int> Liste_prix_ouvrier = new List<int>(){12, 8, 6, 4};
 
+    public Dictionary<string, string> Dico_ContinentUI_ContinentBack;
+    public Player joueur_cible;
+    public GameObject carte_script;
+    public Dictionary<string, string> Dico_NomCarte_Attache;
+
+
+
     public Player(string name, int coins, string name_map)
     {
         pseudo = name;
@@ -118,21 +125,21 @@ public class Player
 
     public void RestaurationBanque(Carte carte_selectionnee)
     {
-        Debug.Log("Function restauration Banque exec");
-        foreach (Player player in GameLogic.instance.Liste_Joueurs)
-        {
-            if (player.continent.name == carte_selectionnee.continent_name)
-            {
+    //    Debug.Log("Function restauration Banque exec");
+    //    foreach (Player player in GameLogic.instance.Liste_Joueurs)
+    //    {
+    //        if (player.continent.name == carte_selectionnee.continent_name)
+    //        {
                 //Ajouter dans la pile face pas cachée la carte
-                foreach (Carte carte in continent.banque.FileDeCartes)
-                {
-                    if (carte_selectionnee.nom == carte.nom)
-                    {
-                        continent.banque.RemoveCard(continent.banque.FileDeCartes, carte_selectionnee);
-                    }
-                }
-            }
-        }
+                //foreach (Carte carte in continent.banque.FileDeCartes)
+                //{
+                    //if (carte_selectionnee.nom == carte.nom)
+                    //{
+                       // continent.banque.RemoveCard(continent.banque.FileDeCartes, carte_selectionnee);
+                    //}
+    //            }
+    //        }
+    //    }
     }
     public void Restauration(char name, Carte carte_selected)
     {
@@ -192,7 +199,7 @@ public class Player
                 {
                     if (carte_jardin == carte_controlee)
                     {
-                        continent.jardin.Liste_Carte.Remove(carte_jardin);
+                        //continent.jardin.Liste_Carte.Remove(carte_jardin);
                         //defausse.add(carte_jardin);
                     }
                 }
@@ -242,28 +249,80 @@ public class Player
         }
 
     }
-
-    public void RecencerGraines(Player cible_recensement)
+    public void RecencerGraines(string nom_continent)
     {
+        Dico_ContinentUI_ContinentBack = new Dictionary<string, string>(){
+            {"DrawPilesAsia","Asie"},
+            {"DrawPileEurope","Europe"},
+            {"DrawPileNorthAmerica","Amerique du Nord"},
+            {"DrawPileOceania","Oceanie"},
+            {"DrawPileAfrica","Afrique"},
+            {"DrawPile","Amerique du Sud"},
+        };
+
+        Dico_NomCarte_Attache = new Dictionary<string, string>(){
+            {" Ambroisie  à  feuilles  d'armoise ","AmbroisieAFeuillesDarmoise"},
+            {" Pavot  Polaire ","PavotPolaire"},
+            {" Épicéa  de  Serbie   ","EpiceaDeSerbie"},
+            {" Croc  de  sorcière ","CrocDeSorcière"},
+            {" Cocotier  de  mer ","CocotierDeMer"},
+            {"Plantes-cailloux","PlantesCailloux"},
+            {" Impatiente  de  l'Himalaya ","ImpatianteDeLhimalaya"},
+            {" Adonis  de  printemps ","AdonisDuPrintemps"},
+            {" Rose  du  désert ","RoseDuDesert"},
+            {"Rafflesia","Rafflesia"},
+            {"Saxaoul","Saxaoul"},
+            {" Dompte-Venin  noir ","DompteVeninNoir"},
+            {" Reine  de  la  nuit ","ReineDeLaNuit"},
+            {" Paw  Paw ","PawPaw"},
+            {" Sapin  de  Fraser ","SapinDeFraser"},
+            {" Baîe  du  faisan   ","BaieDuFaisan"},
+            {" Marguerite  de  l'île  Campbell ","MargueriteDeLileCampbell"},
+            {" Pois  du  désert  de  Sturt ","PoisDuDesertDeSturt"},
+            {"Arum  Titan","Kokio"}, //Non fonctionnelle
+            {" Herbe  de  la  Pampa ","HerbeDeLaPampa"},
+            {" Chapeau  de  Turc ","ChapeauDeTurc"},
+            {" Luzerne  tropicale ","LuzerneTropicale"},
+            {" Nénuphar  géant   ","NenupharGeant"},
+            {" Plantes  à  bisous   ","PlantesABisous"},
+        };
+
+        foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
+        {
+            if (joueur.map_choisie == Dico_ContinentUI_ContinentBack[nom_continent])
+            {
+                Debug.Log(joueur.map_choisie);
+                joueur_cible = joueur;
+            }
+        }
+
         int prix_recensement = 1;
-        if (cible_recensement.continent.name != continent.name)
+        if (joueur_cible.map_choisie != map_choisie)
         {
             prix_recensement = 2;
+            Debug.Log(prix_recensement);
         }
 
         if (VerifMontant(prix_recensement))
         {
             Debug.Log("Function recenser exec");
-            carte_drawn = cible_recensement.continent.pileFaceCachee[0];
-            cible_recensement.continent.pileFaceCachee.RemoveAt(0);
-            //Ajouter à la pioche du continent de là où ça a été pioché
-            //Attendre que nico ait fini aussi
+            RetirerPieces(prix_recensement);
+
+            for (int i = 0; i != 3; i++)
+            {
+                carte_drawn = joueur_cible.continent.pileFaceCachee[0];
+                joueur_cible.continent.pileFaceCachee.RemoveAt(0);
+
+                GameObject.Find(Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().SpeciesStackCardIsDiscovered();
+                GameObject.Find(Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().IncreaseCardAmount();   
+                GameObject.Find(Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().Ajouter(carte_drawn);   
+            }
         }
         else
         {
             Debug.Log("Montant non acquis, action annulée, cheh");
         }
-        TurnHandler.instance.indice_liste_player_cible_recensement++;
+        TurnHandler.instance.indice_liste_continent_cible_recensement++;
     }
 
     public void RecolterGraines(Carte carte_cible, char PiocheOuBanque, char PiocheToJardinOuPiocheToBanque, char BanqueReloadOuBanqueToJardin)
@@ -276,6 +335,9 @@ public class Player
         if (VerifMontant(prix_recolte))
         {
             Debug.Log("Function recolter exec");
+            Debug.Log(PiocheOuBanque);
+            Debug.Log(PiocheToJardinOuPiocheToBanque);
+            Debug.Log(BanqueReloadOuBanqueToJardin);
 
             if (PiocheOuBanque == 'P') //Carte prise de la pioche
             {
@@ -285,16 +347,19 @@ public class Player
                 }
                 else if (PiocheToJardinOuPiocheToBanque == 'B') //Carte va dans la banque du joueur
                 {
-                    
+                    Debug.Log("Ajoute");
+                    continent.banque.listeDeListes[0].Add(carte_cible);
                 }
             }
+            
             else if (PiocheOuBanque == 'B') // Carte prise de la banque
             {
                 if (BanqueReloadOuBanqueToJardin == 'R') //Remettre la carte à un autre endroit de la banque
                 {
-                    
+                    Debug.Log("Reload");
+                    continent.banque.Remontage1Carte(carte_cible.nom);
                 }
-                else if (BanqueReloadOuBanqueToJardin == 'J') //Envoyer la carte dans le jardfin
+                else if (BanqueReloadOuBanqueToJardin == 'J') //Envoyer la carte dans le jardin
                 {
                     
                 }

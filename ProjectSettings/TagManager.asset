@@ -36,6 +36,11 @@ TagManager:
   - Oceania
   - NorthAmerica
   - SouthAmerica
+  - TxtRecensement
+  - TxtRecolte
+  - BoutonUIJoueur
+  - TxtRecoltePioche
+  - BanqueList
   - playerBoard
   layers:
   - Default
