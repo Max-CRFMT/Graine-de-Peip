@@ -30,8 +30,7 @@ public class GestionPostRecolte : MonoBehaviour
         TurnHandler.instance.recolte_pioche_en_cours = false;
 
 
-        MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"BoutonUIJoueur"}, "CanvasGUI");
-        MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"boutonFinTour"}, "UIJoueur");
+        MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"BoutonUIJoueur", "boutonFinTour"}, "CanvasGUI");
             
         MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"SpeciesStack"}, "CanvasGUI");
     }
@@ -42,8 +41,7 @@ public class GestionPostRecolte : MonoBehaviour
         TurnHandler.instance.recolte_pioche_en_cours = true;
         GameObject.FindGameObjectWithTag("topButtonToPlayerBoard").GetComponent<ButtonScreenMoverScript>().ScreenMoverTopButtonpressed();
 
-        TurnHandler.instance.PlayerActuel.continent.banque.Banque1.GetComponentInChildren<Button>().enabled = true;
-        TurnHandler.instance.PlayerActuel.continent.banque.Banque1.GetComponent<Image>().color = TurnHandler.instance.PlayerActuel.continent.banque.Visible;
+        TurnHandler.instance.PlayerActuel.continent.banque.Banque1.transform.GetChild(0).gameObject.SetActive(true);
 
 
         MenuOptions.instance.ResearchCanvasSelonTag("TxtRecolte").gameObject.SetActive(false);

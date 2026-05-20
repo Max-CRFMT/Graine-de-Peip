@@ -10,5 +10,9 @@ public class GestionRemontageBanque : MonoBehaviour
         GestionPostRecolte.instance.PiocheOuBanque = 'B';
         GestionPostRecolte.instance.carte_cible_recolte = TurnHandler.instance.PlayerActuel.continent.banque.listeDeListes[GestionPostRecolte.instance.banque2ou3][nom];
         MenuOptions.instance.ResearchCanvasSelonTag("BanqueList").gameObject.SetActive(false);
+        TurnHandler.instance.PlayerActuel.continent.banque.Banque1.transform.GetChild(0).gameObject.SetActive(true);
+        TurnHandler.instance.PlayerActuel.continent.banque.Banque2.transform.GetChild(0).gameObject.SetActive(false);
+        TurnHandler.instance.PlayerActuel.continent.banque.Banque3.transform.GetChild(0).gameObject.SetActive(false);
+
     }
 }

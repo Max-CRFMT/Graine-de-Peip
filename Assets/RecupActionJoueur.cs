@@ -51,10 +51,9 @@ public class RecupActionJoueur : MonoBehaviour
             TurnHandler.instance.resencement_en_cours = true;
             GameObject.FindGameObjectWithTag("bottomButtonToGameAtlas").GetComponent<ButtonScreenMoverScript>().ScreenMoverBottomButtonPressed();
 
+            GestionRecensement.instance.Glow();
 
-
-            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"bottomButtonToGameAtlas", "topButtonToPlayerBoard"}, "CanvasGUI");
-            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"boutonFinTour"}, "UIJoueur");
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"topButtonToPlayerBoard"}, "CanvasGUI");
             MenuOptions.instance.ResearchCanvasSelonTag("TxtRecensement").gameObject.SetActive(true);
             MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"DrawPile"}, "CanvasGUI");
         }
@@ -75,8 +74,7 @@ public class RecupActionJoueur : MonoBehaviour
 
             MenuOptions.instance.ResearchCanvasSelonTag("TxtRecolte").gameObject.SetActive(true);
 
-            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"BoutonUIJoueur"}, "CanvasGUI");
-            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"boutonFinTour"}, "UIJoueur");
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"BoutonUIJoueur", "boutonFinTour"}, "CanvasGUI");
             
             MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"SpeciesStack"}, "CanvasGUI");
         }

@@ -42,6 +42,7 @@ TagManager:
   - TxtRecoltePioche
   - BanqueList
   - playerBoard
+  - contour
   layers:
   - Default
   - TransparentFX
