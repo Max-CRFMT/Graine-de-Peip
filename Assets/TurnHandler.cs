@@ -137,8 +137,8 @@ public class TurnHandler : MonoBehaviour
             instance.PlayerActuel = joueur;
 
             instance.PlayerActuel.continent.banque.Regulation_cartes();
-
             ChangementUITextJoueur.instance.ChangerChangementJoueur();
+            PlayerActuel.continent.jardin.UpdateSpriteJardin();
             
 
             Debug.Log("Le joueur actuel est :" + PlayerActuel.pseudo);

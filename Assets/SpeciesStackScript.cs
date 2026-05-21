@@ -87,10 +87,10 @@ public class SpeciesStackScript : MonoBehaviour
         {
             if (CardAmount > 0)
             {
-                DecreaseCardAmount();
                 GestionPostRecolte.instance.carte_cible_recolte = Liste_Carte_Recensee[0];
                 GestionPostRecolte.instance.PiocheOuBanque = 'P';
                 GestionPostRecolte.instance.ChoixBanqueOuJardinVenantDePioche();
+                
             } else 
             {
                 Debug.Log("Bah y'en a pas.");

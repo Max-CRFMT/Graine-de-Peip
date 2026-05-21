@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class Player 
 {
@@ -178,14 +179,9 @@ public class Player
     {
         Debug.Log("Function restauration Jardin exec");
         //Compost.retirer(Carte)
-        foreach (Player player in GameLogic.instance.Liste_Joueurs)
-        {
-            if (player.continent.name == carte_selectionnee.continent_name)
-            {
-                player.continent.pileFaceCachee.Add(carte_selectionnee);
-                ShuffleListeCartes(player.continent.pileFaceCachee);
-            }
-        }
+        GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[carte_selectionnee.nom]).GetComponent<SpeciesStackScript>().IncreaseCardAmount();
+        GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[carte_selectionnee.nom]).GetComponent<SpeciesStackScript>().Ajouter(carte_selectionnee);
+
     }
 
     public void Controle(Carte carte_controlee, char JardinOuPiohe, int Nb_carte_Controlee)
@@ -315,13 +311,19 @@ public class Player
 
     public void RecolterGraines(Carte carte_cible, char PiocheOuBanque, char PiocheToJardinOuPiocheToBanque, char BanqueReloadOuBanqueToJardin)
     {
-        int prix_recolte = 1;
+        int prix_recolte = 2;
         if (carte_cible.continent_name != map_choisie)
         {
-            prix_recolte = 2;
+            prix_recolte = 3;
         }
-        if (VerifMontant(prix_recolte))
+
+        if (VerifMontant(prix_recolte) && !continent.banque.VerificationPresenceCarteDansBanque(carte_cible) && !continent.jardin.VerifierPresenceDansJardin(carte_cible)) 
         {
+
+            RetirerPointAction(1);
+            RetirerPieces(prix_recolte);
+            ChangementUITextJoueur.instance.ChangerChangementJoueur();
+
             Debug.Log("Function recolter exec");
             Debug.Log(PiocheOuBanque);
             Debug.Log(PiocheToJardinOuPiocheToBanque);
@@ -331,10 +333,13 @@ public class Player
             {
                 if (PiocheToJardinOuPiocheToBanque == 'J') //Carte va dans le jardin du joueur
                 {
-                    
+                    GestionPostRecolte.instance.jardin_cible.GetComponent<GestionInteractionJardin>().carte_contenue = carte_cible;
+                    Debug.Log(GestionPostRecolte.instance.jardin_cible.GetComponent<GestionInteractionJardin>().carte_contenue.nom);
+                    continent.jardin.UpdateSpriteJardin();
                 }
                 else if (PiocheToJardinOuPiocheToBanque == 'B') //Carte va dans la banque du joueur
                 {
+                    GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[carte_cible.nom]).GetComponent<SpeciesStackScript>().DecreaseCardAmount();
                     Debug.Log("Ajoute");
                     continent.banque.listeDeListes[0].Add(carte_cible);
                 }
@@ -346,6 +351,7 @@ public class Player
                 {
                     Debug.Log("Reload");
                     continent.banque.Remontage1Carte(carte_cible.nom);
+                    continent.banque.UpdateUIJoueur();
                 }
                 else if (BanqueReloadOuBanqueToJardin == 'J') //Envoyer la carte dans le jardin
                 {
@@ -355,7 +361,7 @@ public class Player
         }
         else    
         {
-            Debug.Log("Montant non acquis, action annulée, cheh");
+            Debug.Log("Montant non acquis, action annulée, cheh. ");
         }
     }
 

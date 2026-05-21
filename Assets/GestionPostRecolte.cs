@@ -14,6 +14,8 @@ public class GestionPostRecolte : MonoBehaviour
 
     public char BanqueReloadOuBanqueToJardin = 'D'; //Si banque
 
+    public GameObject jardin_cible;
+
     public int banque2ou3;
     
     public void Awake()
@@ -26,18 +28,29 @@ public class GestionPostRecolte : MonoBehaviour
         MenuOptions.instance.ResearchCanvasSelonTag("TxtRecolte").gameObject.SetActive(false);
         MenuOptions.instance.ResearchCanvasSelonTag("TxtRecoltePioche").gameObject.SetActive(false);
 
+
         TurnHandler.instance.recolte_en_cours = false;
         TurnHandler.instance.recolte_pioche_en_cours = false;
 
 
-        MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"BoutonUIJoueur", "boutonFinTour"}, "CanvasGUI");
+        MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"BoutonUIJoueur", "boutonFinTour", "bottomButtonToGameAtlas"}, "CanvasGUI");
             
-        MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"SpeciesStack"}, "CanvasGUI");
+        MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"SpeciesStack", "Jardins"}, "CanvasGUI");
+
+
+
+        PiocheOuBanque = 'D';
+        PiocheToJardinOuPiocheToBanque = 'D';
+        BanqueReloadOuBanqueToJardin = 'D';
+
+
     }
 
     public void ChoixBanqueOuJardinVenantDePioche()
     {
         MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"SpeciesStack"}, "CanvasGUI");
+        MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"Jardins"}, "CanvasGUI");
+
         TurnHandler.instance.recolte_pioche_en_cours = true;
         GameObject.FindGameObjectWithTag("topButtonToPlayerBoard").GetComponent<ButtonScreenMoverScript>().ScreenMoverTopButtonpressed();
 
@@ -51,9 +64,11 @@ public class GestionPostRecolte : MonoBehaviour
 
     public void AjoutConstantesEctAuTurnHandlerEtCloture()
     {
-        
+        TurnHandler.instance.PlayerActuel.RecolterGraines(carte_cible_recolte, PiocheOuBanque, PiocheToJardinOuPiocheToBanque, BanqueReloadOuBanqueToJardin);
 
         ReactivationPostRecolte();
+
+        TurnHandler.instance.PlayerActuel.continent.banque.UpdateUIJoueur();
     }
 
 }

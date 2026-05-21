@@ -24,6 +24,23 @@ public class Banque
     };    
 
     public bool contient;
+    public bool contient_dans_banque;
+
+    public bool VerificationPresenceCarteDansBanque(Carte carte_a_verif)
+    {
+        contient_dans_banque = false;
+        foreach (var banque in listeDeListes)
+        {
+            foreach (var carte in banque)
+            {
+                if (carte_a_verif.nom == carte.nom)
+                {
+                    contient_dans_banque = true;
+                }
+            }
+        }
+        return contient_dans_banque;
+    }
 
     public bool VerificationPresence(string CarteAVerifier, string carte)
     {

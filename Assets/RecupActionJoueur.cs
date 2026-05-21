@@ -42,7 +42,6 @@ public class RecupActionJoueur : MonoBehaviour
         if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
         {
             Debug.Log("Recolter appel");
-            TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
 
             TurnHandler.instance.recolte_en_cours = true;
 
@@ -71,6 +70,7 @@ public class RecupActionJoueur : MonoBehaviour
         {
             Debug.Log("Restauration appel");
             TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
+
         }
     }
 
@@ -87,6 +87,7 @@ public class RecupActionJoueur : MonoBehaviour
     public void AnnulerRecoltePioche()
     {
         MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"SpeciesStack"}, "CanvasGUI");
+        MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"Jardins"}, "CanvasGUI");
         TurnHandler.instance.recolte_pioche_en_cours = false;
         MenuOptions.instance.ResearchCanvasSelonTag("TxtRecoltePioche").gameObject.SetActive(false);
         MenuOptions.instance.ResearchCanvasSelonTag("TxtRecolte").gameObject.SetActive(true);
