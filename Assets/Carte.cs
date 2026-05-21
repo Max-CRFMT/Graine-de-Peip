@@ -11,7 +11,6 @@ public class Carte
     public int vitesse;
     public string rarete;
     public string continent_name;
-    public string etat;
     public Carte(string nom, string biome, bool conservable, int effectif, int vitesse, string rarete, string continent_name)
     {
         this.nom = nom;
@@ -26,6 +25,6 @@ public class Carte
     public override string ToString()
     {
         return $"(nom={nom}, biome={biome}, PathImage={PathImage}, conservable={conservable}, " +
-            $"vitesse={vitesse},effectif_total={effectif},rarete={rarete},continent={continent_name}, etat={etat})";
+            $"vitesse={vitesse},effectif_total={effectif},rarete={rarete},continent={continent_name})";
     }
 }
