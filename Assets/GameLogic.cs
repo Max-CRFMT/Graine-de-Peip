@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using TMPro;
 using Unity.VisualScripting;
@@ -30,7 +31,37 @@ public class GameLogic : MonoBehaviour
         {"Normal", 14},
         {"Difficile", 21}
     };
-
+    public Dictionary<string, string> Dico_NomCarte_Attache = new Dictionary<string, string>()
+    {
+        {" Ambroisie  à  feuilles  d'armoise ","AmbroisieAFeuillesDarmoise"},
+        {" Arbre  tabatiére ","ArbreTabatiere"},
+        {" Dompte Venin  noir ","DompteVeninNoir"},
+        {"Plantes cailloux","PlantesCailloux"},
+        //{"",""},{"",""},{"",""},{"",""},
+        {" Pavot  Polaire ","PavotPolaire"},
+        {" Épicéa  de  Serbie   ","EpiceaDeSerbie"},
+        {" Croc  de  sorcière ","CrocDeSorcière"},
+        {" Cocotier  de  mer ","CocotierDeMer"},
+        {"Plantes-cailloux","PlantesCailloux"},
+        {" Impatiente  de  l'Himalaya ","ImpatianteDeLhimalaya"},
+        {" Adonis  de  printemps ","AdonisDuPrintemps"},
+        {" Rose  du  désert ","RoseDuDesert"},
+        {"Rafflesia","Rafflesia"},
+        {"Saxaoul","Saxaoul"},
+        {" Dompte-Venin  noir ","DompteVeninNoir"},
+        {" Reine  de  la  nuit ","ReineDeLaNuit"},
+        {" Paw  Paw ","PawPaw"},
+        {" Sapin  de  Fraser ","SapinDeFraser"},
+        {" Baîe  du  faisan   ","BaieDuFaisan"},
+        {" Marguerite  de  l'île  Campbell ","MargueriteDeLileCampbell"},
+        {" Pois  du  désert  de  Sturt ","PoisDuDesertDeSturt"},
+        {" Kokio","Kokio"},
+        {" Herbe  de  la  Pampa ","HerbeDeLaPampa"},
+        {" Chapeau  de  Turc ","ChapeauDeTurc"},
+        {" Luzerne  tropicale ","LuzerneTropicale"},
+        {" Nénuphar  géant   ","NenupharGeant"},
+        {" Plantes  à  bisous   ","PlantesABisous"},
+    };
     public GameLogic() { }
 
     private void Awake()
@@ -58,7 +89,7 @@ public class GameLogic : MonoBehaviour
 
     public List<string> SelectionMaps = new List<string>() { "Europe", "Afrique", "Asie", "Oceanie", "Amerique du Nord", "Amerique du Sud" };
 
-    public static string RemoveAccents(string text)
+    public string RemoveAccents(string text)
     {
         if (string.IsNullOrEmpty(text))
             return text;
@@ -123,7 +154,6 @@ public class GameLogic : MonoBehaviour
 
     public void DemarrerJeu()
     {
-        Debug.Log("Skibidi ça lance");
         StartCoroutine(Jeu());
     }
 
@@ -309,50 +339,75 @@ public class GameLogic : MonoBehaviour
             liste_carte[r] = tmp;
         }
     }
+    public bool Is_invasif(string carte_a_tester, List<Carte> list_carte_défausse)
+    {
+        if (list_carte_défausse.Exists(carte => carte.nom == carte_a_tester))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    public bool Is_en_extinction(Carte carte_a_tester, List<Carte> list_carte_pioche)
+    {
+        GameObject carte_plante = GameObject.Find(Dico_NomCarte_Attache[carte_a_tester.nom]).transform.GetChild(0).gameObject;
+        TextMeshProUGUI compteur = carte_plante.GetComponent<TextMeshProUGUI>();
+        string valeur = compteur.text;
+        if (list_carte_pioche.Exists(carte => carte.nom == carte_a_tester.nom) ||  valeur != "0")
+        {
+            return false;
+        }
+        else
+        {
+
+            return true;
+        }
+    }
     public List<Carte> Ajout_carte(Carte carte_a_ajouter, List<Carte> list_carte_pioche, List<Carte> list_carte_défausse)
     {
         for (int i = 0; i < carte_a_ajouter.vitesse; i++)
         {
-            if (carte_a_ajouter.etat != "extinction")
+            if (Is_invasif(carte_a_ajouter.nom, list_carte_défausse))
             {
-                if (list_carte_défausse.Exists(carte => carte.nom == carte_a_ajouter.nom))
+                Debug.Log($"y a plus la carte, on passer en ivasive {carte_a_ajouter.nom}");
+                ShuffleListeCartes(list_carte_pioche);
+                for (int j = 0; j < list_carte_pioche.Count; j++)
                 {
-                    Debug.Log("carte bouger");
-                    list_carte_défausse.RemoveAt(list_carte_défausse.FindIndex(carte => carte.nom == carte_a_ajouter.nom));
-                    list_carte_pioche.Add(carte_a_ajouter);
-                    ShuffleListeCartes(list_carte_pioche);
+                    if (list_carte_pioche[j].nom != carte_a_ajouter.nom)
+                    {
+                        list_carte_défausse.Add(list_carte_pioche[j]);
+                        list_carte_pioche.RemoveAt(j);
+                        break;
+                    }
                 }
-                else
-                {
-                    Debug.Log("y a plus la carte");
-                }
+            }
+            else
+            {
+                Debug.Log($"carte bouger {carte_a_ajouter.nom}");
+                list_carte_défausse.RemoveAt(list_carte_défausse.FindIndex(carte => carte.nom == carte_a_ajouter.nom));
+                list_carte_pioche.Add(carte_a_ajouter);
             }
         }
         return list_carte_pioche;
     }
     public void Reproduction()
     {
-        foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
+        foreach (Player joueur in Liste_Joueurs)
         {
-            Debug.Log(joueur.pseudo);
             List<Carte> list_carte_reproduit = new List<Carte>();
-            for (int i = 0; i<joueur.continent.pileFaceCachee.Count; i++)
+            for (int i = 0; i < joueur.continent.pileFaceCachee.Count; i++)
             {
                 Carte carte_actuel = joueur.continent.pileFaceCachee[i];
-                Debug.Log(list_carte_reproduit.Exists(carte => carte.nom == carte_actuel.nom));
-                Debug.Log(carte_actuel);
-                if (list_carte_reproduit.Exists(carte => carte.nom == carte_actuel.nom)== false)
+                if (list_carte_reproduit.Exists(carte => carte.nom == carte_actuel.nom) == false &&
+                    Is_en_extinction(carte_actuel, joueur.continent.pileFaceCachee) == false)
                 {
                     list_carte_reproduit.Add(carte_actuel);
                     joueur.continent.pileFaceCachee = Ajout_carte(carte_actuel,
                                                      joueur.continent.pileFaceCachee,
                                                      joueur.continent.defausse);
-                    string ble = "";
-                    for (int j = 0; j < list_carte_reproduit.Count; j++)
-                    {
-                        ble += list_carte_reproduit[j].ToString();
-                    }
-                    Debug.Log(ble);
+                    ShuffleListeCartes(joueur.continent.pileFaceCachee);
                 }
             }
         }

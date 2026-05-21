@@ -22,7 +22,6 @@ public class Carte
         this.effectif = effectif;
         this.rarete = rarete;
         this.continent_name = continent_name;
-        this.etat = "normale";
     }
     public override string ToString()
     {
