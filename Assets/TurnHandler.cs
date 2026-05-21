@@ -53,6 +53,7 @@ public class TurnHandler : MonoBehaviour
     public bool resencement_en_cours;
     public bool recolte_en_cours;
     public bool recolte_pioche_en_cours;
+    public bool controle_en_cours;
 
 
     public TurnHandler() { }

@@ -43,6 +43,7 @@ TagManager:
   - BanqueList
   - playerBoard
   - contour
+  - TxtControle
   layers:
   - Default
   - TransparentFX

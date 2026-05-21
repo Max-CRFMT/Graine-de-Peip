@@ -73,7 +73,7 @@ public GameLogic() { }
             {" Baîe  du  faisan   ","BaieDuFaisan"},
             {" Marguerite  de  l'île  Campbell ","MargueriteDeLileCampbell"},
             {" Pois  du  désert  de  Sturt ","PoisDuDesertDeSturt"},
-            {" Arum  Titan ","Kokio"}, //Non fonctionnelle
+            {" Arum  Titan ","Kokio"},
             {" Herbe  de  la  Pampa ","HerbeDeLaPampa"},
             {" Chapeau  de  Turc ","ChapeauDeTurc"},
             {" Luzerne  tropicale ","LuzerneTropicale"},
