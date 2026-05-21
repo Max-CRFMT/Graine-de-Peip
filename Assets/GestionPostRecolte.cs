@@ -52,10 +52,6 @@ public class GestionPostRecolte : MonoBehaviour
     public void AjoutConstantesEctAuTurnHandlerEtCloture()
     {
         
-        TurnHandler.instance.liste_carte_cible_recolte.Add(carte_cible_recolte);
-        TurnHandler.instance.liste_PiocheOuBanque.Add(PiocheOuBanque);
-        TurnHandler.instance.liste_PiocheToJardinOuPiocheToBanque.Add(PiocheToJardinOuPiocheToBanque);
-        TurnHandler.instance.liste_BanqueReloadOuBanqueToJardin.Add(BanqueReloadOuBanqueToJardin);
 
         ReactivationPostRecolte();
     }

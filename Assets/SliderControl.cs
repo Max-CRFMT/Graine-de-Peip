@@ -53,11 +53,20 @@ public class SliderControl : MonoBehaviour
 
     public void OnValidateClicked()
     {
-        int montantSelectionne = (int)amountSlider.value;
-        Debug.Log("Montant : " + montantSelectionne + " pour " + joueur_cible.pseudo);
-        //Faudrait maintenant que ça actionne 
-        TurnHandler.instance.liste_player_cible_don.Add(joueur_cible);
-        TurnHandler.instance.liste_montant_don.Add(montantSelectionne);
+        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
+        {
+            Debug.Log("Don appel");
+            TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
+            int montantSelectionne = (int)amountSlider.value;
+            Debug.Log("Montant : " + montantSelectionne + " pour " + joueur_cible.pseudo);
+
+            TurnHandler.instance.PlayerActuel.Don(montantSelectionne, joueur_cible);
+        }
+        else
+        {
+            Debug.Log("Pas de pts d'action rip");
+        }
+
     }
 
     public void OnValidateClickedControle()

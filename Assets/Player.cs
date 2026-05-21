@@ -95,27 +95,37 @@ public class Player
     public void DemandeSubventions()
     {
         int montantSubvention = 1;
-        if (VerifMontant(montantSubvention))
+        if (continent.name == "Afrique")
         {
+            montantSubvention = 0;
+        }
+
+        if (VerifPointAction(1) && !SubventionDemandee && VerifMontant(montantSubvention))
+        {
+
             Debug.Log("Function demandeSubventions exec");
             pieces += 2;
+            RetirerPointAction(1);
+            SubventionDemandee = true;
+            ChangementUITextJoueur.instance.ChangerChangementJoueur();
         }
         else
         {
-            Debug.Log("Pas assez de thune rip bozo");
+            Debug.Log("Pas assez de pts d'actions ou de thune ou subventions déjà demandée ce tour-ci");
         }
+
     }
 
-    public void Don(int montant_don, Player player_source, Player player_cible)
+    public void Don(int montant_don, Player player_cible)
     {
         int prix_don = 1;
         if (VerifMontant(prix_don))
         {
             Debug.Log("Function Don exec");
             player_cible.RajouterPieces(montant_don);
-            player_source.RetirerPieces(montant_don + prix_don);
-            TurnHandler.instance.indice_player_cible_don++;
-            TurnHandler.instance.indice_liste_montant_don++;
+            RetirerPieces(montant_don + prix_don);
+            Debug.Log(pieces);
+            ChangementUITextJoueur.instance.ChangerChangementJoueur();
         }
         else
         {
@@ -158,15 +168,11 @@ public class Player
             {
                 RestaurationJardin(carte_selected);
             }
-            TurnHandler.instance.indice_JB_restauration++;
-            TurnHandler.instance.indice_carte_selected_restauration++;
         }
         else
         {
             Debug.Log("Montant non acquis, action annulée, cheh");
         }
-        TurnHandler.instance.indice_JB_restauration++;
-        TurnHandler.instance.indice_carte_selected_restauration++;
     }
     public void RestaurationJardin(Carte carte_selectionnee)
     {
@@ -213,19 +219,22 @@ public class Player
         {
             Debug.Log("Montant non acquis, action annulée, cheh");
         }
-        TurnHandler.instance.indice_liste_liste_cartes_controle++;
-        TurnHandler.instance.indice_liste_JP_controle++;
-        TurnHandler.instance.indice_liste_nb_cartes_controle++;
     }
 
     public void Eduquer()
     {
+
         int prix_education = 4;
-        if (VerifMontant(prix_education) && continent.EducationLevel <=3)
+        if (VerifMontant(prix_education) && continent.EducationLevel <=3 && VerifPointAction(1))
         {
             Debug.Log("Function eduquer exec");
             continent.EducationLevel += 1;
             RetirerPieces(prix_education);
+            RetirerPointAction(1);
+            ChangementUITextJoueur.instance.ChangerChangementJoueur();
+        } else if (continent.EducationLevel == 3)
+        {
+            Debug.Log("Votre continent est déjà au niveau max");
         }
         else
         {
@@ -236,18 +245,18 @@ public class Player
 
     public void Recruter_Ouvrier()
     {
-        if (VerifMontant(Liste_prix_ouvrier[continent.EducationLevel]))
+        if (VerifMontant(Liste_prix_ouvrier[continent.EducationLevel]) && VerifPointAction(1) && !OuvrierAchete)
         {
             Debug.Log("Function recruter ouvrier exec");
             RajouterPointActionMax();
             OuvrierAchete = true;
             Debug.Log("Maintenant, pt actions max = " + Points_Action_Max);
+            ChangementUITextJoueur.instance.ChangerChangementJoueur();
         }
         else
         {
             Debug.Log("Montant non acquis, action annulée, cheh");
         }
-
     }
     public void RecencerGraines(string nom_continent)
     {
@@ -258,33 +267,6 @@ public class Player
             {"DrawPileOceania","Oceanie"},
             {"DrawPileAfrica","Afrique"},
             {"DrawPile","Amerique du Sud"},
-        };
-
-        Dico_NomCarte_Attache = new Dictionary<string, string>(){
-            {" Ambroisie  à  feuilles  d'armoise ","AmbroisieAFeuillesDarmoise"},
-            {" Pavot  Polaire ","PavotPolaire"},
-            {" Épicéa  de  Serbie   ","EpiceaDeSerbie"},
-            {" Croc  de  sorcière ","CrocDeSorcière"},
-            {" Cocotier  de  mer ","CocotierDeMer"},
-            {"Plantes-cailloux","PlantesCailloux"},
-            {" Impatiente  de  l'Himalaya ","ImpatianteDeLhimalaya"},
-            {" Adonis  de  printemps ","AdonisDuPrintemps"},
-            {" Rose  du  désert ","RoseDuDesert"},
-            {"Rafflesia","Rafflesia"},
-            {"Saxaoul","Saxaoul"},
-            {" Dompte-Venin  noir ","DompteVeninNoir"},
-            {" Reine  de  la  nuit ","ReineDeLaNuit"},
-            {" Paw  Paw ","PawPaw"},
-            {" Sapin  de  Fraser ","SapinDeFraser"},
-            {" Baîe  du  faisan   ","BaieDuFaisan"},
-            {" Marguerite  de  l'île  Campbell ","MargueriteDeLileCampbell"},
-            {" Pois  du  désert  de  Sturt ","PoisDuDesertDeSturt"},
-            {"Arum  Titan","Kokio"}, //Non fonctionnelle
-            {" Herbe  de  la  Pampa ","HerbeDeLaPampa"},
-            {" Chapeau  de  Turc ","ChapeauDeTurc"},
-            {" Luzerne  tropicale ","LuzerneTropicale"},
-            {" Nénuphar  géant   ","NenupharGeant"},
-            {" Plantes  à  bisous   ","PlantesABisous"},
         };
 
         foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
@@ -303,26 +285,32 @@ public class Player
             Debug.Log(prix_recensement);
         }
 
+        if (map_choisie == "Amerique du Sud" || map_choisie == "Amérique du Sud")
+        {
+            prix_recensement -= 1;
+        }
+
         if (VerifMontant(prix_recensement))
         {
             Debug.Log("Function recenser exec");
             RetirerPieces(prix_recensement);
+            RetirerPointAction(1);
 
             for (int i = 0; i != 3; i++)
             {
                 carte_drawn = joueur_cible.continent.pileFaceCachee[0];
                 joueur_cible.continent.pileFaceCachee.RemoveAt(0);
 
-                GameObject.Find(Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().SpeciesStackCardIsDiscovered();
-                GameObject.Find(Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().IncreaseCardAmount();   
-                GameObject.Find(Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().Ajouter(carte_drawn);   
+                GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().SpeciesStackCardIsDiscovered();
+                GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().IncreaseCardAmount();   
+                GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().Ajouter(carte_drawn);   
             }
+            ChangementUITextJoueur.instance.ChangerChangementJoueur();
         }
         else
         {
             Debug.Log("Montant non acquis, action annulée, cheh");
         }
-        TurnHandler.instance.indice_liste_continent_cible_recensement++;
     }
 
     public void RecolterGraines(Carte carte_cible, char PiocheOuBanque, char PiocheToJardinOuPiocheToBanque, char BanqueReloadOuBanqueToJardin)
@@ -369,10 +357,6 @@ public class Player
         {
             Debug.Log("Montant non acquis, action annulée, cheh");
         }
-        TurnHandler.instance.indice_liste_carte_cible_recolte++;
-        TurnHandler.instance.indice_liste_PiocheOuBanque++;
-        TurnHandler.instance.indice_liste_BanqueReloadOuBanqueToJardin++;
-        TurnHandler.instance.indice_liste_PiocheToJardinOuPiocheToBanque++;
     }
 
     public void AmeliorerJardin()

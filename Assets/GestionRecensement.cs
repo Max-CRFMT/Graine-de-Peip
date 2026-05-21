@@ -42,8 +42,7 @@ public class GestionRecensement : MonoBehaviour
     public void AjouterTurnHandlerNomContinent()
     {
         string string_nom = GetComponentInParent<UnityEngine.UI.Button>().name;
-        Debug.Log(string_nom);
-        TurnHandler.instance.liste_continent_cible_recensement.Add(string_nom);
+        TurnHandler.instance.PlayerActuel.RecencerGraines(string_nom);
 
         ReactivationPostRecensement();
     }
