@@ -27,6 +27,6 @@ public class Carte
     public override string ToString()
     {
         return $"(nom={nom}, biome={biome}, PathImage={PathImage}, conservable={conservable}, " +
-            $"vitesse={vitesse},effectif_total={effectif},rarete={rarete})";
+            $"vitesse={vitesse},effectif_total={effectif},rarete={rarete},continent={continent_name})";
     }
 }

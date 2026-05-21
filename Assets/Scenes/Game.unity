@@ -16892,8 +16892,20 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1980358690}
     m_Modifications:
+    - target: {fileID: 2259307377617174227, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259307377617174227, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259307377617174227, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 2634074522191080746, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
       propertyPath: m_Camera
       value: 
@@ -17015,6 +17027,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
+--- !u!224 &1732780349 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2259307377617174227, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
+  m_PrefabInstance: {fileID: 1732780348}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1763714810
 GameObject:
   m_ObjectHideFlags: 0
@@ -18656,7 +18673,10 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 0}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1764597990042597028, guid: 3716bf047b055f41d92889ba7f704ec6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1732780349}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3716bf047b055f41d92889ba7f704ec6, type: 3}
 --- !u!114 &1980358689 stripped
@@ -18670,6 +18690,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+--- !u!4 &1980358690 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1764597990042597028, guid: 3716bf047b055f41d92889ba7f704ec6, type: 3}
+  m_PrefabInstance: {fileID: 1980358688}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1987215697
 GameObject:
   m_ObjectHideFlags: 0
@@ -19692,7 +19717,6 @@ SceneRoots:
   - {fileID: 1774048719}
   - {fileID: 109464426}
   - {fileID: 1673243650}
-  - {fileID: 1732780348}
   - {fileID: 1980358688}
   - {fileID: 1101499077}
   - {fileID: 1215121235}

@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VectorGraphics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.Rendering.DebugUI;
 public class ScriptDemarrer : MonoBehaviour
 {
@@ -70,10 +72,7 @@ public class ScriptDemarrer : MonoBehaviour
         List<List<string>> tableau_event = new();
         tableau_event = GameLogic.instance.Traduction_csv(Application.streamingAssetsPath + "/data/tableau/tableau_event.csv", 8, tableau_event);
         GameLogic.instance.liste_event = GameLogic.instance.Creation_carte_event(tableau_event);
-        Debug.Log("On est là");
         ShuffleListeCartesevent(GameLogic.instance.liste_event);
-        Debug.Log("Et ici");
         GameLogic.instance.DemarrerJeu();
-        
     }
 }
