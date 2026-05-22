@@ -135,6 +135,7 @@ public class TurnHandler : MonoBehaviour
         {
             instance.FinTour = false;
             instance.PlayerActuel = joueur;
+            PlayerActuel.SubventionDemandee = false;
 
             instance.PlayerActuel.continent.banque.Regulation_cartes();
             ChangementUITextJoueur.instance.ChangerChangementJoueur();
