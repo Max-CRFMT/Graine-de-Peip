@@ -6,13 +6,18 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
-public class Fonction_event : MonoBehaviour 
+public class Fonction_event : MonoBehaviour
 {
     public static Fonction_event instance;
     private void Awake()
     {
         instance = this;
     }
+    public Dictionary<string, string> Dico_Nom_event = new Dictionary<string, string>()
+    {
+        //{"",""},{"",""},{"",""},
+        {"",""},
+    };
     public void Inondations()
     {
         foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
@@ -50,12 +55,12 @@ public class Fonction_event : MonoBehaviour
             print($"premiere carte apres suppression {liste_carte[0].ToString()}");
         }
     }
-     public void Theorie_du_Complot()
+    public void Theorie_du_Complot()
     {
-        foreach(Player joueur in GameLogic.instance.Liste_Joueurs)
+        foreach (Player joueur in GameLogic.instance.Liste_Joueurs)
         {
             int niveau_education = joueur.continent.EducationLevel;
-            if (niveau_education != -1)  
+            if (niveau_education != -1)
             {
                 niveau_education -= 1;
                 print($"niveau d'education apres modif{niveau_education}");
@@ -79,4 +84,9 @@ public class Fonction_event : MonoBehaviour
             }
         }
     }
+    public void Deforestation()
+    {
+
+    }
+
 }
