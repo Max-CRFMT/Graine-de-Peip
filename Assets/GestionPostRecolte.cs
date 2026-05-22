@@ -35,8 +35,8 @@ public class GestionPostRecolte : MonoBehaviour
 
         MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"BoutonUIJoueur", "boutonFinTour", "bottomButtonToGameAtlas"}, "CanvasGUI");
             
-        MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"SpeciesStack", "Jardins"}, "CanvasGUI");
-
+        MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"SpeciesStack"}, "CanvasGUI");
+        TurnHandler.instance.PlayerActuel.continent.jardin.DisableButton();
 
 
         PiocheOuBanque = 'D';
@@ -49,7 +49,7 @@ public class GestionPostRecolte : MonoBehaviour
     public void ChoixBanqueOuJardinVenantDePioche()
     {
         MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"SpeciesStack"}, "CanvasGUI");
-        MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"Jardins"}, "CanvasGUI");
+        TurnHandler.instance.PlayerActuel.continent.jardin.EnableButton();
 
         TurnHandler.instance.recolte_pioche_en_cours = true;
         GameObject.FindGameObjectWithTag("topButtonToPlayerBoard").GetComponent<ButtonScreenMoverScript>().ScreenMoverTopButtonpressed();

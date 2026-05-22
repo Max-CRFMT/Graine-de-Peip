@@ -6,9 +6,13 @@ public class GestionInteractionJardin : MonoBehaviour
     public Carte carte_contenue;
     public void JardinCliqued()
     {
-        GestionPostRecolte.instance.PiocheToJardinOuPiocheToBanque = 'J';
-        GestionPostRecolte.instance.jardin_cible = gameObject;
-        GestionPostRecolte.instance.AjoutConstantesEctAuTurnHandlerEtCloture();
+        if (TurnHandler.instance.recolte_pioche_en_cours && carte_contenue == null)
+        {
+            GestionPostRecolte.instance.PiocheToJardinOuPiocheToBanque = 'J';
+            GestionPostRecolte.instance.jardin_cible = gameObject;
+            GestionPostRecolte.instance.AjoutConstantesEctAuTurnHandlerEtCloture();
+        }
+
     }
 
     public void MiseAJourUI()

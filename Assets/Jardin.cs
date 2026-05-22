@@ -1,7 +1,9 @@
-using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
+
 
 public class Jardin
 {
@@ -50,32 +52,41 @@ public class Jardin
         Liste_Carte.Add(carte_a_ajoute);
     }
 
+    public void EnableButton()
+    {
+        for (int i = 1; i != niveau_jardin + 1; i++)
+        {
+            string obj = "Jardin" + i.ToString();
+            var go = GameObject.Find(obj).gameObject;
+            go.GetComponent<UnityEngine.UI.Button>().enabled = true;
+        }
+    }
+
+    public void DisableButton()
+    {
+        for (int i = 1; i != niveau_jardin + 1; i++)
+        {
+            string obj = "Jardin" + i.ToString();
+            var go = GameObject.Find(obj).gameObject;
+            go.GetComponent<UnityEngine.UI.Button>().enabled = false;
+        }
+    }
+
     public void UpdateSpriteJardin()
     {
-        Jardin1 = GameObject.Find("Jardin1");
-        Jardin2 = GameObject.Find("Jardin2");
-        Jardin3 = GameObject.Find("Jardin3");
-        Jardin4 = GameObject.Find("Jardin4");
-        Jardin5 = GameObject.Find("Jardin5");
-        Jardin6 = GameObject.Find("Jardin6");
-        Jardin7 = GameObject.Find("Jardin7");
-        Jardin8 = GameObject.Find("Jardin8");
-
-        Jardin1.GetComponent<GestionInteractionJardin>().MiseAJourUI();
-        Jardin2.GetComponent<GestionInteractionJardin>().MiseAJourUI();
-        Jardin3.GetComponent<GestionInteractionJardin>().MiseAJourUI();
-        Jardin4.GetComponent<GestionInteractionJardin>().MiseAJourUI();
-        Jardin5.GetComponent<GestionInteractionJardin>().MiseAJourUI();
-        Jardin6.GetComponent<GestionInteractionJardin>().MiseAJourUI();
-        Jardin7.GetComponent<GestionInteractionJardin>().MiseAJourUI();
-        Jardin8.GetComponent<GestionInteractionJardin>().MiseAJourUI();
+        for (int i = 1; i != niveau_jardin+1; i++)
+        {
+            string obj = "Jardin" + i.ToString();
+            GameObject.Find(obj).gameObject.GetComponent<GestionInteractionJardin>().MiseAJourUI();
+            var go = GameObject.Find(obj).gameObject;
+            go.GetComponent<UnityEngine.UI.Button>().enabled = true;
+        }
     }
 
     public bool VerifierPresenceDansJardin(Carte carte_a_verifier)
     {
         PresentDansJardin = false;
-
-        foreach (var carte in Liste_Carte)
+        foreach (Carte carte in Liste_Carte)
         {
             if (carte.nom == carte_a_verifier.nom)
             {
