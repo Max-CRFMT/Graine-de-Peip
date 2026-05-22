@@ -191,6 +191,12 @@ public class Player
         {
             prix_controle = 2;
         }
+        if (map_choisie == "Océanie" || map_choisie == "Oceanie")
+        {
+            prix_controle--;
+        }
+
+
         if (VerifMontant(prix_controle))
         {
             Debug.Log("Function controle exec");
@@ -241,7 +247,14 @@ public class Player
 
     public void Recruter_Ouvrier()
     {
-        if (VerifMontant(Liste_prix_ouvrier[continent.EducationLevel]) && VerifPointAction(1) && !OuvrierAchete)
+
+        int prix_ouvrier = Liste_prix_ouvrier[continent.EducationLevel];
+        if (map_choisie == "Europe")
+        {
+            prix_ouvrier--;
+        }
+
+        if (VerifMontant(prix_ouvrier) && VerifPointAction(1) && !OuvrierAchete)
         {
             Debug.Log("Function recruter ouvrier exec");
             RajouterPointActionMax();
@@ -316,6 +329,10 @@ public class Player
         {
             prix_recolte = 3;
         }
+        if (map_choisie == "Amérique du Nord" || map_choisie == "Amerique du Nord")
+        {
+            prix_recolte--;
+        }
 
         if (VerifMontant(prix_recolte)) 
         {
@@ -376,6 +393,13 @@ public class Player
     public void AmeliorerJardin()
     {
         int prix_jardin = 4;
+        if (map_choisie == "Asie")
+        {
+            prix_jardin--;
+        }
+
+
+
         if (VerifMontant(prix_jardin))
         {
             RetirerPieces(prix_jardin);
