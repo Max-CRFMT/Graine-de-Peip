@@ -10,6 +10,7 @@ public class SliderControl : MonoBehaviour
     public TMP_Text amountText;
     public Player joueur_cible;
     public string nom_a_trouver;
+    public int montantSelectionneControl;
     public static SliderControl instance;
 
     public void Awake()
@@ -62,7 +63,7 @@ public class SliderControl : MonoBehaviour
 
     public void OnValidateClickedControle()
     {   
-        int montantSelectionne = (int)amountSlider.value;
-        Debug.Log("Eradiquer" + montantSelectionne + "plantes");
+        montantSelectionneControl = (int)amountSlider.value;
+        Debug.Log("Eradiquer" + montantSelectionneControl + "plantes");
     }
 }

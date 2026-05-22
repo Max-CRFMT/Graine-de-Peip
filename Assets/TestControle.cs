@@ -41,7 +41,7 @@ public class TestControle : MonoBehaviour
     {
         joueur = TurnHandler.instance.PlayerActuel;
         nom_carte = " Paw  Paw ";
-        int nombre_a_supprimer = 1; //Valeur du slider
+        int nombre_a_supprimer = SliderControl.instance.montantSelectionneControl; //Valeur du slider
 
         GameObject carte_plante = GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[nom_carte]);
         //Debug.Log(GameLogic.instance.Dico_NomCarte_Attache[nom_carte]);

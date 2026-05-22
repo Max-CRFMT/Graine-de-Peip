@@ -13,4 +13,12 @@ public class OpenClosePanel : MonoBehaviour
     {
         panel.SetActive(false);
     }
+    public void openPanelControl()
+    {
+        if (TurnHandler.instance.controle_en_cours)
+        {
+            panel.SetActive(true);
+            MenuOptions.instance.ResearchCanvasSelonTag("TxtControle").gameObject.SetActive(false);
+        }
+    }
 }

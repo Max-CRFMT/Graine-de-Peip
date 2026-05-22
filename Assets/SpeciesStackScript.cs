@@ -18,6 +18,9 @@ public class SpeciesStackScript : MonoBehaviour
 
     public List<Carte> Liste_Carte_Recensee = new List<Carte>();
 
+    public string nom_espece;
+    public int nb_control = SliderControl.instance.montantSelectionneControl;
+
     [ContextMenu("Increase Card Amount")]
     public void IncreaseCardAmount()
     {
@@ -96,7 +99,34 @@ public class SpeciesStackScript : MonoBehaviour
                 Debug.Log("Bah y'en a pas.");
             }
         }
+    }
 
+    public void RenvoyerCarteControle()
+    {
+        if (TurnHandler.instance.controle_en_cours)
+        {
+            if (CardAmount > 0)
+            {
+                nom_espece = gameObject.name;
+                Debug.Log(nom_espece);
+            }
+            else { Debug.Log("Aucune carte de cette espèce !"); }
+        }
+    }
+
+    public void SupprimerCarteControle()
+    {
+        if (TurnHandler.instance.controle_en_cours)
+        {
+            if (CardAmount > 0)
+            {
+                for (int i = 0; i < nb_control; i++)
+                {
+                    DecreaseCardAmount();
+                }
+            }
+            else { Debug.Log("Aucune carte de cette espèce !"); }
+        }
     }
 
     void Update()

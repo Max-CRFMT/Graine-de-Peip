@@ -4,6 +4,7 @@ using UnityEngine;
 public class GestionControl : MonoBehaviour
 {
     public static GestionControl instance;
+    public Carte carte_choisie;
 
     public void Awake()
     {
