@@ -3,6 +3,7 @@ using System;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -307,12 +308,22 @@ public class Player
 
             for (int i = 0; i != 3; i++)
             {
-                carte_drawn = joueur_cible.continent.pileFaceCachee[0];
-                joueur_cible.continent.pileFaceCachee.RemoveAt(0);
+                Debug.Log(joueur_cible.continent.pileFaceCachee.Count());
+                if (joueur_cible.continent.pileFaceCachee.Count() >= 1)
+                {
+                    Debug.Log("Ici");
+                    carte_drawn = joueur_cible.continent.pileFaceCachee[0];
+                    joueur_cible.continent.pileFaceCachee.RemoveAt(0);
 
-                GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().SpeciesStackCardIsDiscovered();
-                GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().IncreaseCardAmount();   
-                GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().Ajouter(carte_drawn);   
+                    GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().SpeciesStackCardIsDiscovered();
+                    GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().IncreaseCardAmount();   
+                    GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[carte_drawn.nom]).GetComponent<SpeciesStackScript>().Ajouter(carte_drawn);   
+                } else
+                {
+                    Debug.Log("ou la bas");
+                    GameObject.Find(nom_continent).gameObject.SetActive(false);
+                    Debug.Log("Il n'y a plus de carte dans cette pioche");
+                }
             }
             ChangementUITextJoueur.instance.ChangerChangementJoueur();
         }

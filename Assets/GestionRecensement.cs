@@ -4,6 +4,8 @@ using System.Collections.Generic;
 public class GestionRecensement : MonoBehaviour
 {
     public static GestionRecensement instance; 
+
+    
     
     public void Awake()
     {
