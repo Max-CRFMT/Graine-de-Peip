@@ -13,7 +13,7 @@ public class Jardin
     public static int fibo1 = 1;
     public static int fibo2 = 1;
 
-    public static List<string> liste_biome_jardin;
+    public List<string> liste_biome_jardin;
 
     GameObject Jardin1;
     GameObject Jardin2;
