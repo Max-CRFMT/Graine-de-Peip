@@ -11,6 +11,11 @@ public class GestionInteractionJardin : MonoBehaviour
             GestionPostRecolte.instance.PiocheToJardinOuPiocheToBanque = 'J';
             GestionPostRecolte.instance.jardin_cible = gameObject;
             GestionPostRecolte.instance.AjoutConstantesEctAuTurnHandlerEtCloture();
+        } else if (TurnHandler.instance.recolte_en_cours && GestionPostRecolte.instance.PiocheOuBanque == 'B' && carte_contenue == null)
+        {
+            GestionPostRecolte.instance.BanqueReloadOuBanqueToJardin = 'J';
+            GestionPostRecolte.instance.jardin_cible = gameObject;
+            GestionPostRecolte.instance.AjoutConstantesEctAuTurnHandlerEtCloture();
         }
 
     }

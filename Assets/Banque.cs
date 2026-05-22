@@ -42,6 +42,14 @@ public class Banque
         return contient_dans_banque;
     }
 
+    public void EnleverCartesBanqueSelonCarte(Carte carte)
+    {
+        foreach (var liste in listeDeListes)
+        {
+            liste.Remove(carte);
+        }
+    }
+
     public bool VerificationPresence(string CarteAVerifier, string carte)
     {
         return CarteAVerifier == carte;
