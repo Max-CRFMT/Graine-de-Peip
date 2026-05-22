@@ -98,7 +98,7 @@ public class RecupActionJoueur : MonoBehaviour
     public void AnnulerRecolte()
     {
         MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"SpeciesStack"}, "CanvasGUI");
-
+        GestionPostRecolte.instance.ReactivationPostRecolte();
         TurnHandler.instance.recolte_en_cours= false;
         MenuOptions.instance.ResearchCanvasSelonTag("TxtRecoltePioche").gameObject.SetActive(false);
         MenuOptions.instance.ResearchCanvasSelonTag("TxtRecolte").gameObject.SetActive(false);

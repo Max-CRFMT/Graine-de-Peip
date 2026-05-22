@@ -33,11 +33,11 @@ public class GestionPostRecolte : MonoBehaviour
         TurnHandler.instance.recolte_pioche_en_cours = false;
 
 
-        MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>(){"BoutonUIJoueur", "boutonFinTour", "bottomButtonToGameAtlas"}, "CanvasGUI");
             
         MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>(){"SpeciesStack"}, "CanvasGUI");
         TurnHandler.instance.PlayerActuel.continent.jardin.DisableButton();
 
+        MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>() { "BoutonUIJoueur", "boutonFinTour", "bottomButtonToGameAtlas" }, "CanvasGUI");
 
         PiocheOuBanque = 'D';
         PiocheToJardinOuPiocheToBanque = 'D';
