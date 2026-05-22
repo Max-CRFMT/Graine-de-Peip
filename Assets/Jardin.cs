@@ -3,14 +3,15 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-
-public class Jardin
+public class Jardin 
 {
     public string name;
     public int limite_max_jardin = 8;
     public static int niveau_jardin = 1;
-    public static int fibo1 = 0;
+    public static int fibo1 = 1;
     public static int fibo2 = 1;
     public static List<string> liste_biome_jardin;
 
@@ -29,12 +30,12 @@ public class Jardin
 
     Dictionary<string, List<string>> Dict_Continent_Biomes = new Dictionary<string, List<string>>()
     {
-        {"Europe", new List<string>(){"Bretagne", "Paris"} },
-        {"Afrique", new List<string>(){"Mali", "Maroc"} },
-        {"Asie", new List<string>(){"Japon", "Coree"} },
-        {"Oceanie", new List<string>(){"Iles", "Australie" } },
-        {"Amerique du Sud", new List<string>(){"Bresil", "Argentine"} },
-        {"Amerique du Nord", new List<string>(){"Canada", "US" } },
+        {"Europe", new List<string>(){"Forêt tempérée"} },
+        {"Afrique", new List<string>(){"Brousse", "Désert"} },
+        {"Asie", new List<string>(){"Forêt pluvieuse"} },
+        {"Oceanie", new List<string>(){"Désert", "Prairies"} },
+        {"Amerique du Sud", new List<string>(){"Forêt pluvieuse"} },
+        {"Amerique du Nord", new List<string>(){"Forêt de conifères"} },
     };
 
     public Jardin(string nom_continent)
@@ -107,25 +108,85 @@ public class Jardin
         return PresentDansJardin;
     }
 
-    public void Amelioration_du_jardin()
+    public void AjouterCarteDansJardin(Carte carte_a_ajoute)
     {
-        if (niveau_jardin < limite_max_jardin)
+        Liste_Carte.Add(carte_a_ajoute);
+    }
+
+    public void EnableButton()
+    {
+        for (int i = 1; i != niveau_jardin + 1; i++)
         {
-            niveau_jardin = fibo1 + fibo2;
-            fibo1 = fibo2;
-            fibo2 = niveau_jardin;
-            Debug.Log(niveau_jardin);
-        }
-        else
-        {
-            Debug.Log("Niveau maximal atteint");
+            string obj = "Jardin" + i.ToString();
+            var go = GameObject.Find(obj).gameObject;
+            go.GetComponent<UnityEngine.UI.Button>().enabled = true;
         }
     }
 
-    public void Ajout_un_biome_au_jardin(string nom_biome)
+    public void DisableButton()
     {
-        liste_biome_jardin.Add(nom_biome);
-        //string message = string.Join(",", liste_biome_jardin);
-        //Debug.Log(message);
+        for (int i = 1; i != niveau_jardin + 1; i++)
+        {
+            string obj = "Jardin" + i.ToString();
+            var go = GameObject.Find(obj).gameObject;
+            go.GetComponent<UnityEngine.UI.Button>().enabled = false;
+        }
+    }
+
+    public void UpdateSpriteJardin()
+    {
+        for (int i = 1; i != niveau_jardin+1; i++)
+        {
+            string obj = "Jardin" + i.ToString();
+            Debug.Log(obj);
+            if (Liste_Carte.Count() >= i)
+            {
+                Debug.Log("oui");
+                GameObject.Find(obj).gameObject.GetComponent<GestionInteractionJardin>().carte_contenue = Liste_Carte[i - 1];
+            } else
+            {
+                GameObject.Find(obj).gameObject.GetComponent<GestionInteractionJardin>().carte_contenue = null;
+            }
+            Debug.Log("non");
+
+            GameObject.Find(obj).gameObject.GetComponent<GestionInteractionJardin>().MiseAJourUI();
+            var go = GameObject.Find(obj).gameObject;
+            go.GetComponent<UnityEngine.UI.Button>().enabled = true;
+        }
+    }
+
+    public bool VerifierPresenceDansJardin(Carte carte_a_verifier)
+    {
+        PresentDansJardin = false;
+        foreach (Carte carte in Liste_Carte)
+        {
+            if (carte.nom == carte_a_verifier.nom)
+            {
+                PresentDansJardin = true;
+            }
+        }
+        return PresentDansJardin;
+    }
+
+    
+    public void Amelioration_niveau_jardin()
+    {
+        if (niveau_jardin < limite_max_jardin)
+            {
+                niveau_jardin = fibo1 + fibo2;
+                fibo1 = fibo2;
+                fibo2 = niveau_jardin;
+                Debug.Log("Amélioration effectuée, le jardin peut maitenant accueillir " + niveau_jardin + " plantes.");
+            }
+            else
+            {
+                Debug.Log("Niveau maximal atteint");
+            }
+    }
+
+    public void Ajout_biome_jardin(string biome)
+    {
+        Debug.Log("Le biome " + biome + " a été ajouté à la liste des biomes du jardin.");
+        liste_biome_jardin.Add(biome);
     }
 }

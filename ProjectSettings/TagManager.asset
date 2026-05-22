@@ -36,6 +36,9 @@ TagManager:
   - Oceania
   - NorthAmerica
   - SouthAmerica
+  - canvasBiome
+  - canvasChoixAmelioration
+  - dropBiomes
   - TxtRecensement
   - TxtRecolte
   - BoutonUIJoueur
