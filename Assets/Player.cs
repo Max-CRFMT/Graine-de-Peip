@@ -5,8 +5,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
-public class Player 
+public class Player
 {
     public bool SubventionDemandee = false;
     public string pseudo;
@@ -21,6 +22,9 @@ public class Player
 
     public bool OuvrierAchete;
     public Carte carte_drawn;
+    
+    private Scene curScene;
+    private Array obj;
 
     public List<int> Liste_prix_ouvrier = new List<int>(){12, 8, 6, 4};
 
@@ -317,7 +321,15 @@ public class Player
         {
             RetirerPieces(prix_jardin);
             Debug.Log("Function ameliorer exec");
-            //TODO - ajouter un biome ou ajouter un espace dans le jardin
+            curScene = SceneManager.GetActiveScene();
+            obj = curScene.GetRootGameObjects();
+            foreach (GameObject o in obj)
+            {
+                if (o.name == "PopUpAmeliorationJardin")
+                {
+                    o.SetActive(true);
+                }
+            }
         }
         else
         {
