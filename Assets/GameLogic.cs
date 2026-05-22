@@ -228,11 +228,28 @@ public GameLogic() { }
         MenuOptions.instance.ChangerTexteDansCanvas(MenuOptions.instance.ResearchCanvasSelonTag("CanvasFin"), texte, "CanvasFin");
     }
 
+    public bool EverythingIsDiscoveredAndSpeed1()
+    {
+        bool gagne = true;
+        var gos = GameObject.FindGameObjectsWithTag("SpeciesStack");
+        foreach (var go in gos)
+        {
+            var script = go.GetComponent<SpeciesStackScript>();
+            if (script != null)
+            {
+                if (!script.IsDiscovered)
+                {
+                    gagne = false;
+                }
+            }
+        }
+        return gagne;
+    }
+
     public void FindePartie()
     {
         instance.partiefinie = true;
-        bool placeholder = true;
-        if (placeholder) //partie gagnée
+        if (EverythingIsDiscoveredAndSpeed1()) //partie gagnée
         {
             texte = "Partie gagnée ! Vous avez sauvé la terre !";
         }
