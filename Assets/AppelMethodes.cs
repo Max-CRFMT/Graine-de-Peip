@@ -42,12 +42,12 @@ public class AppelMethodes : MonoBehaviour
         droplist = c.gameObject.GetComponentsInChildren<TMPro.TMP_Dropdown>();
         drop = droplist[0];
         biome = drop.options[drop.value].text;
-        if (TurnHandler.instance.PlayerActuel.continent.jardin.liste_biome_jardin.Contains(biome))
-        {
-            Debug.Log("Le jardin contient déjà l'amélioration pour ce biome.");
-        }
-        else
-        {
+        //if (TurnHandler.instance.PlayerActuel.continent.jardin.liste_biome_jardin.Contains(biome))
+        //{
+        //    Debug.Log("Le jardin contient déjà l'amélioration pour ce biome.");
+        //}
+        //else
+        //{
             TurnHandler.instance.PlayerActuel.continent.jardin.Ajout_biome_jardin(biome);
             c.gameObject.SetActive(false);
             curScene = SceneManager.GetActiveScene();
@@ -63,6 +63,6 @@ public class AppelMethodes : MonoBehaviour
             }
             c = MenuOptions.instance.ResearchCanvasSelonTag("canvasChoixAmelioration");
             c.gameObject.SetActive(true);
-        }
+        //}
     }
 }

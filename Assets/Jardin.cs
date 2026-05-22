@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class Jardin 
 {
@@ -13,6 +12,7 @@ public class Jardin
     public static int niveau_jardin = 1;
     public static int fibo1 = 1;
     public static int fibo2 = 1;
+
     public static List<string> liste_biome_jardin;
 
     GameObject Jardin1;
@@ -46,66 +46,6 @@ public class Jardin
             liste_biome_jardin = new List<string>(Dict_Continent_Biomes[nom_continent]);
         }
         Liste_Carte = new List<Carte>();
-    }
-
-    public void AjouterCarteDansJardin(Carte carte_a_ajoute)
-    {
-        Liste_Carte.Add(carte_a_ajoute);
-    }
-
-    public void EnableButton()
-    {
-        for (int i = 1; i != niveau_jardin + 1; i++)
-        {
-            string obj = "Jardin" + i.ToString();
-            var go = GameObject.Find(obj).gameObject;
-            go.GetComponent<UnityEngine.UI.Button>().enabled = true;
-        }
-    }
-
-    public void DisableButton()
-    {
-        for (int i = 1; i != niveau_jardin + 1; i++)
-        {
-            string obj = "Jardin" + i.ToString();
-            var go = GameObject.Find(obj).gameObject;
-            go.GetComponent<UnityEngine.UI.Button>().enabled = false;
-        }
-    }
-
-    public void UpdateSpriteJardin()
-    {
-        for (int i = 1; i != niveau_jardin+1; i++)
-        {
-            string obj = "Jardin" + i.ToString();
-            Debug.Log(obj);
-            if (Liste_Carte.Count() >= i)
-            {
-                Debug.Log("oui");
-                GameObject.Find(obj).gameObject.GetComponent<GestionInteractionJardin>().carte_contenue = Liste_Carte[i - 1];
-            } else
-            {
-                GameObject.Find(obj).gameObject.GetComponent<GestionInteractionJardin>().carte_contenue = null;
-            }
-            Debug.Log("non");
-
-            GameObject.Find(obj).gameObject.GetComponent<GestionInteractionJardin>().MiseAJourUI();
-            var go = GameObject.Find(obj).gameObject;
-            go.GetComponent<UnityEngine.UI.Button>().enabled = true;
-        }
-    }
-
-    public bool VerifierPresenceDansJardin(Carte carte_a_verifier)
-    {
-        PresentDansJardin = false;
-        foreach (Carte carte in Liste_Carte)
-        {
-            if (carte.nom == carte_a_verifier.nom)
-            {
-                PresentDansJardin = true;
-            }
-        }
-        return PresentDansJardin;
     }
 
     public void AjouterCarteDansJardin(Carte carte_a_ajoute)
