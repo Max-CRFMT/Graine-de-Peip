@@ -351,10 +351,11 @@ public class Player
                 {
                     if (PiocheToJardinOuPiocheToBanque == 'J') //Carte va dans le jardin du joueur
                     {
-                        GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[carte_cible.nom]).GetComponent<SpeciesStackScript>().DecreaseCardAmount();
                         continent.jardin.Liste_Carte.Add(carte_cible);
+                        GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[carte_cible.nom]).GetComponent<SpeciesStackScript>().DecreaseCardAmount();
+                        
 
-                        GestionPostRecolte.instance.jardin_cible.GetComponent<GestionInteractionJardin>().carte_contenue = carte_cible;
+                        //GestionPostRecolte.instance.jardin_cible.GetComponent<GestionInteractionJardin>().carte_contenue = carte_cible;
 
                         continent.jardin.UpdateSpriteJardin();
                     }

@@ -77,6 +77,17 @@ public class Jardin
         for (int i = 1; i != niveau_jardin+1; i++)
         {
             string obj = "Jardin" + i.ToString();
+            Debug.Log(obj);
+            if (Liste_Carte.Count() >= i)
+            {
+                Debug.Log("oui");
+                GameObject.Find(obj).gameObject.GetComponent<GestionInteractionJardin>().carte_contenue = Liste_Carte[i - 1];
+            } else
+            {
+                GameObject.Find(obj).gameObject.GetComponent<GestionInteractionJardin>().carte_contenue = null;
+            }
+            Debug.Log("non");
+
             GameObject.Find(obj).gameObject.GetComponent<GestionInteractionJardin>().MiseAJourUI();
             var go = GameObject.Find(obj).gameObject;
             go.GetComponent<UnityEngine.UI.Button>().enabled = true;
