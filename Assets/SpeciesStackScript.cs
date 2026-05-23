@@ -20,6 +20,7 @@ public class SpeciesStackScript : MonoBehaviour
 
     public string nom_espece;
     public int nb_control = SliderControl.instance.montantSelectionneControl;
+    Player joueur = TurnHandler.instance.PlayerActuel;
 
     [ContextMenu("Increase Card Amount")]
     public void IncreaseCardAmount()
@@ -123,6 +124,9 @@ public class SpeciesStackScript : MonoBehaviour
                 for (int i = 0; i < nb_control; i++)
                 {
                     DecreaseCardAmount();
+                    Carte carte_compostable = GameLogic.instance.Trouver_carte_selon_nom(nom_espece, Liste_Carte_Recensee);
+                    joueur.continent.defausse.Add(carte_compostable);
+                    Liste_Carte_Recensee.Remove(carte_compostable);
                 }
             }
             else { Debug.Log("Aucune carte de cette espèce !"); }

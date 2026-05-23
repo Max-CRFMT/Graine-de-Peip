@@ -1849,6 +1849,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1187073761}
+    - target: {fileID: 470562717477771870, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2259307377617174227, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1929,6 +1933,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2441349942612480339, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2441349942612480339, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633551783277020328, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633551783277020328, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633551783277020328, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3836087412475613702, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4402507672453227645, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1941,6 +1969,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasOptions
       objectReference: {fileID: 0}
+    - target: {fileID: 4730628076351564065, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5663628517497192131, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1948,6 +1980,14 @@ PrefabInstance:
     - target: {fileID: 5663628517497192131, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: MasquerMenuOptions
+      objectReference: {fileID: 0}
+    - target: {fileID: 7785158463220543144, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972699220232847639, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

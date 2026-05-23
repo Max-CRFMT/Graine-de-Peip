@@ -41,7 +41,6 @@ public class TestControle : MonoBehaviour
     {
         joueur = TurnHandler.instance.PlayerActuel;
         nom_carte = " Paw  Paw ";
-        int nombre_a_supprimer = SliderControl.instance.montantSelectionneControl; //Valeur du slider
 
         GameObject carte_plante = GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[nom_carte]);
         //Debug.Log(GameLogic.instance.Dico_NomCarte_Attache[nom_carte]);
@@ -53,6 +52,7 @@ public class TestControle : MonoBehaviour
         string nombre_affiche = compteur.text;
         if (GameLogic.instance.Is_invasif(nom_carte, joueur.continent.defausse))
         {
+            MenuOptions.instance.ResearchCanvasSelonTag("TxtControleInvasif").gameObject.SetActive(true);
             if (joueur.continent.defausse.Count == 0) { Debug.Log("La liste est vide !"); }
             Debug.Log("Invasif");
             int nombre_version_int = int.Parse(nombre_affiche);
@@ -62,7 +62,8 @@ public class TestControle : MonoBehaviour
         }
         else
         {
-            Debug.Log("Else");
+            OpenClosePanel.instance.openPanelControl();
+            int nombre_a_supprimer = SliderControl.instance.montantSelectionneControl; //Valeur du slider
             int nombre_version_int = int.Parse(nombre_affiche);
             nombre_version_int = nombre_version_int - nombre_a_supprimer;
             string nouveau_compteur = nombre_version_int.ToString();
@@ -72,6 +73,14 @@ public class TestControle : MonoBehaviour
     }
     public void Test_boutton()
     {
-        Debug.Log("Let's go");
+        joueur = TurnHandler.instance.PlayerActuel;
+        MenuOptions.instance.ResearchCanvasSelonTag("TxtControlInvasif").gameObject.SetActive(true);
+        //int nombre = joueur.continent.defausse.Count;
+        ////string bla = "";
+        ////for (int j = 0; j < joueur.continent.defausse.Count; j++)
+        ////{
+        ////    bla += joueur.continent.defausse[j].nom + " ; ";
+        ////}
+        //Debug.Log(nombre);
     }
 }

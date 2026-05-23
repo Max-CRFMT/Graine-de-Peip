@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using TMPro;
 using Unity.VisualScripting;
@@ -377,6 +378,16 @@ public GameLogic() { }
         {
             return true;
         }
+    }
+
+    public Carte Trouver_carte_selon_nom(string carte_donnee, List<Carte> liste_carte)
+    {
+        Carte carte_trouve = liste_carte.Find(carte => carte.nom == carte_donnee);
+        if (carte_trouve != null) 
+        { 
+            return carte_trouve;
+        }
+        else { Debug.Log("Carte pas trouvée"); return null; }
     }
 }
 

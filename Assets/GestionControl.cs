@@ -14,6 +14,7 @@ public class GestionControl : MonoBehaviour
     public void ReactivationPostControl()
     {
         MenuOptions.instance.ResearchCanvasSelonTag("TxtControle").gameObject.SetActive(false);
+        MenuOptions.instance.ResearchCanvasSelonTag("TxtControlInvasif").gameObject.SetActive(false);
         TurnHandler.instance.controle_en_cours = false;
         MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>() { "topButtonToPlayerBoard" }, "CanvasGUI");
     }
