@@ -59,8 +59,6 @@ public class RecupActionJoueur : MonoBehaviour
     {
         if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
         {
-            Debug.Log("Ameliorer appel");
-            TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
             TurnHandler.instance.PlayerActuel.AmeliorerJardin();
         }
     }

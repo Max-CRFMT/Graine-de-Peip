@@ -117,8 +117,10 @@ public class Jardin
                 fibo1 = fibo2;
                 fibo2 = niveau_jardin;
                 Debug.Log("Amélioration effectuée, le jardin peut maitenant accueillir " + niveau_jardin + " plantes.");
+                TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
+                ChangementUITextJoueur.instance.ChangerChangementJoueur();
             }
-            else
+        else
             {
                 Debug.Log("Niveau maximal atteint");
             }

@@ -413,9 +413,7 @@ public class Player
         {
             prix_jardin--;
         }
-
-
-
+        
         if (VerifMontant(prix_jardin))
         {
             RetirerPieces(prix_jardin);
