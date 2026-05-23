@@ -72,7 +72,6 @@ public class ScriptDemarrer : MonoBehaviour
         List<List<string>> tableau_event = new();
         tableau_event = GameLogic.instance.Traduction_csv(Application.streamingAssetsPath + "/data/tableau/tableau_event.csv", 8, tableau_event);
         GameLogic.instance.liste_event = GameLogic.instance.Creation_carte_event(tableau_event);
-        ShuffleListeCartesevent(GameLogic.instance.liste_event);
         GameLogic.instance.DemarrerJeu();
     }
 }
