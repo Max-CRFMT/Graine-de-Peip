@@ -34,6 +34,8 @@ public class Player
     public Player joueur_cible;
     public GameObject carte_script;
     public Dictionary<string, string> Dico_NomCarte_Attache;
+    public bool restaurationEnCours = false;
+    public int curBank;
 
 
 
@@ -139,54 +141,35 @@ public class Player
         }
     }
 
-    public void RestaurationBanque(Carte carte_selectionnee)
+    public void Restauration()
     {
-    //    Debug.Log("Function restauration Banque exec");
-    //    foreach (Player player in GameLogic.instance.Liste_Joueurs)
-    //    {
-    //        if (player.continent.name == carte_selectionnee.continent_name)
-    //        {
-                //Ajouter dans la pile face pas cachée la carte
-                //foreach (Carte carte in continent.banque.FileDeCartes)
-                //{
-                    //if (carte_selectionnee.nom == carte.nom)
-                    //{
-                       // continent.banque.RemoveCard(continent.banque.FileDeCartes, carte_selectionnee);
-                    //}
-    //            }
-    //        }
-    //    }
-    }
-    public void Restauration(char name, Carte carte_selected)
-    {
-        int prix_restauration = 2;
-        if (continent.name != carte_selected.continent_name)
+        if (restaurationEnCours)
         {
-            prix_restauration = 3;
-        }
-        if (VerifMontant(prix_restauration))
-        {
-            if (name == 'B')
-            {
-                RestaurationBanque(carte_selected);
-            }
-            else if (name == 'J')
-            {
-                RestaurationJardin(carte_selected);
-            }
+            Debug.Log("L'action est deja en cours.");
         }
         else
         {
-            Debug.Log("Montant non acquis, action annulée, cheh");
+            restaurationEnCours = true;
+            MenuOptions.instance.ResearchCanvasSelonTag("annulerRestauration").gameObject.SetActive(true);
+            Debug.Log("Choisissez la carte à restaurer (cliquez sur l'emplacement du jardin ou de la banque correspondant).");
+            for (int i = 1; i < 9; i++)
+            {
+                if (GameObject.Find("Jardin"+i.ToString()).GetComponent<GestionInteractionJardin>().carte_contenue != null)
+                {
+                    GameObject.Find("Jardin"+i.ToString()).GetComponent<Button>().enabled = true;
+                }
+            }
         }
     }
-    public void RestaurationJardin(Carte carte_selectionnee)
-    {
-        Debug.Log("Function restauration Jardin exec");
-        //Compost.retirer(Carte)
-        GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[carte_selectionnee.nom]).GetComponent<SpeciesStackScript>().IncreaseCardAmount();
-        GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[carte_selectionnee.nom]).GetComponent<SpeciesStackScript>().Ajouter(carte_selectionnee);
 
+    public void FinRestauration()
+    {
+        restaurationEnCours = false;
+        MenuOptions.instance.ResearchCanvasSelonTag("AnnulerRestauration").gameObject.SetActive(false);
+        for (int i = 1; i < 9; i++)
+            {
+                GameObject.Find("Jardin"+i.ToString()).GetComponent<Button>().enabled = false;
+            }   
     }
 
     public void Controle(Carte carte_controlee, char JardinOuPiohe, int Nb_carte_Controlee)

@@ -68,6 +68,7 @@ public class RecupActionJoueur : MonoBehaviour
         if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
         {
             Debug.Log("Restauration appel");
+            TurnHandler.instance.PlayerActuel.Restauration();
             TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
 
         }
@@ -114,6 +115,11 @@ public class RecupActionJoueur : MonoBehaviour
         MenuOptions.instance.ResearchCanvasSelonTag("BanqueList").gameObject.SetActive(false);
     }
 
+    public void AnnulerRestauration()
+    {
+        TurnHandler.instance.PlayerActuel.RajouterPointAction(1);
+        TurnHandler.instance.PlayerActuel.FinRestauration();
+    }
 
 
     public void UpdateUIActionJoueur()
