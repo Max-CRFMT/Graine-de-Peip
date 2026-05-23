@@ -47,6 +47,7 @@ TagManager:
   - playerBoard
   - contour
   - Jardins
+  - annulerRestauration
   layers:
   - Default
   - TransparentFX

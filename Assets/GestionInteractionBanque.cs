@@ -6,18 +6,24 @@ public class GestionInteractionBanque : MonoBehaviour
 {
     public void Banque1OnClick()
     {
-
         if (TurnHandler.instance.recolte_pioche_en_cours)
         {
             GestionPostRecolte.instance.PiocheToJardinOuPiocheToBanque = 'B';
             TurnHandler.instance.PlayerActuel.continent.banque.Banque1.transform.GetChild(0).gameObject.SetActive(false);
             GestionPostRecolte.instance.AjoutConstantesEctAuTurnHandlerEtCloture();
 
-        } else if (TurnHandler.instance.recolte_en_cours && GestionPostRecolte.instance.PiocheOuBanque == 'B')
+        } 
+        else if (TurnHandler.instance.recolte_en_cours && GestionPostRecolte.instance.PiocheOuBanque == 'B')
         {
             GestionPostRecolte.instance.BanqueReloadOuBanqueToJardin = 'R';
             GestionPostRecolte.instance.AjoutConstantesEctAuTurnHandlerEtCloture();
-        } else
+        } 
+        else if (TurnHandler.instance.PlayerActuel.restaurationEnCours)
+        {
+            TurnHandler.instance.PlayerActuel.curBank = 0;
+            AfficherCartesDansBanqueRemontee(0);
+        }      
+        else
         {
             AfficherCartesDansBanqueConsultation(0);
         }
@@ -28,6 +34,11 @@ public class GestionInteractionBanque : MonoBehaviour
         {
             AfficherCartesDansBanqueRemontee(1);
         }
+        else if (TurnHandler.instance.PlayerActuel.restaurationEnCours)
+        {
+            TurnHandler.instance.PlayerActuel.curBank = 1;
+            AfficherCartesDansBanqueRemontee(1);
+        }  
         else
         {
             AfficherCartesDansBanqueConsultation(1);
@@ -38,7 +49,13 @@ public class GestionInteractionBanque : MonoBehaviour
         if (TurnHandler.instance.recolte_en_cours)
         {
             AfficherCartesDansBanqueRemontee(2);
-        } else
+        } 
+        else if (TurnHandler.instance.PlayerActuel.restaurationEnCours)
+        {
+            TurnHandler.instance.PlayerActuel.curBank = 2;
+            AfficherCartesDansBanqueRemontee(2);
+        }  
+        else
         {
             AfficherCartesDansBanqueConsultation(2);
         }
