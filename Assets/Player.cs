@@ -165,7 +165,7 @@ public class Player
     public void FinRestauration()
     {
         restaurationEnCours = false;
-        MenuOptions.instance.ResearchCanvasSelonTag("AnnulerRestauration").gameObject.SetActive(false);
+        MenuOptions.instance.ResearchCanvasSelonTag("annulerRestauration").gameObject.SetActive(false);
         for (int i = 1; i < 9; i++)
             {
                 GameObject.Find("Jardin"+i.ToString()).GetComponent<Button>().enabled = false;
