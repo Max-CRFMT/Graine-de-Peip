@@ -46,6 +46,8 @@ public class RecupActionJoueur : MonoBehaviour
             TurnHandler.instance.recolte_en_cours = true;
 
             GameObject.FindGameObjectWithTag("bottomButtonToGameAtlas").GetComponent<ButtonScreenMoverScript>().ScreenMoverBottomButtonPressed();
+            Debug.Log(GestionRecolte.instance);
+            GestionRecolte.instance.Glow();
 
             MenuOptions.instance.ResearchCanvasSelonTag("TxtRecolte").gameObject.SetActive(true);
 

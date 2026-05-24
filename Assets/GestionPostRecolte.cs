@@ -39,6 +39,8 @@ public class GestionPostRecolte : MonoBehaviour
 
         MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>() { "BoutonUIJoueur", "boutonFinTour", "bottomButtonToGameAtlas" }, "CanvasGUI");
 
+        GestionRecolte.instance.Unglow();
+
         PiocheOuBanque = 'D';
         PiocheToJardinOuPiocheToBanque = 'D';
         BanqueReloadOuBanqueToJardin = 'D';

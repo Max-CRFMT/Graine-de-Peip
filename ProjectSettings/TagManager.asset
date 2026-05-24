@@ -48,6 +48,7 @@ TagManager:
   - contour
   - Jardins
   - annulerRestauration
+  - SpeciesStackContour
   layers:
   - Default
   - TransparentFX

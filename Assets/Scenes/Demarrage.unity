@@ -431,7 +431,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 2
 --- !u!222 &154576043
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -499,7 +499,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Option A
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c6a70304c5f65fe43a5c9fba342a8157, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -566,7 +566,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &317403506
@@ -901,7 +901,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Option A
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c6a70304c5f65fe43a5c9fba342a8157, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -968,7 +968,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &571369734
@@ -1131,7 +1131,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 2
 --- !u!222 &574868648
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1276,7 +1276,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 2
 --- !u!222 &689137585
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1882,8 +1882,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Retour
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c6a70304c5f65fe43a5c9fba342a8157, type: 2}
+  m_sharedMaterial: {fileID: 2160497469745660147, guid: c6a70304c5f65fe43a5c9fba342a8157, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2186,8 +2186,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 2
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c6a70304c5f65fe43a5c9fba342a8157, type: 2}
+  m_sharedMaterial: {fileID: 2160497469745660147, guid: c6a70304c5f65fe43a5c9fba342a8157, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2532,7 +2532,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 2
 --- !u!222 &1378090000
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2725,27 +2725,9 @@ MonoBehaviour:
   FinDiscution: 0
   TxtCountdown: {fileID: 3202052191214865393, guid: 6733e3a77322354488729150e3171bd1, type: 3}
   ButtonCountdown: {fileID: 3265276803180875859, guid: b34ec9786e12d8242aaf31a4f9ce9765, type: 3}
-  indice_player_cible_don: 0
-  liste_montant_don: 
-  indice_liste_montant_don: 0
-  liste_JB_restauration: 
-  indice_JB_restauration: 0
-  indice_carte_selected_restauration: 0
-  indice_liste_player_cible_recensement: 0
-  indice_liste_carte_cible_recolte: 0
-  liste_PiocheOuBanque: 
-  indice_liste_PiocheOuBanque: 0
-  liste_PiocheToJardinOuPiocheToBanque: 
-  indice_liste_PiocheToJardinOuPiocheToBanque: 0
-  liste_BanqueReloadOuBanqueToJardin: 
-  indice_liste_BanqueReloadOuBanqueToJardin: 0
-  indice_liste_player_cible_controle: 0
-  indice_liste_liste_cartes_controle: 0
-  liste_JP_controle: 
-  indice_liste_JP_controle: 0
-  liste_nb_cartes_controle: 
-  indice_liste_nb_cartes_controle: 0
-  Liste_PlayerActions: 060000000300000004000000070000000800000005000000020000000100000000000000
+  resencement_en_cours: 0
+  recolte_en_cours: 0
+  recolte_pioche_en_cours: 0
 --- !u!4 &1506371668
 Transform:
   m_ObjectHideFlags: 0
@@ -2941,8 +2923,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Nombre de joueurs :'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c6a70304c5f65fe43a5c9fba342a8157, type: 2}
+  m_sharedMaterial: {fileID: 2160497469745660147, guid: c6a70304c5f65fe43a5c9fba342a8157, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3291,8 +3273,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Difficult\xE9e d\xE9sir\xE9e :"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c6a70304c5f65fe43a5c9fba342a8157, type: 2}
+  m_sharedMaterial: {fileID: 2160497469745660147, guid: c6a70304c5f65fe43a5c9fba342a8157, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3693,8 +3675,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Valider
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c6a70304c5f65fe43a5c9fba342a8157, type: 2}
+  m_sharedMaterial: {fileID: 2160497469745660147, guid: c6a70304c5f65fe43a5c9fba342a8157, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4115,8 +4097,8 @@ MonoBehaviour:
   m_text: "Veuillez choisir le nombre de joueurs ainsi que la difficult\xE9e d\xE9sir\xE9e
     :"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c6a70304c5f65fe43a5c9fba342a8157, type: 2}
+  m_sharedMaterial: {fileID: 2160497469745660147, guid: c6a70304c5f65fe43a5c9fba342a8157, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4252,8 +4234,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Facile
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c6a70304c5f65fe43a5c9fba342a8157, type: 2}
+  m_sharedMaterial: {fileID: 2160497469745660147, guid: c6a70304c5f65fe43a5c9fba342a8157, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4372,6 +4354,8 @@ MonoBehaviour:
   - "Oc\xE9anie"
   - "Am\xE9rique du Nord"
   - "Am\xE9rique du Sud"
+  continent_joueur: {fileID: 0}
+  liste_continent_active: []
 --- !u!4 &2102932236
 Transform:
   m_ObjectHideFlags: 0
