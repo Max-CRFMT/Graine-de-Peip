@@ -1,16 +1,18 @@
-using UnityEngine;
 using System.Collections;
+using System.Linq;
 using TMPro;
-using UnityEngine.UI;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class SliderControl : MonoBehaviour
 {
     public Slider amountSlider;
     public TMP_Text amountText;
     public Player joueur_cible;
-    public string nom_a_trouver;
     public int montantSelectionneControl;
+    public string nom_a_trouver;
+
     public static SliderControl instance;
 
     public void Awake()
@@ -26,9 +28,9 @@ public class SliderControl : MonoBehaviour
         amountSlider.value = 1;
     }
 
-    public void InitialisationSliderControle()
+    public void InitialisationSliderControle(string nom_carte)
     {
-        GameObject carte_plante = GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[" Paw  Paw "]);
+        GameObject carte_plante = GameObject.Find(nom_carte);
         GameObject enfant_plante = carte_plante.transform.GetChild(0).gameObject;
         TextMeshProUGUI compteur = enfant_plante.GetComponent<TextMeshProUGUI>();
         int nb_espece_recense = int.Parse(compteur.text);
@@ -65,5 +67,9 @@ public class SliderControl : MonoBehaviour
     {   
         montantSelectionneControl = (int)amountSlider.value;
         Debug.Log("Eradiquer" + montantSelectionneControl + "plantes");
+        string nom_carte = ControleDesPopulations.instance.bouton_clique.name;
+        GameObject carte_plante = GameObject.Find(nom_carte);
+        string nom_carte_detache = GameLogic.instance.Dico_NomCarte_Attache.FirstOrDefault(x => x.Value == nom_carte).Key;
+        carte_plante.transform.GetComponent<SpeciesStackScript>().SupprimerCarteControle(montantSelectionneControl, nom_carte_detache);
     }
 }

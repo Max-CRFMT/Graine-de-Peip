@@ -18,8 +18,7 @@ public class SpeciesStackScript : MonoBehaviour
 
     public List<Carte> Liste_Carte_Recensee = new List<Carte>();
 
-    public string nom_espece;
-    public int nb_control = SliderControl.instance.montantSelectionneControl;
+    public string nom_plante;
     Player joueur = TurnHandler.instance.PlayerActuel;
 
     [ContextMenu("Increase Card Amount")]
@@ -108,14 +107,14 @@ public class SpeciesStackScript : MonoBehaviour
         {
             if (CardAmount > 0)
             {
-                nom_espece = gameObject.name;
-                Debug.Log(nom_espece);
+                nom_plante = gameObject.name;
+                Debug.Log(nom_plante);
             }
             else { Debug.Log("Aucune carte de cette espèce !"); }
         }
     }
 
-    public void SupprimerCarteControle()
+    public void SupprimerCarteControle(int nb_control, string nom_espece)
     {
         if (TurnHandler.instance.controle_en_cours)
         {
@@ -128,6 +127,14 @@ public class SpeciesStackScript : MonoBehaviour
                     joueur.continent.defausse.Add(carte_compostable);
                     Liste_Carte_Recensee.Remove(carte_compostable);
                 }
+                //int nombre = Liste_Carte_Recensee.Count;
+                //string bla = "";
+                //for (int j = 0; j < nombre; j++)
+                //{
+                //    bla += Liste_Carte_Recensee[j].nom + " ; ";
+                //}
+                //Debug.Log(bla);
+                //Debug.Log(nombre);
             }
             else { Debug.Log("Aucune carte de cette espèce !"); }
         }

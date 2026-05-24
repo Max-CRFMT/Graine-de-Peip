@@ -387,7 +387,7 @@ public GameLogic() { }
         { 
             return carte_trouve;
         }
-        else { Debug.Log("Carte pas trouvée"); return null; }
+        else { Debug.Log($"Carte pas trouvée{carte_donnee}"); return null; }
     }
 }
 

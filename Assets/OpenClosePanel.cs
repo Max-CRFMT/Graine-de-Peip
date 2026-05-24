@@ -17,15 +17,13 @@ public class OpenClosePanel : MonoBehaviour
     {
         panel.SetActive(false);
     }
-    public void openPanelControl()
+    public void openPanelControl(GameObject panel,string nom_carte)
     {
         if (TurnHandler.instance.controle_en_cours)
         {
-            panel = GameObject.Find("PanelControle");
-            Debug.Log(panel);
             panel.SetActive(true);
             MenuOptions.instance.ResearchCanvasSelonTag("TxtControle").gameObject.SetActive(false);
-            SliderControl.instance.InitialisationSliderControle();
+            SliderControl.instance.InitialisationSliderControle(nom_carte);
         }
     }
 }

@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using TMPro;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class TestControle : MonoBehaviour
@@ -9,6 +11,12 @@ public class TestControle : MonoBehaviour
     public Dictionary<string, string> Dico_NomCarte_Attache;
     int cmpt = 0;
     private Player joueur;
+    public static TestControle instance;
+
+    public void Awake()
+    {
+        instance = this;
+    }
     public void ActivateBoutton()
     {
         for (int i = 0; i < GameLogic.instance.Liste_Joueurs.Count; i++)
@@ -37,44 +45,42 @@ public class TestControle : MonoBehaviour
             }
         }
     }
-    public void Test_controle(string nom_carte)//,int nombre_a_supprimer)
+    public GameObject PanelControle;
+    public GameObject bouton_clique;
+    
+    public void Test_controle(string nom_carte)
     {
         joueur = TurnHandler.instance.PlayerActuel;
-        nom_carte = " Paw  Paw ";
+        bouton_clique = EventSystem.current.currentSelectedGameObject;
+        nom_carte = bouton_clique.name;
 
-        GameObject carte_plante = GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[nom_carte]);
-        //Debug.Log(GameLogic.instance.Dico_NomCarte_Attache[nom_carte]);
-        Debug.Log(carte_plante);
+        Debug.Log(nom_carte);
+        
+        GameObject carte_plante = GameObject.Find(nom_carte);
+
         GameObject enfant_plante = carte_plante.transform.GetChild(0).gameObject;
-        Debug.Log(enfant_plante);
         TextMeshProUGUI compteur = enfant_plante.GetComponent<TextMeshProUGUI>();
-        Debug.Log(compteur);
         string nombre_affiche = compteur.text;
-        if (GameLogic.instance.Is_invasif(nom_carte, joueur.continent.defausse))
+        string nom_carte_detache = GameLogic.instance.Dico_NomCarte_Attache.FirstOrDefault(x => x.Value == nom_carte).Key;
+        Debug.Log(nom_carte_detache);
+        if (int.Parse(nombre_affiche) > 0)
         {
-            MenuOptions.instance.ResearchCanvasSelonTag("TxtControleInvasif").gameObject.SetActive(true);
-            if (joueur.continent.defausse.Count == 0) { Debug.Log("La liste est vide !"); }
-            Debug.Log("Invasif");
-            int nombre_version_int = int.Parse(nombre_affiche);
-            nombre_version_int--;
-            nombre_version_int.ToString();
-            Debug.Log(nombre_version_int);
-        }
-        else
-        {
-            OpenClosePanel.instance.openPanelControl();
-            int nombre_a_supprimer = SliderControl.instance.montantSelectionneControl; //Valeur du slider
-            int nombre_version_int = int.Parse(nombre_affiche);
-            nombre_version_int = nombre_version_int - nombre_a_supprimer;
-            string nouveau_compteur = nombre_version_int.ToString();
-            Debug.Log(nouveau_compteur);
-            compteur.text = nouveau_compteur;
+            if (GameLogic.instance.Is_invasif(nom_carte_detache, joueur.continent.defausse))
+            {
+                MenuOptions.instance.ResearchCanvasSelonTag("TxtControleInvasif").gameObject.SetActive(true);
+                Debug.Log("Invasif");
+                carte_plante.transform.GetComponent<SpeciesStackScript>().SupprimerCarteControle(1, nom_carte_detache);
+            }
+            else
+            {
+                Debug.Log("Else");
+                OpenClosePanel.instance.openPanelControl(PanelControle, nom_carte);
+            }
         }
     }
     public void Test_boutton()
     {
         joueur = TurnHandler.instance.PlayerActuel;
-        MenuOptions.instance.ResearchCanvasSelonTag("TxtControlInvasif").gameObject.SetActive(true);
         //int nombre = joueur.continent.defausse.Count;
         ////string bla = "";
         ////for (int j = 0; j < joueur.continent.defausse.Count; j++)
