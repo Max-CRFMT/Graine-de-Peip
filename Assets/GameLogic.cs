@@ -87,8 +87,6 @@ public GameLogic() { }
         {"Nénuphar géant ","NenupharGeant"},
         {"Plantes à bisous ","PlantesABisous"},
         };
-
-
     }
 
     public void SetNbJoueurs(int nombre)
@@ -371,8 +369,6 @@ public GameLogic() { }
     }
     public List<Carte_event> Creation_carte_event(List<List<string>> liste_de_caracteristique)
     {
-        Debug.Log("Exec");
-        Debug.Log(liste_de_caracteristique.Count);
         List<Carte_event> liste_instance = new();
         for (int i = 0; i < liste_de_caracteristique.Count; i++)
         {
@@ -417,7 +413,7 @@ public GameLogic() { }
         GameObject carte_plante = GameObject.Find(Dico_NomCarte_Attache[carte_a_tester.nom]).transform.GetChild(0).gameObject;
         TextMeshProUGUI compteur = carte_plante.GetComponent<TextMeshProUGUI>();
         string valeur = compteur.text;
-        if (list_carte_pioche.Exists(carte => carte.nom == carte_a_tester.nom) ||  valeur != "0")
+        if (list_carte_pioche.Exists(carte => carte.nom == carte_a_tester.nom) || valeur != "0")
         {
             return false;
         }
@@ -456,20 +452,40 @@ public GameLogic() { }
     }
     public void Reproduction()
     {
+        List<Carte> list_carte_reproduit = new List<Carte>();
         foreach (Player joueur in Liste_Joueurs)
         {
-            List<Carte> list_carte_reproduit = new List<Carte>();
             for (int i = 0; i < joueur.continent.pileFaceCachee.Count; i++)
             {
                 Carte carte_actuel = joueur.continent.pileFaceCachee[i];
-                if (list_carte_reproduit.Exists(carte => carte.nom == carte_actuel.nom) == false &&
-                    Is_en_extinction(carte_actuel, joueur.continent.pileFaceCachee) == false)
+                if (list_carte_reproduit.Exists(carte => carte.nom == carte_actuel.nom) == false)
                 {
                     list_carte_reproduit.Add(carte_actuel);
                     joueur.continent.pileFaceCachee = Ajout_carte(carte_actuel,
                                                      joueur.continent.pileFaceCachee,
                                                      joueur.continent.defausse);
                     ShuffleListeCartes(joueur.continent.pileFaceCachee);
+                }
+            }
+        }
+        foreach (GameObject racine in GameObject.FindGameObjectsWithTag("SpeciesStack"))
+        {
+            List<Carte> list_carte_recensee = racine.transform.GetComponent<SpeciesStackScript>().Liste_Carte_Recensee;
+            for (int i = 0; i < list_carte_recensee.Count; i++)
+            {
+                Carte carte_actuel = list_carte_recensee[i];
+                if (list_carte_reproduit.Exists(carte => carte.nom == carte_actuel.nom) == false)
+                {
+                    list_carte_reproduit.Add(carte_actuel);
+                    foreach(Player joueur in Liste_Joueurs)
+                    {
+                        if (joueur.map_choisie == carte_actuel.continent_name)
+                        {
+                            joueur.continent.pileFaceCachee = Ajout_carte(carte_actuel,
+                                                     joueur.continent.pileFaceCachee,
+                                                     joueur.continent.defausse);
+                        }
+                    }
                 }
             }
         }
