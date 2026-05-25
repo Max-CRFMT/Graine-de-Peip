@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VideoScriptLancement
   videoPlayer: {fileID: 2038495801}
-  VideoName: P2A-intro-V2.mp4
+  VideoName: P2A-intro-V3.mp4
 --- !u!4 &344378728
 Transform:
   m_ObjectHideFlags: 0

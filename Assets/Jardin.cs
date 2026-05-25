@@ -121,5 +121,7 @@ public class Jardin
     {
         Debug.Log("Le biome " + biome + " a été ajouté à la liste des biomes du jardin.");
         liste_biome_jardin.Add(biome);
+        TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
+        ChangementUITextJoueur.instance.ChangerChangementJoueur();
     }
 }

@@ -21,7 +21,7 @@ public class OpenClosePanel : MonoBehaviour
         TurnHandler.instance.PlayerActuel.continent.jardin.DisableButton();
         panel.SetActive(false);
     } 
-    }
+    
     public void openPanelControl(GameObject panel,string nom_carte)
     {
         if (TurnHandler.instance.controle_en_cours)
