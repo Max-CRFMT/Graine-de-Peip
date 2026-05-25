@@ -51,6 +51,8 @@ TagManager:
   - SpeciesStackContour
   - TxtControle
   - TxtControlInvasif
+  - niveauEducation
+  - niveauJardin
   layers:
   - Default
   - TransparentFX
