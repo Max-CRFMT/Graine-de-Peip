@@ -34,10 +34,6 @@ public class ChangementUITextJoueur : MonoBehaviour
         TMPThuneJoueur.text =  TurnHandler.instance.PlayerActuel.pieces.ToString();
     }
 
-    public void ChangeContinentJoueur()
-    {
-        TMPContinentJoueur.text = TurnHandler.instance.PlayerActuel.map_choisie;
-    }
         public void ChangePointsActionJoueur()
     {
         TMPCompteurPointsAction.text = TurnHandler.instance.PlayerActuel.Points_Action.ToString();
@@ -55,7 +51,6 @@ public class ChangementUITextJoueur : MonoBehaviour
     }
     public void ChangerChangementJoueur()
     {
-        ChangeContinentJoueur();
         ChangePseudoJoueur();
         ChangeThuneJoueur();
         ChangePointsActionJoueur();
