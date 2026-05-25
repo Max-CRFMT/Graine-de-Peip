@@ -29,7 +29,15 @@ public class Player
     private Scene curScene;
     private Array obj;
 
-    public List<int> Liste_prix_ouvrier = new List<int>(){12, 8, 6, 4};
+    public List<int> Liste_prix_ouvrier = new List<int>(){12, 10, 8, 6};
+
+    public Dictionary<int, int> Liste_prix_special = new Dictionary<int, int>()
+    {
+        {-1, 0},
+        {0, 1},
+        {1, 2},
+        {2, 3},
+    };
 
     public Dictionary<string, string> Dico_ContinentUI_ContinentBack;
     public Player joueur_cible;
@@ -37,6 +45,7 @@ public class Player
     public Dictionary<string, string> Dico_NomCarte_Attache;
     public bool restaurationEnCours = false;
     public int curBank;
+
 
 
 
@@ -86,9 +95,7 @@ public class Player
 
     public void RajouterPointActionMax()
     {
-        RetirerPieces(Liste_prix_ouvrier[continent.EducationLevel]);
         Points_Action_Max++;
-        ChangementUITextJoueur.instance.ChangePointsActionJoueur();
     }
 
     public void RajouterPieces(int nb)
@@ -120,13 +127,18 @@ public class Player
         }
         else
         {
-            GameObject message = MenuOptions.instance.ResearchCanvasSelonTag("message_erreur").gameObject;
-            GameObject texte = message.transform.GetChild(0).transform.GetChild(0).gameObject;
-            texte.GetComponent<TextMeshProUGUI>().text = "Vous avez déjà été subventionné ce tour-ci ou vous n'avez pas assez d'argent ou de point d'action";
-            MenuOptions.instance.ResearchCanvasSelonTag("message_erreur").gameObject.SetActive(true);
+            MessageErreur("Vous avez déjà été subventionné ce tour-ci ou vous n'avez pas assez d'argent ou de point d'action");
             Debug.Log("Pas assez de pts d'actions ou de thune ou subventions déjà demandée ce tour-ci");
         }
 
+    }
+
+    public void MessageErreur(string erreur_message)
+    {
+        GameObject message = MenuOptions.instance.ResearchCanvasSelonTag("message_erreur").gameObject;
+        GameObject texte = message.transform.GetChild(0).transform.GetChild(0).gameObject;
+        texte.GetComponent<TextMeshProUGUI>().text = erreur_message;
+        MenuOptions.instance.ResearchCanvasSelonTag("message_erreur").gameObject.SetActive(true);
     }
 
     public void Don(int montant_don, Player player_cible)
@@ -245,16 +257,17 @@ public class Player
     public void Recruter_Ouvrier()
     {
 
-        int prix_ouvrier = Liste_prix_ouvrier[continent.EducationLevel];
+        int prix_ouvrier = Liste_prix_ouvrier[Liste_prix_special[continent.EducationLevel]];
         if (map_choisie == "Europe")
         {
             prix_ouvrier--;
         }
 
-        if (VerifMontant(prix_ouvrier) && VerifPointAction(1) && !OuvrierAchete)
+        if (VerifMontant(prix_ouvrier) && !OuvrierAchete)
         {
             Debug.Log("Function recruter ouvrier exec");
             RajouterPointActionMax();
+            RetirerPieces(prix_ouvrier);
             OuvrierAchete = true;
             Debug.Log("Maintenant, pt actions max = " + Points_Action_Max);
             ChangementUITextJoueur.instance.ChangerChangementJoueur();

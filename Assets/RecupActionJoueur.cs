@@ -18,7 +18,10 @@ public class RecupActionJoueur : MonoBehaviour
     
     public void RecupRecruter()
     {
-        TurnHandler.instance.PlayerActuel.Recruter_Ouvrier();
+        if (TurnHandler.instance.PlayerActuel.VerifPointAction(1))
+        {
+            TurnHandler.instance.PlayerActuel.Recruter_Ouvrier();
+        }
     }
 
     public void RecupRecenser()
