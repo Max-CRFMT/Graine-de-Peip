@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using TMPro;
 using Unity.VisualScripting;
@@ -57,8 +58,6 @@ public GameLogic() { }
         instance.Dico_NomCarte_Attache =  new Dictionary<string, string>(){
         {"Ambroisie à feuilles d'armoise","AmbroisieAFeuillesDarmoise"},
         {"Arbre tabatiére","ArbreTabatiere"},
-        {"DompteVenin noir","DompteVeninNoir"},
-        {"Plantes cailloux","PlantesCailloux"},
         //{"",""},
         {"Jacinthe d'eau","JacintheDeau"},
         {"Canne de Provence","CanneDeProvince"},
@@ -489,6 +488,16 @@ public GameLogic() { }
                 }
             }
         }
+    }
+
+    public Carte Trouver_carte_selon_nom(string carte_donnee, List<Carte> liste_carte)
+    {
+        Carte carte_trouve = liste_carte.Find(carte => carte.nom == carte_donnee);
+        if (carte_trouve != null) 
+        { 
+            return carte_trouve;
+        }
+        else { Debug.Log($"Carte pas trouvée{carte_donnee}"); return null; }
     }
 }
 

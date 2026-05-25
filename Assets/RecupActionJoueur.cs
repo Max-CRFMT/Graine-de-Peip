@@ -82,6 +82,12 @@ public class RecupActionJoueur : MonoBehaviour
         {
             Debug.Log("Controle appel");
             TurnHandler.instance.PlayerActuel.RetirerPointAction(1);
+
+            TurnHandler.instance.controle_en_cours = true;
+            GameObject.FindGameObjectWithTag("bottomButtonToGameAtlas").GetComponent<ButtonScreenMoverScript>().ScreenMoverBottomButtonPressed();
+
+            MenuInGame.instance.ChangementClicableBoutonSelonTags(false, new List<string>() { "topButtonToPlayerBoard" }, "CanvasGUI");
+            MenuOptions.instance.ResearchCanvasSelonTag("TxtControle").gameObject.SetActive(true);
         }
     }
 
@@ -123,6 +129,11 @@ public class RecupActionJoueur : MonoBehaviour
         TurnHandler.instance.PlayerActuel.FinRestauration();
     }
 
+    public void AnnulerControle()
+    {
+        TurnHandler.instance.PlayerActuel.RajouterPointAction(1);
+        GestionControl.instance.ReactivationPostControl();
+    }
 
     public void UpdateUIActionJoueur()
     {

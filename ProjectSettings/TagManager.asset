@@ -52,6 +52,10 @@ TagManager:
   - message_subvention
   - string_erreur
   - message_erreur
+  - TxtControle
+  - TxtControlInvasif
+  - niveauEducation
+  - niveauJardin
   layers:
   - Default
   - TransparentFX

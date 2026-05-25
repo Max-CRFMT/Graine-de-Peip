@@ -9,20 +9,11 @@ public class Jardin
 {
     public string name;
     public int limite_max_jardin = 8;
-    public static int niveau_jardin = 1;
+    public int niveau_jardin = 1;
     public static int fibo1 = 1;
     public static int fibo2 = 1;
 
     public List<string> liste_biome_jardin;
-
-    GameObject Jardin1;
-    GameObject Jardin2;
-    GameObject Jardin3;
-    GameObject Jardin4;
-    GameObject Jardin5;
-    GameObject Jardin6;
-    GameObject Jardin7;
-    GameObject Jardin8;
 
     public List<Carte> Liste_Carte;
 
