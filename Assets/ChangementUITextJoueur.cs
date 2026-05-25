@@ -12,6 +12,9 @@ public class ChangementUITextJoueur : MonoBehaviour
     [SerializeField] TextMeshProUGUI TMPCompteurPointsAction;
     [SerializeField] TextMeshProUGUI TMPThunePrevisionnelle;
 
+    [SerializeField] TextMeshProUGUI TMPniveauEducationJoueur;
+    [SerializeField] TextMeshProUGUI TMPniveauJardinJoueur;
+
     public Sprite plateauJoueurSprite;
     public GameObject plateauJoueur;
     public SpriteRenderer plateauJoueurSpriteRenderer;
@@ -34,7 +37,7 @@ public class ChangementUITextJoueur : MonoBehaviour
         TMPThuneJoueur.text =  TurnHandler.instance.PlayerActuel.pieces.ToString();
     }
 
-        public void ChangePointsActionJoueur()
+    public void ChangePointsActionJoueur()
     {
         TMPCompteurPointsAction.text = TurnHandler.instance.PlayerActuel.Points_Action.ToString();
     }
@@ -49,11 +52,23 @@ public class ChangementUITextJoueur : MonoBehaviour
         }
         
     }
+
+    public void ChangerEducationJoueur()
+    {
+        TMPniveauEducationJoueur.text = TurnHandler.instance.PlayerActuel.continent.EducationLevel.ToString();
+    }
+
+    public void ChangerNiveauJardinJoueur()
+    {
+        TMPniveauJardinJoueur.text = TurnHandler.instance.PlayerActuel.continent.jardin.niveau_jardin.ToString();
+    }
     public void ChangerChangementJoueur()
     {
         ChangePseudoJoueur();
         ChangeThuneJoueur();
         ChangePointsActionJoueur();
         ChangePlateauJoueur();
+        ChangerEducationJoueur();
+        ChangerNiveauJardinJoueur();
     }
 }
