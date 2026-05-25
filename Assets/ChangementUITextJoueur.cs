@@ -69,7 +69,7 @@ public class ChangementUITextJoueur : MonoBehaviour
         ChangePointsActionJoueur();
         ChangePlateauJoueur();        
         ChangerNiveauJardinJoueur();
-        //ChangerEducationJoueur();
+        ChangerEducationJoueur();
 
     }
 }
