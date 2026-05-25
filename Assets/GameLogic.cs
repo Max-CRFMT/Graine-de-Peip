@@ -58,8 +58,6 @@ public GameLogic() { }
         instance.Dico_NomCarte_Attache =  new Dictionary<string, string>(){
         {"Ambroisie à feuilles d'armoise","AmbroisieAFeuillesDarmoise"},
         {"Arbre tabatiére","ArbreTabatiere"},
-        {"DompteVenin noir","DompteVeninNoir"},
-        {"Plantes cailloux","PlantesCailloux"},
         //{"",""},
         {"Jacinthe d'eau","JacintheDeau"},
         {"Canne de Provence","CanneDeProvince"},

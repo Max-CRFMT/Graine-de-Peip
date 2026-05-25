@@ -129,6 +129,11 @@ public class RecupActionJoueur : MonoBehaviour
         TurnHandler.instance.PlayerActuel.FinRestauration();
     }
 
+    public void AnnulerControle()
+    {
+        TurnHandler.instance.PlayerActuel.RajouterPointAction(1);
+        GestionControl.instance.ReactivationPostControl();
+    }
 
     public void UpdateUIActionJoueur()
     {

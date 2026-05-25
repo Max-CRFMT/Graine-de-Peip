@@ -127,14 +127,6 @@ public class SpeciesStackScript : MonoBehaviour
                     TurnHandler.instance.PlayerActuel.continent.defausse.Add(carte_compostable);
                     Liste_Carte_Recensee.Remove(carte_compostable);
                 }
-                //int nombre = Liste_Carte_Recensee.Count;
-                //string bla = "";
-                //for (int j = 0; j < nombre; j++)
-                //{
-                //    bla += Liste_Carte_Recensee[j].nom + " ; ";
-                //}
-                //Debug.Log(bla);
-                //Debug.Log(nombre);
             }
             else { Debug.Log("Aucune carte de cette espèce !"); }
         }
