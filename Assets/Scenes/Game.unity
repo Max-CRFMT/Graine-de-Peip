@@ -1731,6 +1731,8 @@ MonoBehaviour:
   TMPContinentJoueur: {fileID: 0}
   TMPCompteurPointsAction: {fileID: 2029740460}
   TMPThunePrevisionnelle: {fileID: 1654577936}
+  TMPniveauEducationJoueur: {fileID: 1542959233}
+  TMPniveauJardinJoueur: {fileID: 599829331}
   plateauJoueurSprite: {fileID: 0}
   plateauJoueur: {fileID: 0}
   plateauJoueurSpriteRenderer: {fileID: 0}
