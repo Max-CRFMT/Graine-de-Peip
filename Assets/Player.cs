@@ -115,7 +115,7 @@ public class Player
         {
             montantSubvention = 0;
         }
-
+         
         if (VerifPointAction(1) && !SubventionDemandee && VerifMontant(montantSubvention))
         {
 
@@ -127,8 +127,7 @@ public class Player
         }
         else
         {
-            MessageErreur("Vous avez déjà été subventionné ce tour-ci ou vous n'avez pas assez d'argent ou de point d'action");
-            Debug.Log("Pas assez de pts d'actions ou de thune ou subventions déjà demandée ce tour-ci");
+            MessageErreur("Vous avez déjà été subventionné ce tour-ci ou vous n'avez pas assez d'argent ou de point d'action.");
         }
 
     }
@@ -146,7 +145,6 @@ public class Player
         int prix_don = 1;
         if (VerifMontant(prix_don) && VerifPointAction(1)==true)
         {
-            Debug.Log("Function Don exec");
             player_cible.RajouterPieces(montant_don);
             RetirerPieces(montant_don + prix_don);
             Debug.Log(pieces);
@@ -154,11 +152,7 @@ public class Player
         }
         else
         {
-            GameObject message = MenuOptions.instance.ResearchCanvasSelonTag("message_erreur").gameObject;
-            GameObject texte = message.transform.GetChild(0).transform.GetChild(0).gameObject;
-            texte.GetComponent<TextMeshProUGUI>().text = "vous n'avez pas assez d'argent ou de point d'action";
-            MenuOptions.instance.ResearchCanvasSelonTag("message_erreur").gameObject.SetActive(true);
-            Debug.Log("Montant non acquis, action annulée, cheh");
+            MessageErreur("Vous n'avez pas assez d'argent.");
         }
     }
 
@@ -166,13 +160,12 @@ public class Player
     {
         if (restaurationEnCours)
         {
-            Debug.Log("L'action est deja en cours.");
+            MessageErreur("L'action est en cours.");
         }
         else
         {
             restaurationEnCours = true;
             MenuOptions.instance.ResearchCanvasSelonTag("annulerRestauration").gameObject.SetActive(true);
-            Debug.Log("Choisissez la carte à restaurer (cliquez sur l'emplacement du jardin ou de la banque correspondant).");
             for (int i = 1; i < 9; i++)
             {
                 if (GameObject.Find("Jardin"+i.ToString()).GetComponent<GestionInteractionJardin>().carte_contenue != null)
@@ -208,7 +201,6 @@ public class Player
 
         if (VerifMontant(prix_controle))
         {
-            Debug.Log("Function controle exec");
             
             if (JardinOuPiohe == 'J')
             {

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using static TurnHandler;
+using UnityEngine.UI;
 
 public class ChangementUITextJoueur : MonoBehaviour
 {
@@ -58,6 +59,25 @@ public class ChangementUITextJoueur : MonoBehaviour
         TMPniveauEducationJoueur.text = TurnHandler.instance.PlayerActuel.continent.EducationLevel.ToString();
     }
 
+    public void ChangerBiomesJoueur()
+    {
+        var gos = GameObject.FindGameObjectsWithTag("Biomes");
+        foreach (var go in gos)
+        {
+            if (TurnHandler.instance.PlayerActuel.continent.jardin.liste_biome_jardin.Contains(go.name))
+            {
+                Image image = go.GetComponent<Image>();
+                image.color = TurnHandler.instance.PlayerActuel.continent.banque.Visible;
+            } else
+            {
+                Debug.Log(go.name);
+                Image image = go.GetComponent<Image>();
+                image.color = TurnHandler.instance.PlayerActuel.continent.banque.Invisible;
+            }
+        }
+    }
+
+
     public void ChangerNiveauJardinJoueur()
     {
         TMPniveauJardinJoueur.text = TurnHandler.instance.PlayerActuel.continent.jardin.niveau_jardin.ToString();
@@ -70,6 +90,6 @@ public class ChangementUITextJoueur : MonoBehaviour
         ChangePlateauJoueur();        
         ChangerNiveauJardinJoueur();
         ChangerEducationJoueur();
-
+        ChangerBiomesJoueur();
     }
 }
