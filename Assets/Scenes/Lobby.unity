@@ -1857,6 +1857,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1187073761}
+    - target: {fileID: 470562717477771870, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2259307377617174227, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1972,6 +1976,10 @@ PrefabInstance:
     - target: {fileID: 4730628076351564065, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
       propertyPath: m_Name
       value: CanvasOptions
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730628076351564065, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5663628517497192131, guid: 6cc22467c5d9ed0a3b33d39912a53fa7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

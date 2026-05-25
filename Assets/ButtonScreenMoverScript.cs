@@ -68,9 +68,14 @@ public class ButtonScreenMoverScript : MonoBehaviour
                 MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>() { "TxtRecolte" }, "TxtRecolte");
                 MenuInGame.instance.ChangementClicableBoutonSelonTags(true, new List<string>() { "TxtRecoltePioche" }, "TxtRecoltePioche");
 
-                if (!TurnHandler.instance.resencement_en_cours && !TurnHandler.instance.recolte_pioche_en_cours)
+                if (!TurnHandler.instance.resencement_en_cours && !TurnHandler.instance.recolte_pioche_en_cours && !TurnHandler.instance.controle_en_cours)
                 {
                     buttonToBeDisabledDuringMovement.enabled = true;
+                }
+
+                if (TurnHandler.instance.controle_en_cours)
+                {
+                    buttonToBeDisabledDuringMovement.enabled = false;
                 }
             }
         }

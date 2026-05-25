@@ -49,6 +49,8 @@ TagManager:
   - Jardins
   - annulerRestauration
   - SpeciesStackContour
+  - TxtControle
+  - TxtControlInvasif
   layers:
   - Default
   - TransparentFX
