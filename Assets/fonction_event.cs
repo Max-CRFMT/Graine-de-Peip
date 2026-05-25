@@ -33,6 +33,7 @@ public class Fonction_event : MonoBehaviour
 
     public void Lancement_event(string nom_event)
     {
+        Debug.Log($"événement lancé {nom_event}");
         dico_Nom_event[nom_event].Invoke();
     }
     public void Inondations()

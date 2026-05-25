@@ -49,6 +49,9 @@ TagManager:
   - Jardins
   - annulerRestauration
   - SpeciesStackContour
+  - message_subvention
+  - string_erreur
+  - message_erreur
   layers:
   - Default
   - TransparentFX

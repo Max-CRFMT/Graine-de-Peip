@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Player
 {
@@ -119,6 +120,10 @@ public class Player
         }
         else
         {
+            GameObject message = MenuOptions.instance.ResearchCanvasSelonTag("message_erreur").gameObject;
+            GameObject texte = message.transform.GetChild(0).transform.GetChild(0).gameObject;
+            texte.GetComponent<TextMeshProUGUI>().text = "Vous avez déjà été subventionné ce tour-ci ou vous n'avez pas assez d'argent ou de point d'action";
+            MenuOptions.instance.ResearchCanvasSelonTag("message_erreur").gameObject.SetActive(true);
             Debug.Log("Pas assez de pts d'actions ou de thune ou subventions déjà demandée ce tour-ci");
         }
 
@@ -127,7 +132,7 @@ public class Player
     public void Don(int montant_don, Player player_cible)
     {
         int prix_don = 1;
-        if (VerifMontant(prix_don))
+        if (VerifMontant(prix_don) && VerifPointAction(1)==true)
         {
             Debug.Log("Function Don exec");
             player_cible.RajouterPieces(montant_don);
@@ -137,6 +142,10 @@ public class Player
         }
         else
         {
+            GameObject message = MenuOptions.instance.ResearchCanvasSelonTag("message_erreur").gameObject;
+            GameObject texte = message.transform.GetChild(0).transform.GetChild(0).gameObject;
+            texte.GetComponent<TextMeshProUGUI>().text = "vous n'avez pas assez d'argent ou de point d'action";
+            MenuOptions.instance.ResearchCanvasSelonTag("message_erreur").gameObject.SetActive(true);
             Debug.Log("Montant non acquis, action annulée, cheh");
         }
     }

@@ -12,5 +12,5 @@ public class OpenClosePanel : MonoBehaviour
     public void closePanel()
     {
         panel.SetActive(false);
-    }
+    } 
 }

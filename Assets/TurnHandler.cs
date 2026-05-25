@@ -54,9 +54,9 @@ public class TurnHandler : MonoBehaviour
 
     public void Evenement()
     {
-        //TODO - Doit piocher une carte �v�nement et appliquer ce dernier
-        //PiocherCarteEvenement();
-        //AppliquerEvenement();
+        string event_du_tour = GameLogic.instance.liste_event[0].nom;
+        Fonction_event.instance.Lancement_event(event_du_tour);
+        GameLogic.instance.liste_event.RemoveAt(0);
     }
 
     public IEnumerator TempsDeDiscussion()
@@ -125,7 +125,7 @@ public class TurnHandler : MonoBehaviour
     public IEnumerator RoundComplet()
     {
         RajouterAToutLesJoueursPiecesMissionEct();
-        //Evenement();
+        Evenement();
         MasquerUIJoueur();
         yield return StartCoroutine(TempsDeDiscussion());
         ReafficherUI();
