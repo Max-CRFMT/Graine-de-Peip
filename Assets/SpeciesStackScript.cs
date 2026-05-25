@@ -19,7 +19,7 @@ public class SpeciesStackScript : MonoBehaviour
     public List<Carte> Liste_Carte_Recensee = new List<Carte>();
 
     public string nom_plante;
-    Player joueur = TurnHandler.instance.PlayerActuel;
+    Player joueur;
 
     [ContextMenu("Increase Card Amount")]
     public void IncreaseCardAmount()
@@ -124,7 +124,7 @@ public class SpeciesStackScript : MonoBehaviour
                 {
                     DecreaseCardAmount();
                     Carte carte_compostable = GameLogic.instance.Trouver_carte_selon_nom(nom_espece, Liste_Carte_Recensee);
-                    joueur.continent.defausse.Add(carte_compostable);
+                    TurnHandler.instance.PlayerActuel.continent.defausse.Add(carte_compostable);
                     Liste_Carte_Recensee.Remove(carte_compostable);
                 }
                 //int nombre = Liste_Carte_Recensee.Count;
