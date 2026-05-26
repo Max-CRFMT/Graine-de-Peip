@@ -257,7 +257,6 @@ public class Player
 
         if (VerifMontant(prix_ouvrier) && !OuvrierAchete)
         {
-            Debug.Log("Function recruter ouvrier exec");
             RajouterPointActionMax();
             RetirerPieces(prix_ouvrier);
             OuvrierAchete = true;
@@ -303,7 +302,6 @@ public class Player
 
         if (VerifMontant(prix_recensement))
         {
-            Debug.Log("Function recenser exec");
             RetirerPieces(prix_recensement);
             RetirerPointAction(1);
 
@@ -350,15 +348,6 @@ public class Player
         {
             if ((!continent.banque.VerificationPresenceCarteDansBanque(carte_cible) && !continent.jardin.VerifierPresenceDansJardin(carte_cible) || BanqueReloadOuBanqueToJardin == 'J'))
             {
-                RetirerPointAction(1);
-                RetirerPieces(prix_recolte);
-                ChangementUITextJoueur.instance.ChangerChangementJoueur();
-
-                Debug.Log("Function recolter exec");
-                Debug.Log(PiocheOuBanque);
-                Debug.Log(PiocheToJardinOuPiocheToBanque);
-                Debug.Log(BanqueReloadOuBanqueToJardin);
-
                 if (PiocheOuBanque == 'P') //Carte prise de la pioche
                 {
                     if (PiocheToJardinOuPiocheToBanque == 'J') //Carte va dans le jardin du joueur
@@ -375,7 +364,7 @@ public class Player
                     {
                         GameObject.Find(GameLogic.instance.Dico_NomCarte_Attache[carte_cible.nom]).GetComponent<SpeciesStackScript>().DecreaseCardAmount();
                         Debug.Log("Ajoute");
-                        continent.banque.listeDeListes[0].Add(carte_cible);
+                        continent.banque.AjouterCarteAuDebut(carte_cible);
                     }
                 }
 
@@ -390,11 +379,14 @@ public class Player
                     else if (BanqueReloadOuBanqueToJardin == 'J') //Envoyer la carte dans le jardin
                     {
                         GestionPostRecolte.instance.jardin_cible.GetComponent<GestionInteractionJardin>().carte_contenue = carte_cible;
-                        continent.jardin.Liste_Carte.Add(carte_cible);
+                        continent.jardin.AjouterCarteDansJardin(carte_cible);
                         continent.banque.EnleverCartesBanqueSelonCarte(carte_cible);
                         continent.jardin.UpdateSpriteJardin();
                     }
                 }
+                RetirerPointAction(1);
+                RetirerPieces(prix_recolte);
+                ChangementUITextJoueur.instance.ChangerChangementJoueur();
             }
         }
         else    

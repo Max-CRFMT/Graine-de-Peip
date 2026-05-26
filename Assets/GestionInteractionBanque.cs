@@ -8,10 +8,15 @@ public class GestionInteractionBanque : MonoBehaviour
     {
         if (TurnHandler.instance.recolte_pioche_en_cours)
         {
-            GestionPostRecolte.instance.PiocheToJardinOuPiocheToBanque = 'B';
-            TurnHandler.instance.PlayerActuel.continent.banque.Banque1.transform.GetChild(0).gameObject.SetActive(false);
-            GestionPostRecolte.instance.AjoutConstantesEctAuTurnHandlerEtCloture();
-
+            if (GestionPostRecolte.instance.carte_cible_recolte.conservable)
+            {
+                GestionPostRecolte.instance.PiocheToJardinOuPiocheToBanque = 'B';
+                TurnHandler.instance.PlayerActuel.continent.banque.Banque1.transform.GetChild(0).gameObject.SetActive(false);
+                GestionPostRecolte.instance.AjoutConstantesEctAuTurnHandlerEtCloture();
+            } else 
+            {
+                TurnHandler.instance.PlayerActuel.MessageErreur("Cette carte n'est pas conservable en banque.");
+            }
         } 
         else if (TurnHandler.instance.recolte_en_cours && GestionPostRecolte.instance.PiocheOuBanque == 'B')
         {

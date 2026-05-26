@@ -12,15 +12,29 @@ public class GestionInteractionJardin : MonoBehaviour
     {
         if (TurnHandler.instance.recolte_pioche_en_cours && carte_contenue == null)
         {
-            GestionPostRecolte.instance.PiocheToJardinOuPiocheToBanque = 'J';
-            GestionPostRecolte.instance.jardin_cible = gameObject;
-            GestionPostRecolte.instance.AjoutConstantesEctAuTurnHandlerEtCloture();
+            Debug.Log(GestionPostRecolte.instance.carte_cible_recolte.biome);
+            if (TurnHandler.instance.PlayerActuel.continent.jardin.liste_biome_jardin.Contains(GestionPostRecolte.instance.carte_cible_recolte.biome))
+            {
+                GestionPostRecolte.instance.PiocheToJardinOuPiocheToBanque = 'J';
+                GestionPostRecolte.instance.jardin_cible = gameObject;
+                GestionPostRecolte.instance.AjoutConstantesEctAuTurnHandlerEtCloture();
+            } else 
+            {
+                TurnHandler.instance.PlayerActuel.MessageErreur("Biome non compatible avec cette plante.");
+            }
         }
         else if (TurnHandler.instance.recolte_en_cours && GestionPostRecolte.instance.PiocheOuBanque == 'B' && carte_contenue == null)
         {
-            GestionPostRecolte.instance.BanqueReloadOuBanqueToJardin = 'J';
-            GestionPostRecolte.instance.jardin_cible = gameObject;
-            GestionPostRecolte.instance.AjoutConstantesEctAuTurnHandlerEtCloture();
+            if (TurnHandler.instance.PlayerActuel.continent.jardin.liste_biome_jardin.Contains(GestionPostRecolte.instance.carte_cible_recolte.biome))
+            {
+                GestionPostRecolte.instance.BanqueReloadOuBanqueToJardin = 'J';
+                GestionPostRecolte.instance.jardin_cible = gameObject;
+                GestionPostRecolte.instance.AjoutConstantesEctAuTurnHandlerEtCloture();
+            } else 
+            {
+                TurnHandler.instance.PlayerActuel.MessageErreur("Biome non compatible avec cette plante.");
+            }
+
         }
         else if (TurnHandler.instance.PlayerActuel.restaurationEnCours)
         {

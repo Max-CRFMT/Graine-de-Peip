@@ -54,6 +54,7 @@ public class Banque
     {
         return CarteAVerifier == carte;
     }
+    
     public void AjouterCarteAuDebut(Carte CarteARajouter)
     {
         contient = false;
